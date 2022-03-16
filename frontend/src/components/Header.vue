@@ -3,7 +3,7 @@
     <v-toolbar flat outlined class="px-15">
       <v-spacer />
       <v-toolbar-title>
-        <v-btn :to="{ name: 'home' }" text>
+        <v-btn to="/" text>
           <v-img src="@/assets/menawi.jpg" max-width="100px" />
         </v-btn>
       </v-toolbar-title>
@@ -69,7 +69,7 @@
               </v-list-item-avatar>
               <v-list-item-content>
                 <v-list-item-title>
-                  <strong>Pencapaian</strong></v-list-item-title
+                  <strong>PENCAPAIAN</strong></v-list-item-title
                 >
               </v-list-item-content>
             </v-list-item>
@@ -115,7 +115,7 @@
       <!-- logout -->
       <v-dialog v-model="dialogLogout" max-width="350px" activator="item">
         <v-card>
-          <v-card-title class="text"
+          <v-card-title class="text-center"
             >Are you sure you want to logout?</v-card-title
           >
           <v-card-actions>
@@ -129,7 +129,7 @@
       <!-- </v-toolbar-items> -->
 
       <!-- <v-toolbar-items v-else>
-        <v-btn text @click="redirectLogin()"> Login </v-btn></v-toolbar-items
+        <v-btn text @click="redirectRegister()"> DAFTAR </v-btn></v-toolbar-items
       > -->
       <v-spacer />
     </v-toolbar>
