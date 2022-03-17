@@ -4,7 +4,7 @@
       <v-col cols="10" lg="4" class="mx-auto">
         <v-card class="pa-8" flat>
           <div class="text-center" style="margin-bottom: 30px">
-            <h2 class="indigo--text">Selamat datang kembali!</h2>
+            <h2 class="indigo--text">Buat Profilmu</h2>
             <!-- <v-avatar size="50" color="indigo lighten-4">
               <v-icon size="30" color="indigo">mdi-account</v-icon>
             </v-avatar> -->
@@ -12,6 +12,24 @@
           <ValidationObserver v-slot="{ submitLogin }">
             <form @submit.prevent="submitLogin">
               <v-card-text class="text-center">
+                <ValidationProvider
+                  name="name"
+                  rules="required"
+                  v-slot="{ errors }"
+                >
+                  <v-text-field
+                    filled
+                    rounded
+                    style="margin-bottom: 10px"
+                    hide-details="auto"
+                    dense
+                    label="Nama"
+                    v-model="form.nama"
+                    type="text"
+                  >
+                  </v-text-field>
+                  <p class="text-center red--text">{{ errors[0] }}</p>
+                </ValidationProvider>
                 <ValidationProvider
                   name="username"
                   rules="required"
@@ -30,6 +48,7 @@
                   </v-text-field>
                   <p class="text-center red--text">{{ errors[0] }}</p>
                 </ValidationProvider>
+
                 <ValidationProvider
                   name="password"
                   rules="required|max:12|min:8"
@@ -59,11 +78,11 @@
                   dense
                   @click="submit()"
                 >
-                  <span class="white--text px-8">MASUK</span>
+                  <span class="white--text px-8">DAFTAR</span>
                 </v-btn>
                 <p class="text-center">
-                  Tidak punya akun?
-                  <router-link to="register">Buat Akun</router-link>
+                  Sudah punya akun?
+                  <router-link to="login">Masuk</router-link>
                 </p>
               </v-card-text>
             </form>
@@ -75,27 +94,15 @@
 </template>
 <script>
 export default {
-  name: "Login",
+  name: "Register",
   data() {
     return {
       form: {
-        email: "",
+        username: "",
+        name: "",
         password: "",
       },
     };
   },
-  // methods: {
-  //   async submit() {
-  //     const User = new FormData();
-  //     User.append("email", this.form.email);
-  //     User.append("password", this.form.password);
-  //     try {
-  //         await(this.LogIn(User)) ;
-  //         this.$router.push("/");
-  //     } catch (error) {
-  //         console.log(error)
-  //     }
-  //   },
-  // },
 };
 </script>
