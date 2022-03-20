@@ -3,6 +3,9 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home'
 import Login from '../views/Login'
 import Register from '../views/Register'
+import Profile from '../views/Profile'
+import QuizHome from '../views/quiz/QuizHome'
+import MaterialHome from '../views/material/MaterialHome'
 
 Vue.use(VueRouter)
 
@@ -21,6 +24,21 @@ const routes = [
         path: '/register',
         name: 'Register',
         component: Register
+    },
+    {
+        path: '/profile',
+        name: 'Profile',
+        component: Profile
+    },
+    {
+        path: '/materialhome',
+        name: 'MaterialHome',
+        component: MaterialHome
+    },
+    {
+        path: '/quizhome',
+        name: 'QuizHome',
+        component: QuizHome
     },
 ]
 
