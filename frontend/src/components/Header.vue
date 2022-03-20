@@ -3,7 +3,7 @@
     <v-toolbar flat outlined class="px-15">
       <v-spacer />
       <v-toolbar-title>
-        <v-btn to="/" text>
+        <v-btn text to="/" color="white">
           <v-img src="@/assets/menawi.jpg" max-width="100px" />
         </v-btn>
       </v-toolbar-title>
@@ -121,7 +121,8 @@
           <v-card-actions>
             <v-spacer></v-spacer>
             <v-btn color="blue darken-1" text @click="close">Cancel</v-btn>
-            <v-btn color="blue darken-1" text @click="logoutConfirm">OK</v-btn>
+            <!-- @click="logoutConfirm" -->
+            <v-btn color="blue darken-1" text>OK</v-btn>
             <v-spacer></v-spacer>
           </v-card-actions>
         </v-card>

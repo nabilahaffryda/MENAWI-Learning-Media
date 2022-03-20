@@ -3,7 +3,7 @@
     <v-layout wrap style="margin-top: 20px">
       <v-col cols="10" lg="4" class="mx-auto">
         <v-card class="pa-8" flat>
-          <div class="text-center" style="margin-bottom: 30px">
+          <div class="text-center" style="margin-bottom: 20px">
             <h2 class="indigo--text">Buat Profilmu</h2>
             <!-- <v-avatar size="50" color="indigo lighten-4">
               <v-icon size="30" color="indigo">mdi-account</v-icon>
@@ -58,7 +58,7 @@
                     filled
                     rounded
                     dense
-                    style="margin-bottom: 15px"
+                    style="margin-bottom: 30px"
                     hide-details="auto"
                     label="Password"
                     v-model="form.password"
