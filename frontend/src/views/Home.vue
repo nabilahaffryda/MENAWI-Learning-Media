@@ -3,9 +3,12 @@
     <v-container>
       <v-row>
         <v-col>
+          <!-- 2 opsi aktivitas -->
           <v-sheet min-height="90vh" rounded="lg">
             <div class="text-center pa-8">
-              <h2 class="indigo--text">Pilih salah satu aktivitas</h2>
+              <h2 class="black--text">
+                Pilih salah satu aktivitas di bawah ini!
+              </h2>
             </div>
             <v-container fluid id="features" class="mt-12">
               <v-row align="center" justify="center">
@@ -26,75 +29,114 @@
                           :class="{ up: hover }"
                           id="rounded-card"
                           :to="feature.route"
+                          :color="feature.color"
                         >
                           <v-img
                             :src="feature.img"
-                            max-width="100px"
+                            max-width="150px"
                             class="d-block ml-auto mr-auto"
                             :class="{ 'zoom-efect': hover }"
                           ></v-img>
-                          <h1 class="font-weight-regular indigo--text">
-                            {{ feature.title }}
-                          </h1>
-                          <h4 class="font-weight-regular subtitle-1">
+
+                          <!-- <h6 class="font-weight-light subtitle-1 black--text">
                             {{ feature.text }}
-                          </h4>
+                          </h6> -->
                         </v-card>
                       </v-hover>
+                      <h1 class="font-weight-bold black--text">
+                        {{ feature.title }}
+                      </h1>
                     </v-col>
                   </v-row>
                 </v-col>
               </v-row>
             </v-container>
-            <!-- <v-row class="mb-6" no-gutters>
-              <v-col md="4" offset-md="4">
-                <v-btn class="mx-2" fab dark large color="orange">
-                  <v-icon dark> mdi-book-open-page-variant-outline </v-icon>
-                </v-btn>
-                <h2 class="indigo--text">Materi</h2>
-
-                <v-btn class="mx-2" fab dark large color="green">
-                  <v-icon dark> mdi-help </v-icon>
-                </v-btn>
-                <h2 class="indigo--text">Kuis</h2>
-              </v-col>
-            </v-row> -->
           </v-sheet>
         </v-col>
         <v-col cols="3">
           <!-- leaderboard -->
           <v-sheet rounded="lg">
             <v-list color="transparent">
-              <v-list-item v-for="n in 5" :key="n" link>
+              <v-list-item>
                 <v-list-item-content>
-                  <v-list-item-title> List Item {{ n }} </v-list-item-title>
+                  <v-list-item-title>
+                    <h2 class="text-center">Leaderboard</h2>
+                  </v-list-item-title>
                 </v-list-item-content>
               </v-list-item>
 
-              <v-divider class="my-2"></v-divider>
+              <v-divider></v-divider>
+              <v-virtual-scroll
+                :bench="benched"
+                :items="items"
+                height="250"
+                item-height="64"
+              >
+                <template v-slot:default="{ item }">
+                  <v-list-item :key="item">
+                    <v-list-item-action>
+                      <v-btn
+                        fab
+                        small
+                        depressed
+                        color="white"
+                        class="green--text"
+                      >
+                        {{ item }}
+                      </v-btn>
+                    </v-list-item-action>
 
-              <v-list-item link color="grey lighten-4">
-                <v-list-item-content>
-                  <v-list-item-title> Refresh </v-list-item-title>
-                </v-list-item-content>
-              </v-list-item>
+                    <v-list-item-content>
+                      <v-list-item-title> nama </v-list-item-title>
+                    </v-list-item-content>
+
+                    <v-list-item-content>
+                      <v-list-item-title> 100 poin </v-list-item-title>
+                    </v-list-item-content>
+                  </v-list-item>
+
+                  <v-divider></v-divider>
+                </template>
+              </v-virtual-scroll>
             </v-list>
           </v-sheet>
           <!-- progress point -->
           <v-sheet rounded="lg" style="margin-top: 20px">
             <v-list color="transparent">
-              <v-list-item v-for="n in 5" :key="n" link>
+              <v-list-item>
                 <v-list-item-content>
-                  <v-list-item-title> List Item {{ n }} </v-list-item-title>
+                  <v-list-item-title>
+                    <h2 class="text-center">Progess Point</h2>
+                  </v-list-item-title>
                 </v-list-item-content>
               </v-list-item>
 
               <v-divider class="my-2"></v-divider>
 
-              <v-list-item link color="grey lighten-4">
+              <v-list-item color="grey lighten-4">
+                <v-list-item-avatar>
+                  <img
+                    src="https://cdn.vuetifyjs.com/images/john.jpg"
+                    alt="John"
+                  />
+                </v-list-item-avatar>
                 <v-list-item-content>
-                  <v-list-item-title> Refresh </v-list-item-title>
+                  <v-list-item-title>Target poin</v-list-item-title>
+                  <v-progress-linear
+                    v-model="targetpoin"
+                    color="blue-grey"
+                    height="20"
+                    rounded
+                  >
+                    <!-- <template v-slot:default="{ value }">
+                        <strong>{{ Math.ceil(value) }}%</strong>
+                      </template> -->
+                    <strong>{{ Math.ceil(targetpoin) }}%</strong>
+                  </v-progress-linear>
                 </v-list-item-content>
+                <!-- <v-list-item-content
+                  ><v-list-item-title>0/20 XP</v-list-item-title>
+                </v-list-item-content> -->
               </v-list-item>
             </v-list>
           </v-sheet>
@@ -106,8 +148,8 @@
 <style>
 #rounded-card {
   border-radius: 50%;
-  min-height: 230px;
-  min-width: 230px;
+  min-height: 190px;
+  min-width: 180px;
 }
 </style>
 <script>
@@ -117,19 +159,31 @@ export default {
     return {
       features: [
         {
-          img: require("@/assets/img/icon2.png"),
-          title: "Materi",
+          img: require("@/assets/dazzle.gif"),
+          title: "MATERI",
           text: "Pahami materi dulu yuk!",
           route: "materialhome",
+          color: "#96ceb4",
         },
         {
-          img: require("@/assets/img/icon1.png"),
-          title: "Kuis",
-          text: "Ayo kita mainkan kuisnya!",
+          img: require("@/assets/quiz.gif"),
+          title: "KUIS",
+          text: "Ayo mainkan kuisnya!",
           route: "quizhome",
+          color: "#ffcc5c",
         },
       ],
+      benched: 0,
+      targetpoin: 20,
     };
+  },
+  computed: {
+    items() {
+      return Array.from({ length: this.length }, (k, v) => v + 1);
+    },
+    length() {
+      return 20;
+    },
   },
 };
 </script>
