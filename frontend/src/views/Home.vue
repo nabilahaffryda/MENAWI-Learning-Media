@@ -1,5 +1,5 @@
 <template>
-  <v-main class="grey lighten-3">
+  <v-main class="white">
     <v-container>
       <v-row>
         <v-col>
@@ -37,10 +37,6 @@
                             class="d-block ml-auto mr-auto"
                             :class="{ 'zoom-efect': hover }"
                           ></v-img>
-
-                          <!-- <h6 class="font-weight-light subtitle-1 black--text">
-                            {{ feature.text }}
-                          </h6> -->
                         </v-card>
                       </v-hover>
                       <h1 class="font-weight-bold black--text">
@@ -55,7 +51,7 @@
         </v-col>
         <v-col cols="3">
           <!-- leaderboard -->
-          <v-sheet rounded="lg">
+          <v-sheet rounded="lg" outlined>
             <v-list color="transparent">
               <v-list-item>
                 <v-list-item-content>
@@ -101,7 +97,7 @@
             </v-list>
           </v-sheet>
           <!-- progress point -->
-          <v-sheet rounded="lg" style="margin-top: 20px">
+          <v-sheet rounded="lg" style="margin-top: 20px" outlined>
             <v-list color="transparent">
               <v-list-item>
                 <v-list-item-content>
@@ -159,18 +155,16 @@ export default {
     return {
       features: [
         {
-          img: require("@/assets/dazzle.gif"),
+          img: require("@/assets/buku.png"),
           title: "MATERI",
-          text: "Pahami materi dulu yuk!",
           route: "materialhome",
-          color: "#96ceb4",
+          color: "#ffcc5c",
         },
         {
-          img: require("@/assets/quiz.gif"),
+          img: require("@/assets/quiz.png"),
           title: "KUIS",
-          text: "Ayo mainkan kuisnya!",
           route: "quizhome",
-          color: "#ffcc5c",
+          color: "#96ceb4",
         },
       ],
       benched: 0,
