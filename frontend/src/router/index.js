@@ -6,6 +6,7 @@ import Register from '../views/Register'
 import Profile from '../views/Profile'
 import QuizHome from '../views/quiz/QuizHome'
 import MaterialHome from '../views/material/MaterialHome'
+import Question from '../views/quiz/Question'
 
 Vue.use(VueRouter)
 
@@ -39,6 +40,11 @@ const routes = [
         path: '/quizhome',
         name: 'QuizHome',
         component: QuizHome
+    },
+    {
+        path: '/question',
+        name: 'Question',
+        component: Question
     },
 ]
 

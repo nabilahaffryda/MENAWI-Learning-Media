@@ -21,25 +21,14 @@
                       v-for="(feature, i) in features"
                       :key="i"
                     >
-                      <v-hover v-slot:default="{ hover }">
-                        <v-card
-                          class="card"
-                          shaped
-                          :elevation="hover ? 10 : 4"
-                          :class="{ up: hover }"
-                          id="rounded-card"
-                          :to="feature.route"
-                          :color="feature.color"
-                        >
-                          <v-img
-                            :src="feature.img"
-                            max-width="150px"
-                            class="d-block ml-auto mr-auto"
-                            :class="{ 'zoom-efect': hover }"
-                          ></v-img>
-                        </v-card>
-                      </v-hover>
-                      <h1 class="font-weight-bold black--text">
+                      <v-card flat :to="feature.route">
+                        <v-img
+                          :src="feature.img"
+                          max-width="150px"
+                          class="d-block ml-auto mr-auto"
+                        ></v-img>
+                      </v-card>
+                      <h1 class="font-weight-thin black--text">
                         {{ feature.title }}
                       </h1>
                     </v-col>
@@ -141,13 +130,6 @@
     </v-container>
   </v-main>
 </template>
-<style>
-#rounded-card {
-  border-radius: 50%;
-  min-height: 190px;
-  min-width: 180px;
-}
-</style>
 <script>
 export default {
   name: "Home",
@@ -155,16 +137,14 @@ export default {
     return {
       features: [
         {
-          img: require("@/assets/buku.png"),
+          img: require("@/assets/materi.png"),
           title: "MATERI",
           route: "materialhome",
-          color: "#ffcc5c",
         },
         {
-          img: require("@/assets/quiz.png"),
+          img: require("@/assets/kuis.png"),
           title: "KUIS",
           route: "quizhome",
-          color: "#96ceb4",
         },
       ],
       benched: 0,
