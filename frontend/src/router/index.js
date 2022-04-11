@@ -6,7 +6,8 @@ import Register from '../views/Register'
 import Profile from '../views/Profile'
 import QuizHome from '../views/quiz/QuizHome'
 import MaterialHome from '../views/material/MaterialHome'
-import Question from '../views/quiz/Question'
+import QuestionContent from '../views/quiz/QuestionContent'
+import MaterialContent from '../views/material/MaterialContent'
 
 Vue.use(VueRouter)
 
@@ -42,9 +43,14 @@ const routes = [
         component: QuizHome
     },
     {
-        path: '/question',
-        name: 'Question',
-        component: Question
+        path: '/questioncontent',
+        name: 'QuestionContent',
+        component: QuestionContent
+    },
+    {
+        path: '/materialcontent',
+        name: 'MaterialContent',
+        component: MaterialContent
     },
 ]
 

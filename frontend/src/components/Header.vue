@@ -102,9 +102,16 @@
               <v-list-item-title> <strong>AKUN</strong></v-list-item-title>
             </v-list-item>
             <v-divider />
-            <v-list-item link>
+            <v-list-item to="profile">
               <v-list-item-title>Profilmu</v-list-item-title>
             </v-list-item>
+            <!-- <v-divider />
+            <v-list-item>
+              <v-list-item-title>Pengaturan</v-list-item-title> </v-list-item
+            ><v-divider />
+            <v-list-item>
+              <v-list-item-title>Bantuan</v-list-item-title>
+            </v-list-item> -->
             <v-divider />
             <v-list-item @click="logout()">
               <v-list-item-title>Keluar</v-list-item-title>
