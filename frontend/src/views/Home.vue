@@ -21,14 +21,17 @@
                       v-for="(feature, i) in features"
                       :key="i"
                     >
-                      <v-card flat :to="feature.route">
+                      <v-card flat :to="feature.route" rounded-0>
                         <v-img
                           :src="feature.img"
                           max-width="150px"
                           class="d-block ml-auto mr-auto"
                         ></v-img>
                       </v-card>
-                      <h1 class="font-weight-thin black--text">
+                      <h1
+                        class="font-weight-thin black--text"
+                        style="margin-top: 20px"
+                      >
                         {{ feature.title }}
                       </h1>
                     </v-col>
@@ -138,7 +141,7 @@ export default {
       features: [
         {
           img: require("@/assets/materi.png"),
-          title: "MATERI",
+          title: "BELAJAR",
           route: "materialhome",
         },
         {
