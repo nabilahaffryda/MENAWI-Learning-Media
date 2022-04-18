@@ -1,10 +1,10 @@
 <template>
   <div>
-    <v-toolbar flat outlined class="px-15">
+    <v-toolbar flat outlined class="px-8">
       <v-spacer />
       <v-toolbar-title>
         <v-btn text to="/" color="white">
-          <v-img src="@/assets/menawi.jpg" max-width="100px" />
+          <v-img src="@/assets/logo2.png" max-width="150px" />
         </v-btn>
       </v-toolbar-title>
       <v-spacer />
