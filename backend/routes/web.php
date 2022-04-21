@@ -27,3 +27,5 @@ Route::get('materialdesc', function () {return view('material/materialdesc');});
 Route::get('user', function () {return view('user/user');});
 Route::get('userpoint', function () {return view('user/userpoint');});
 Route::get('badge', function () {return view('user/badge');});
+Route::get('login', function () {return view('auth/login');});
+Route::get('register', function () {return view('auth/register');});
