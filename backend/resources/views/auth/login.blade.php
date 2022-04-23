@@ -1,65 +1,25 @@
-<!doctype html>
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>@yield('title') - MENAWI Admin</title>
-    <meta name="description" content="MENAWI Admin">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <link rel="apple-touch-icon" href="apple-icon.png">
-    <link rel="shortcut icon" href="favicon.ico">
-
-    <link rel="stylesheet" href="{{asset('style/assets/css/normalize.css')}}">
-    <link rel="stylesheet" href="{{asset('style/assets/css/bootstrap.min.css')}}">
-    <link rel="stylesheet" href="{{asset('style/assets/css/font-awesome.min.css')}}">
-    <link rel="stylesheet" href="{{asset('style/assets/css/themify-icons.css')}}">
-    <link rel="stylesheet" href="{{asset('style/assets/css/flag-icon.min.css')}}">
-    <link rel="stylesheet" href="{{asset('style/assets/css/cs-skin-elastic.css')}}">
-   
-    <link rel="stylesheet" href="{{asset('style/assets/scss/style.css')}}">
-
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
-
-  
-</head>
-<body class="bg-dark">
-
-
-    <div class="sufee-login d-flex align-content-center flex-wrap">
-        <div class="container">
-            <div class="login-content">
-                <div class="login-logo">
-                    <a href="index.html">
-                        <img class="align-content" src="{{asset('style/images/logo2.png')}}" alt="">
-                    </a>
-                </div>
-
-                <div class="login-form">
-                    <form>
-                        <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Username">
-                        </div>
-                        <div class="form-group">
-                            <input type="password" class="form-control" placeholder="Password">
-                        </div>
-                        
-                        <button type="submit" class="btn btn-success btn-flat m-b-30 m-t-30">Sign in</button>
-                        
-                        <div class="register-link m-t-15 text-center">
-                            <p>Don't have account ? <a href="{{url('register')}}"> Sign Up Here</a></p>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
+@extends('mainAuth')
+@section('title', 'Login')
+@section('content')
+<div class="card-body p-5 text-center">
+  <h3 class="mb-5">Sign in</h3>
+  <form>
+    <div class="form-outline mb-4">
+      <input type="text" id="username" class="form-control form-control-lg" placeholder="Username" />
     </div>
-
-
-    <script src="{{asset('style/assets/js/vendor/jquery-2.1.4.min.js')}}"></script>
-    <script src="{{asset('style/assets/js/popper.min.js')}}"></script>
-    <script src="{{asset('style/assets/js/plugins.js')}}"></script>
-    <script src="{{asset('style/assets/js/main.js')}}"></script>
-
-
-</body>
-</html>
+    <div class="form-outline mb-4">
+      <input type="password" id="password" class="form-control form-control-lg" placeholder="Password" />
+    </div>
+    <div class="form-check d-flex justify-content-start mb-4">
+      <input class="form-check-input" type="checkbox" value="" id="form1Example3" />
+      <label class="form-check-label" for="form1Example3"> Remember password </label>
+    </div>
+    <button class="btn btn-primary btn-lg btn-block" type="submit">Sign in</button>
+    <hr class="my-4">
+    <div class="register-link m-t-15 text-center">
+      <p>Don't have an account ? <a href="{{url('register')}}" style="color: black"> Sign Up Here</a>
+      </p>
+    </div>
+  </form>
+</div>
+@endsection
