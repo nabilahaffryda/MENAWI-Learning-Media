@@ -1,5 +1,5 @@
 @extends('main')
-@section('title', 'Quiz Level')
+@section('title', 'User')
 @section('breadcrumbs')
 <div class="breadcrumbs">
    <div class="col-sm-4">
