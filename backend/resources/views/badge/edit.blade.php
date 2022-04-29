@@ -37,8 +37,8 @@
               <div class="form-group"><label for="badge_name" class=" form-control-label">Badge Name</label><input type="text" id="badge_name" name="badge_name" placeholder="Badge Name" class="form-control"></div>
               <div class="form-group"><label for="badge_pict_active" class=" form-control-label">Badge Pict Active</label><input type="file" id="badge_pict_active" name="badge_pict_active" class="form-control-file"></div>
               <div class="form-group"><label for="badge_pict_non_active" class=" form-control-label">Badge Pict Non-Active</label><input type="file" id="badge_pict_non_active" name="badge_pict_non_active" class="form-control-file"></div>
-              <div class="form-group"><label for="badge_point" class=" form-control-label">Badge Point</label><input type="text" id="badge_point" name="badge_point" placeholder="Badge Point" class="form-control"></div>
-              <div class="form-group"><label for="badge_level" class=" form-control-label">Badge Level</label><input type="text" id="badge_level" name="badge_level" placeholder="Badge Level" class="form-control"></div>
+              <div class="form-group"><label for="badge_point" class=" form-control-label">Badge Point</label><input type="integer" id="badge_point" name="badge_point" placeholder="Badge Point" class="form-control"></div>
+              <div class="form-group"><label for="badge_level" class=" form-control-label">Badge Level</label><input type="integer" id="badge_level" name="badge_level" placeholder="Badge Level" class="form-control"></div>
             </form>
           </div>
           <div class="card-footer">
