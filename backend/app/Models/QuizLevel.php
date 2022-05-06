@@ -9,9 +9,10 @@ class QuizLevel extends Model
 {
     use HasFactory;
     protected $primaryKey = 'level_id';
-    protected $table = 'admin';
+    protected $table = 'quiz_level';
     protected $fillable = [
         'level_id',
         'level_name',
     ];
+    public $timestamps = false;
 }
