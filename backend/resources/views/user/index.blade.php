@@ -30,7 +30,7 @@
                <div class="card-header">
                   <div class="pull-left"><strong class="card-title" >Data Table</strong></div>
                   <div class="pull-right">
-                     <a href="{{url('user/add')}}" class="btn btn-primary btn sm">
+                     <a href="{{route('user.create')}}" class="btn btn-primary btn sm">
                      Add Data</a>
                   </div>
                </div>
@@ -42,53 +42,63 @@
                            <th>User ID</th>
                            <th>Username</th>
                            <th>Name</th>
+                           {{-- 
                            <th>Password</th>
+                           --}}
                            <th>Actions</th>
                         </tr>
                      </thead>
                      <tbody>
+                        @foreach ($user as $index => $users)
                         <tr>
-                           <td>Tiger Nixon</td>
-                           <td>System Architect</td>
-                           <td>Edinburgh</td>
-                           <td>System Architect</td>
-                           <td>Edinburgh</td>
+                           <td>{{ $index +1 }}</td>
+                           <td>{{ $users->user_id }}</td>
+                           <td>{{ $users->username }}</td>
+                           <td>{{ $users->name }}</td>
+                           {{-- 
+                           <td>{{ $users->password }}</td>
+                           --}}
                            <td>
                               <div >
-                                 <a href="{{url('user/edit')}}" class="btn btn-primary btn sm">
+                                 <a href="{{route('user.edit', $users->user_id)}}" class="btn btn-primary btn sm">
                                  <i class="fa fa-pencil"></i>
                                  </a>
-                                 <button type="button"  class="btn btn-danger" data-toggle="modal" data-target="#staticModal" data-backdrop="false" >
+                                 <button type="button"  class="btn btn-danger" data-toggle="modal" data-target="#smallmodal">
                                  <i class="fa fa-trash"></i>
                                  </button>
                               </div>
                            </td>
                         </tr>
+                        @endforeach
                      </tbody>
                   </table>
                </div>
             </div>
-            <div class="modal hide fade in" data-keyboard="false" id="staticModal" tabindex="-1" role="dialog" aria-labelledby="staticModalLabel" aria-hidden="true" >
+            <div class="modal fade" id="smallmodal" tabindex="-1" role="dialog" aria-labelledby="smallmodalLabel" aria-hidden="true" data-backdrop="false">
                <div class="modal-dialog modal-sm" role="document">
-                   <div class="modal-content">
-                       <div class="modal-header">
+                  <form action="{{ route('user.destroy', $users->user_id) }}" method="POST" >
+                     @csrf
+                     @method('DELETE')
+                     <div class="modal-content">
+                        <div class="modal-header">
                            <h5 class="modal-title" id="staticModalLabel">Delete</h5>
                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                               <span aria-hidden="true">&times;</span>
+                           <span aria-hidden="true">&times;</span>
                            </button>
-                       </div>
-                       <div class="modal-body">
+                        </div>
+                        <div class="modal-body">
                            <p>
                               Are you sure you want to delete this data?
                            </p>
-                       </div>
-                       <div class="modal-footer">
+                        </div>
+                        <div class="modal-footer">
                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                           <button type="button" class="btn btn-primary">Confirm</button>
-                       </div>
-                   </div>
+                           <button type="submit"  class="btn btn-primary">Confirm</button>
+                        </div>
+                     </div>
+                  </form>
                </div>
-           </div>
+            </div>
          </div>
       </div>
    </div>

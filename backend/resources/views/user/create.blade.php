@@ -1,11 +1,11 @@
 @extends('main')
-@section('title', 'User Edit Data')
+@section('title', 'User Add Data')
 @section('breadcrumbs')
 <div class="breadcrumbs">
    <div class="col-sm-4">
       <div class="page-header float-left">
          <div class="page-title">
-            <h1> User Edit Data</h1>
+            <h1> User Add Data</h1>
          </div>
       </div>
    </div>
@@ -15,7 +15,7 @@
             <ol class="breadcrumb text-right">
                <li><a href="/">Dashboard</a></li>
                <li><a href="javascript:history.back()">User</a></li>
-               <li class="active">Edit</li>
+               <li class="active">Add</li>
             </ol>
          </div>
       </div>
@@ -29,27 +29,22 @@
          <div class="col-lg-6">
             <div class="card">
                <div class="card-header">
-                  <strong>User</strong> Edit Data
+                  <strong>User</strong> Add Data
                </div>
                <div class="card-body card-block">
-                  <form action="{{ route('user.update',$user->user_id) }}" method="POST" >
+                  <form action="{{ route('user.store') }}" method="POST" class="">
                      @csrf
-                     @method('PUT')
                      <div class="form-group">
-                        <label for="user_id" class=" form-control-label">User ID</label>
-                        <input type="integer" id="user_id" name="user_id" placeholder="User ID" class="form-control" value="{{ $user->user_id }}">
+                        <label for="username" class="form-control-label">Username</label>
+                        <input type="text" id="username" name="username" placeholder="Username" class="form-control">
                      </div>
                      <div class="form-group">
-                        <label for="username" class=" form-control-label">Username</label>
-                        <input type="text" id="username" name="username" placeholder="Username" class="form-control" value="{{ $user->username }}">
+                        <label for="name" class="form-control-label">Name</label>
+                        <input type="text" id="name" name="name" placeholder="Name" class="form-control">
                      </div>
                      <div class="form-group">
-                        <label for="name" class=" form-control-label">Name</label>
-                        <input type="text" id="name" name="name" placeholder="Name" class="form-control" value="{{ $user->name }}">
-                     </div>
-                     <div class="form-group">
-                        <label for="password" class=" form-control-label">Password</label>
-                        <input type="password" id="password" name="password" placeholder="Password" class="form-control" value="{{ $user->password }}">
+                        <label for="password" class="form-control-label">Password</label>
+                        <input type="password" id="password" name="password" placeholder="Password" class="form-control">
                      </div>
                      <div class="card-footer">
                         <button type="submit" class="btn btn-success btn-sm pull-right">
