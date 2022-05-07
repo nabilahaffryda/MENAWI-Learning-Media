@@ -2,9 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\QuizTheme;
 use App\Models\QuizThemeQuestion;
-use Illuminate\Contracts\Support\ValidatedData;
 use Illuminate\Http\Request;
 
 class QuizThemeQuestionController extends Controller

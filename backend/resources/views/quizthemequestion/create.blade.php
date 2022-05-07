@@ -56,7 +56,7 @@
                                     <input class="form-control @error('question_pict') is-invalid @enderror" type="file"
                                         id="question_pict" name="question_pict">
                                     @error('question_pict')
-                                        <div class="invalid-feedback">{{ 'The image must be an image' }}</div>
+                                        <div class="invalid-feedback">{{ 'Image size is too big' }}</div>
                                     @enderror
                                 </div>
                                 <div class="form-group">
