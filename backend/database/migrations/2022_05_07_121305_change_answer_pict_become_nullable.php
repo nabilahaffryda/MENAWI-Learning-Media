@@ -13,8 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('quiz_theme_question', function (Blueprint $table) {
-            $table->string('question_pict')->unsigned()->nullable()->change();
+        Schema::table('quiz_theme_answer', function (Blueprint $table) {
+            $table->string('answer_pict')->unsigned()->nullable()->change();
         });
     }
 
