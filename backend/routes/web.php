@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\QuizLevelController;
 use App\Http\Controllers\QuizThemeController;
+use App\Http\Controllers\QuizThemeQuestionController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -21,3 +22,4 @@ Route::get('/', function () {
 Route::resource('user', UsersController::class);
 Route::resource('quizlevel', QuizLevelController::class);
 Route::resource('quiztheme', QuizThemeController::class);
+Route::resource('quizthemequestion', QuizThemeQuestionController::class);
