@@ -1,11 +1,11 @@
 @extends('main')
-@section('title', 'Material Desc Edit Data')
+@section('title', 'Material Desc Add Data')
 @section('breadcrumbs')
     <div class="breadcrumbs">
         <div class="col-sm-4">
             <div class="page-header float-left">
                 <div class="page-title">
-                    <h1> Material Desc Edit Data</h1>
+                    <h1> Material Desc Add Data</h1>
                 </div>
             </div>
         </div>
@@ -15,7 +15,7 @@
                     <ol class="breadcrumb text-right">
                         <li><a href="/">Dashboard</a></li>
                         <li><a href="javascript:history.back()">Material Desc</a></li>
-                        <li class="active">Edit</li>
+                        <li class="active">Add</li>
                     </ol>
                 </div>
             </div>
@@ -29,43 +29,30 @@
                 <div class="col-lg-6">
                     <div class="card">
                         <div class="card-header">
-                            <strong>Material Desc</strong> Edit Data
+                            <strong>Material Desc</strong> Add Data
                         </div>
                         <div class="card-body card-block">
-                            <form action="{{ route('materialdesc.update', $materialdesc->desc_id) }}"
-                                enctype="multipart/form-data" method="POST">
-                                <div class="form-group">
-                                    @csrf
-                                    @method('PUT')
-                                    <label for="desc_id" class=" form-control-label">Material Desc
-                                        ID</label>
-                                    <input type="integer" id="desc_id" name="desc_id" placeholder="Material Desc ID"
-                                        class="form-control" value="{{ $materialdesc->desc_id }}">
-                                </div>
+                            <form action="{{ route('materialdesc.store') }}" method="POST" enctype="multipart/form-data">
+                                @csrf
                                 <div class="form-group">
                                     <label for="material_id" class=" form-control-label">Material
                                         ID</label>
                                     <input type="integer" id="material_id" name="material_id" placeholder="Material ID"
-                                        class="form-control" value="{{ $materialdesc->material_id }}">
+                                        class="form-control">
                                 </div>
                                 <div class="form-group">
                                     <label for="description" class=" form-control-label">Description</label>
                                     <input type="text" id="description" name="description" placeholder="Description"
-                                        class="form-control" value="{{ $materialdesc->description }}">
+                                        class="form-control">
                                 </div>
                                 <div class="form-group">
-                                    <label for="desc_pict" class=" form-control-label">Description
+                                    <label for="desc_pict" class="form-label">Description
                                         Pict</label>
-                                    <input type="file" id="desc_pict" name="desc_pict" class="form-control-file"
-                                        value="{{ $materialdesc->desc_pict }}">
-                                    <br>
-                                    @if ($materialdesc->desc_pict)
-                                        <div style="max-height: 100px; max-width:100px; overflow:hidden;">
-                                            <img src="{{ asset('storage/' . $materialdesc->desc_pict) }}"
-                                                alt="{{ $materialdesc->desc_pict }}" class="img-fluid">
-                                        </div>
-                                    @else
-                                    @endif
+                                    <input type="file" id="desc_pict" name="desc_pict"
+                                        class="form-control @error('desc_pict') is-invalid @enderror">
+                                    @error('desc_pict')
+                                        <div class="invalid-feedback">{{ 'Image size is too big' }}</div>
+                                    @enderror
                                 </div>
                                 <div class="form-group">
                                     <button type="submit" class="btn btn-success btn-sm pull-right">
