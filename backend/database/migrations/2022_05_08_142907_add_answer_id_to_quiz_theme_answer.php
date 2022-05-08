@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::table('quiz_theme_answer', function (Blueprint $table) {
-            $table->id('answer_id')->primary();
+            $table->id('answer_id');
         });
     }
 
