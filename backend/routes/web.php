@@ -10,6 +10,7 @@ use App\Http\Controllers\MaterialController;
 use App\Http\Controllers\MaterialDescController;
 use App\Http\Controllers\BadgeController;
 use App\Http\Controllers\UserBadgeController;
+use App\Http\Controllers\UserPointController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -33,3 +34,4 @@ Route::resource('material', MaterialController::class);
 Route::resource('materialdesc', MaterialDescController::class);
 Route::resource('badge', BadgeController::class);
 Route::resource('userbadge', UserBadgeController::class);
+Route::resource('userpoint', UserPointController::class);
