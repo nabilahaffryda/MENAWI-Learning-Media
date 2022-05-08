@@ -1,11 +1,11 @@
 @extends('main')
-@section('title', 'Material Edit Data')
+@section('title', 'Material Add Data')
 @section('breadcrumbs')
     <div class="breadcrumbs">
         <div class="col-sm-4">
             <div class="page-header float-left">
                 <div class="page-title">
-                    <h1> Material Edit Data</h1>
+                    <h1> Material Add Data</h1>
                 </div>
             </div>
         </div>
@@ -15,7 +15,7 @@
                     <ol class="breadcrumb text-right">
                         <li><a href="/">Dashboard</a></li>
                         <li><a href="javascript:history.back()">Material</a></li>
-                        <li class="active">Edit</li>
+                        <li class="active">Add</li>
                     </ol>
                 </div>
             </div>
@@ -29,24 +29,14 @@
                 <div class="col-lg-6">
                     <div class="card">
                         <div class="card-header">
-                            <strong>Material</strong> Edit Data
+                            <strong>Material</strong> Add Data
                         </div>
                         <div class="card-body card-block">
-                            <form action="{{ route('material.update', $material->material_id) }}" method="POST">
+                            <form action="{{ route('material.store') }}" method="POST">
                                 @csrf
-                                @method('PUT')
-                                <div class="form-group">
-                                    <label for="material_id" class=" form-control-label">Material
-                                        ID</label>
-                                    <input type="integer" id="material_id" name="material_id" placeholder="Material ID"
-                                        class="form-control" value="{{ $material->material_id }}">
-                                </div>
-                                <div class="form-group">
-                                    <label for="material_name" class=" form-control-label">Material
-                                        Name</label>
-                                    <input type="text" id="material_name" name="material_name" placeholder="Material Name"
-                                        class="form-control" value="{{ $material->material_name }}">
-                                </div>
+                                <div class="form-group"><label for="material_name" class=" form-control-label">Material
+                                        Name</label><input type="text" id="material_name" name="material_name"
+                                        placeholder="Material Name" class="form-control"></div>
                                 <div class="form-group">
                                     <button type="submit" class="btn btn-success btn-sm pull-right">
                                         Submit
