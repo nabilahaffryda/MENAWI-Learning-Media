@@ -40,6 +40,7 @@
                             <li><i class="fa fa-laptop"></i><a href="{{ url('user') }}">User</a></li>
                             <li><i class="fa fa-fire"></i><a href="{{ url('userpoint') }}">User Point</a></li>
                             <li><i class="fa fa-id-badge"></i><a href="{{ url('badge') }}">Badge</a></li>
+                            <li><i class="fa fa-id-badge"></i><a href="{{ url('userbadge') }}">User Badge</a></li>
                         </ul>
                     </li>
                     <li class="menu-item-has-children active dropdown">
