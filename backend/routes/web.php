@@ -8,6 +8,7 @@ use App\Http\Controllers\QuizThemeQuestionController;
 use App\Http\Controllers\QuizThemeAnswerController;
 use App\Http\Controllers\MaterialController;
 use App\Http\Controllers\MaterialDescController;
+use App\Http\Controllers\BadgeController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -29,3 +30,4 @@ Route::resource('quizthemequestion', QuizThemeQuestionController::class);
 Route::resource('quizthemeanswer', QuizThemeAnswerController::class);
 Route::resource('material', MaterialController::class);
 Route::resource('materialdesc', MaterialDescController::class);
+Route::resource('badge', BadgeController::class);
