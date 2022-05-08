@@ -5,6 +5,7 @@ use App\Http\Controllers\UsersController;
 use App\Http\Controllers\QuizLevelController;
 use App\Http\Controllers\QuizThemeController;
 use App\Http\Controllers\QuizThemeQuestionController;
+use App\Http\Controllers\QuizThemeAnswerController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -23,3 +24,4 @@ Route::resource('user', UsersController::class);
 Route::resource('quizlevel', QuizLevelController::class);
 Route::resource('quiztheme', QuizThemeController::class);
 Route::resource('quizthemequestion', QuizThemeQuestionController::class);
+Route::resource('quizthemeanswer', QuizThemeAnswerController::class);
