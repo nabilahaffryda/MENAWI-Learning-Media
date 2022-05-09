@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\QuizLevelController;
@@ -22,7 +23,7 @@ use App\Http\Controllers\UserPointController;
 |
 */
 
-Route::get('/', function () {
+Route::get('home', function () {
     return view('home');
 });
 Route::resource('user', UsersController::class);
@@ -35,3 +36,10 @@ Route::resource('materialdesc', MaterialDescController::class);
 Route::resource('badge', BadgeController::class);
 Route::resource('userbadge', UserBadgeController::class);
 Route::resource('userpoint', UserPointController::class);
+
+Route::get('/', [AuthController::class, 'index']);
+Route::get('/login', [AuthController::class, 'login']);
+Route::post('/loginPost', [AuthController::class, 'loginPost']);
+Route::get('/register', [AuthController::class, 'register']);
+Route::post('/registerPost', [AuthController::class, 'registerPost']);
+Route::get('/logout', [AuthController::class, 'logout']);

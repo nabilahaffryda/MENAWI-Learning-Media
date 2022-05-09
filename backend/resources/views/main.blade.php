@@ -95,7 +95,9 @@
                         </a>
                         <div class="user-menu dropdown-menu">
                             <a class="nav-link" href="#"><i class="fa fa -cog"></i>Settings</a>
-                            <a class="nav-link" href="#"><i class="fa fa-power -off"></i>Logout</a>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url('/logout') }}">Logout</a>
+                            </li>
                         </div>
                     </div>
                 </div>

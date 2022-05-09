@@ -1,25 +1,34 @@
 @extends('mainAuth')
 @section('title', 'Login')
 @section('content')
-<div class="card-body p-5 text-center">
-  <h3 class="mb-5">Sign in</h3>
-  <form>
-    <div class="form-outline mb-4">
-      <input type="text" id="username" class="form-control form-control-lg" placeholder="Username" />
+    <div class="card-body p-4 text-center">
+        <h3 class="mb-4">Sign in</h3>
+        @if (\Session::has('alert'))
+            <div class="alert alert-danger">
+                <div>{{ Session::get('alert') }}</div>
+            </div>
+        @endif
+        @if (\Session::has('alert-success'))
+            <div class="alert alert-success">
+                <div>{{ Session::get('alert-success') }}</div>
+            </div>
+        @endif
+        <form action="{{ url('/loginPost') }}" method="POST">
+            {{ csrf_field() }}
+            <div class="form-group">
+                <input type="text" id="username" name="username" class="form-control" placeholder="Username" />
+            </div>
+            <div class="form-group">
+                <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary btn-lg btn-block">Sign in</button>
+            </div>
+            <hr class="my-4">
+            <div class="register-link m-t-15 text-center">
+                <p>Don't have an account ? <a href="{{ url('/register') }}" style="color: black"> Sign Up Here</a>
+                </p>
+            </div>
+        </form>
     </div>
-    <div class="form-outline mb-4">
-      <input type="password" id="password" class="form-control form-control-lg" placeholder="Password" />
-    </div>
-    <div class="form-check d-flex justify-content-start mb-4">
-      <input class="form-check-input" type="checkbox" value="" id="form1Example3" />
-      <label class="form-check-label" for="form1Example3"> Remember password </label>
-    </div>
-    <button class="btn btn-primary btn-lg btn-block" type="submit">Sign in</button>
-    <hr class="my-4">
-    <div class="register-link m-t-15 text-center">
-      <p>Don't have an account ? <a href="{{url('register')}}" style="color: black"> Sign Up Here</a>
-      </p>
-    </div>
-  </form>
-</div>
 @endsection
