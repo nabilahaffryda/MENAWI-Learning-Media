@@ -10,13 +10,7 @@
       <v-spacer />
       <!-- <v-toolbar-items v-if="isLoggedIn"> -->
       <!-- level -->
-      <v-menu
-        v-model="menu"
-        :close-on-content-click="false"
-        :rounded="rounded"
-        :nudge-width="150"
-        offset-y
-      >
+      <v-menu :close-on-content-click="false" :nudge-width="150" offset-y>
         <template v-slot:activator="{ on, attrs }">
           <v-btn text v-bind="attrs" v-on="on">
             <v-icon color="green">mdi-star-circle</v-icon>
@@ -46,13 +40,7 @@
       </v-menu>
 
       <!-- badge -->
-      <v-menu
-        v-model="menu"
-        :close-on-content-click="false"
-        :rounded="rounded"
-        :nudge-width="150"
-        offset-y
-      >
+      <v-menu :close-on-content-click="false" :nudge-width="150" offset-y>
         <template v-slot:activator="{ on, attrs }">
           <v-btn text v-bind="attrs" v-on="on">
             <v-icon color="yellow">mdi-trophy</v-icon>
@@ -84,13 +72,7 @@
       </v-menu>
 
       <!-- account -->
-      <v-menu
-        v-model="menu"
-        :close-on-content-click="false"
-        :rounded="rounded"
-        offset-y
-        :nudge-width="150"
-      >
+      <v-menu :close-on-content-click="false" offset-y :nudge-width="150">
         <template v-slot:activator="{ on, attrs }">
           <v-btn text v-bind="attrs" v-on="on">
             <v-icon color="primary">mdi-account-circle</v-icon>
