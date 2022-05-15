@@ -6,7 +6,7 @@
           <div class="text-center" style="margin-bottom: 20px">
             <h2 class="indigo--text">Buat Profilmu</h2>
           </div>
-          <form @submit.prevent="submitLogin">
+          <form>
             <v-card-text class="text-center">
               <div class="form-group">
                 <v-text-field
