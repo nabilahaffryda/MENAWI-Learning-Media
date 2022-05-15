@@ -5,75 +5,70 @@
         <v-card class="pa-8" flat>
           <div class="text-center" style="margin-bottom: 20px">
             <h2 class="indigo--text">Selamat datang kembali!</h2>
-            <!-- <v-avatar size="50" color="indigo lighten-4">
-              <v-icon size="30" color="indigo">mdi-account</v-icon>
-            </v-avatar> -->
           </div>
-          <ValidationObserver v-slot="{ submitLogin }">
-            <form @submit.prevent="submitLogin">
-              <v-card-text class="text-center">
-                <ValidationProvider
-                  name="username"
-                  rules="required"
-                  v-slot="{ errors }"
+          <form>
+            <v-card-text class="text-center">
+              <div class="form-group">
+                <v-text-field
+                  filled
+                  rounded
+                  style="margin-bottom: 13px"
+                  hide-details="auto"
+                  dense
+                  label="Username"
+                  id="username"
+                  class="form-control"
+                  v-model="form.username"
+                  type="text"
                 >
-                  <v-text-field
-                    filled
-                    rounded
-                    style="margin-bottom: 13px"
-                    hide-details="auto"
-                    dense
-                    label="Username"
-                    v-model="form.username"
-                    type="text"
-                  >
-                  </v-text-field>
-                  <p class="text-center red--text">{{ errors[0] }}</p>
-                </ValidationProvider>
-                <ValidationProvider
-                  name="password"
-                  rules="required|max:12|min:8"
-                  v-slot="{ errors }"
-                >
-                  <v-text-field
-                    filled
-                    rounded
-                    dense
-                    style="margin-bottom: 30px"
-                    hide-details="auto"
-                    label="Password"
-                    v-model="form.password"
-                    type="password"
-                  >
-                  </v-text-field>
-                  <p class="text-center red--text">{{ errors[0] }}</p>
-                </ValidationProvider>
-
-                <v-btn
-                  type="submit"
-                  color="indigo"
-                  block
-                  style="margin-bottom: 15px"
+                </v-text-field>
+                <p class="text-center red--text" v-if="errors.username">
+                  {{ errors.username[0] }}
+                </p>
+              </div>
+              <div class="form-group">
+                <v-text-field
                   filled
                   rounded
                   dense
-                  @click="submit()"
+                  style="margin-bottom: 30px"
+                  hide-details="auto"
+                  label="Password"
+                  v-model="form.password"
+                  type="password"
+                  id="password"
+                  class="form-control"
                 >
-                  <span class="white--text px-8">MASUK</span>
-                </v-btn>
-                <p class="text-center">
-                  Tidak punya akun?
-                  <router-link to="register">Buat Akun</router-link>
+                </v-text-field>
+                <p class="text-center red--text" v-if="errors.password">
+                  {{ errors.password[0] }}
                 </p>
-              </v-card-text>
-            </form>
-          </ValidationObserver>
+              </div>
+              <v-btn
+                type="submit"
+                color="indigo"
+                block
+                style="margin-bottom: 15px"
+                filled
+                rounded
+                dense
+                @click.prevent="login"
+              >
+                <span class="white--text px-8">MASUK</span>
+              </v-btn>
+              <p class="text-center">
+                Tidak punya akun?
+                <router-link to="register">Buat Akun</router-link>
+              </p>
+            </v-card-text>
+          </form>
         </v-card>
       </v-col>
     </v-layout>
   </v-container>
 </template>
 <script>
+import User from "../apis/User";
 export default {
   name: "Login",
   data() {
@@ -82,20 +77,22 @@ export default {
         email: "",
         password: "",
       },
+      errors: [],
     };
   },
-  // methods: {
-  //   async submit() {
-  //     const User = new FormData();
-  //     User.append("email", this.form.email);
-  //     User.append("password", this.form.password);
-  //     try {
-  //         await(this.LogIn(User)) ;
-  //         this.$router.push("/");
-  //     } catch (error) {
-  //         console.log(error)
-  //     }
-  //   },
-  // },
+  methods: {
+    login() {
+      User.login(this.form)
+        .then(() => {
+          localStorage.setItem("auth", "true");
+          this.$router.push({ name: "Home" });
+        })
+        .catch((error) => {
+          if (error.response.status === 422) {
+            this.errors = error.response.data.errors;
+          }
+        });
+    },
+  },
 };
 </script>
