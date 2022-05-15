@@ -9,5 +9,9 @@ export default{
     async login(form){
         await Csrf.getCookie();
         return Api.post("/login", form)
-    }
+    },
+    async logout() {
+        await Csrf.getCookie();
+        return Api.post("/logout");
+    },
 }

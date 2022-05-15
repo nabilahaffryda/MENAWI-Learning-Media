@@ -8,7 +8,6 @@
         </v-btn>
       </v-toolbar-title>
       <v-spacer />
-      <!-- <v-toolbar-items v-if="isLoggedIn"> -->
       <!-- level -->
       <v-menu :close-on-content-click="false" :nudge-width="150" offset-y>
         <template v-slot:activator="{ on, attrs }">
@@ -87,40 +86,33 @@
             <v-list-item to="profile">
               <v-list-item-title>Profilmu</v-list-item-title>
             </v-list-item>
-            <!-- <v-divider />
-            <v-list-item>
-              <v-list-item-title>Pengaturan</v-list-item-title> </v-list-item
-            ><v-divider />
-            <v-list-item>
-              <v-list-item-title>Bantuan</v-list-item-title>
-            </v-list-item> -->
             <v-divider />
-            <v-list-item @click="logout()">
+            <v-list-item @click="logoutDialog()">
               <v-list-item-title>Keluar</v-list-item-title>
             </v-list-item>
           </v-list>
         </v-card>
       </v-menu>
-      <!-- logout -->
       <v-dialog v-model="dialogLogout" max-width="350px" activator="item">
         <v-card>
+          <v-toolbar color="primary" dark><strong>Confirm</strong></v-toolbar>
           <v-card-title class="text-center"
             >Are you sure you want to logout?</v-card-title
           >
           <v-card-actions>
             <v-spacer></v-spacer>
             <v-btn color="blue darken-1" text @click="close">Cancel</v-btn>
-            <!-- @click="logoutConfirm" -->
-            <v-btn color="blue darken-1" text>OK</v-btn>
+            <v-btn
+              color="blue darken-1"
+              type="submit"
+              text
+              @click.prevent="logout"
+              >OK</v-btn
+            >
             <v-spacer></v-spacer>
           </v-card-actions>
         </v-card>
       </v-dialog>
-      <!-- </v-toolbar-items> -->
-
-      <!-- <v-toolbar-items v-else>
-        <v-btn text @click="redirectRegister()"> DAFTAR </v-btn></v-toolbar-items
-      > -->
       <v-spacer />
     </v-toolbar>
   </div>
@@ -138,6 +130,7 @@
 </style>
 
 <script>
+import User from "../apis/User";
 export default {
   name: "Header",
   data() {
@@ -153,14 +146,15 @@ export default {
         this.editedIndex = -1;
       });
     },
-    logout() {
+    logoutDialog() {
       this.dialogLogout = true;
     },
-    // logoutConfirm() {
-    //   this.$store.dispatch("logOut");
-    //   this.$router.push("/login");
-    //   this.close();
-    // },
+    logout() {
+      User.logout().then(() => {
+        localStorage.removeItem("auth");
+        this.$router.push({ name: "Login" });
+      });
+    },
   },
 };
 </script>

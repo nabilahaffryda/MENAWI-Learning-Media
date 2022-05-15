@@ -37,4 +37,9 @@ class AuthAPIController extends Controller
             'username' => 'The provided credentials are incorrect'
         ]);
     }
+
+    public function logout()
+    {
+        Auth::logout();
+    }
 }
