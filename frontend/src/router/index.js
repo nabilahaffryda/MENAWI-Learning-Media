@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home'
+import LandingPage from '../views/LandingPage'
 import Login from '../views/Login'
 import Register from '../views/Register'
 import Profile from '../views/Profile'
@@ -13,7 +14,7 @@ Vue.use(VueRouter)
 
 const routes = [
     {
-        path: '/',
+        path: '/home',
         name: 'Home',
         component: Home
     },
@@ -51,6 +52,11 @@ const routes = [
         path: '/materialcontent',
         name: 'MaterialContent',
         component: MaterialContent
+    },
+    {
+        path: '/',
+        name: 'LandingPage',
+        component: LandingPage
     },
 ]
 
