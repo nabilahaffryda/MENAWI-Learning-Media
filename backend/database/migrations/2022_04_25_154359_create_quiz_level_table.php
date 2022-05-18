@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('quiz_level', function (Blueprint $table) {
             $table->id('level_id');
-            $table->string('level_name', 100);
+            $table->string('level_name');
         });
     }
 

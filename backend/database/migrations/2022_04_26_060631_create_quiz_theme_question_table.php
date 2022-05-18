@@ -14,11 +14,12 @@ return new class extends Migration
     public function up()
     {
         Schema::create('quiz_theme_question', function (Blueprint $table) {
-            $table->id('theme_question_id');
+            $table->id('question_id');
             $table->text('question');
             $table->integer('question_point');
             $table->binary('question_pict');
-            $table->integer('theme_id')->unsigned();
+            $table->unsignedBigInteger('theme_id');
+            $table->foreign('theme_id')->references('theme_id')->on('quiz_theme');
         });
     }
 

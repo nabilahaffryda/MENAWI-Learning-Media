@@ -14,9 +14,12 @@ return new class extends Migration
     public function up()
     {
         Schema::create('user_badge', function (Blueprint $table) {
-            $table->integer('badge_id')->unsigned();
-            $table->integer('user_id')->unsigned();
-            $table->string('badge_status', 100);
+            $table->id('user_badge_id');
+            $table->unsignedBigInteger('badge_id');
+            $table->foreign('badge_id')->references('badge_id')->on('badge');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('user_id')->on('users');
+            $table->string('badge_status');
         });
     }
 

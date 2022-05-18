@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('badge', function (Blueprint $table) {
             $table->id('badge_id');
-            $table->string('badge_name', 100);
+            $table->string('badge_name');
             $table->binary('badge_pict_active');
             $table->binary('badge_pict_non_active');
             $table->integer('badge_point');

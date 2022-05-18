@@ -14,7 +14,9 @@ return new class extends Migration
     public function up()
     {
         Schema::create('quiz_theme_answer', function (Blueprint $table) {
-            $table->integer('theme_question_id')->unsigned();
+            $table->unsignedBigInteger('question_id');
+            $table->foreign('question_id')->references('question_id')->on('quiz_theme_question');
+            $table->id('answer_id');
             $table->text('answer');
             $table->string('answer_status');
             $table->binary('answer_pict');

@@ -15,8 +15,9 @@ return new class extends Migration
     {
         Schema::create('quiz_theme', function (Blueprint $table) {
             $table->id('theme_id');
-            $table->string('theme_name', 100);
-            $table->integer('level_id')->unsigned();
+            $table->string('theme_name');
+            $table->unsignedBigInteger('level_id');
+            $table->foreign('level_id')->references('level_id')->on('quiz_level');
         });
     }
 

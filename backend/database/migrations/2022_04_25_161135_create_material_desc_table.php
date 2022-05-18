@@ -17,7 +17,8 @@ return new class extends Migration
             $table->id('desc_id');
             $table->text('description');
             $table->binary('desc_pict');
-            $table->integer('material_id')->unsigned();
+            $table->unsignedBigInteger('material_id');
+            $table->foreign('material_id')->references('material_id')->on('material');
         });
     }
 
