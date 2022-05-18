@@ -39,8 +39,8 @@
                                 <thead>
                                     <tr>
                                         <th>No</th>
-                                        <th>Theme Question ID</th>
-                                        <th>Theme ID</th>
+                                        <th>Question ID</th>
+                                        <th>Theme</th>
                                         <th>Question</th>
                                         <th>Question Point</th>
                                         <th>Question Picture</th>
@@ -48,26 +48,25 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($quizthemequestion as $index => $quizthemequestions)
+                                    @foreach ($quizthemequestion as $item)
                                         <tr>
-                                            <td>{{ $index + 1 }}</td>
-                                            <td>{{ $quizthemequestions->theme_question_id }}</td>
-                                            <td>{{ $quizthemequestions->theme_id }}</td>
-                                            <td>{{ $quizthemequestions->question }}</td>
-                                            <td>{{ $quizthemequestions->question_point }}</td>
+                                            <td>{{ $loop->iteration }}</td>
+                                            <td>{{ $item->question_id }}</td>
+                                            <td>{{ $item->tema->theme_name }}</td>
+                                            <td>{{ $item->question }}</td>
+                                            <td>{{ $item->question_point }}</td>
                                             <td>
-                                                @if ($quizthemequestions->question_pict)
+                                                @if ($item->question_pict)
                                                     <div style="max-height: 100px; max-width:100px; overflow:hidden;">
-                                                        <img src="{{ asset('storage/' . $quizthemequestions->question_pict) }}"
-                                                            alt="{{ $quizthemequestions->question_pict }}"
-                                                            class="img-fluid">
+                                                        <img src="{{ asset('storage/' . $item->question_pict) }}"
+                                                            alt="{{ $item->question_pict }}" class="img-fluid">
                                                     </div>
                                                 @else
                                                 @endif
                                             </td>
                                             <td>
                                                 <div>
-                                                    <a href="{{ route('quizthemequestion.edit', $quizthemequestions->theme_question_id) }}"
+                                                    <a href="{{ route('quizthemequestion.edit', $item->question_id) }}"
                                                         class="btn btn-primary btn sm">
                                                         <i class="fa fa-pencil"></i>
                                                     </a>
@@ -86,9 +85,7 @@
                     <div class="modal fade" id="smallmodal" tabindex="-1" role="dialog"
                         aria-labelledby="smallmodalLabel" aria-hidden="true" data-backdrop="false">
                         <div class="modal-dialog modal-sm" role="document">
-                            <form
-                                action="{{ route('quizthemequestion.destroy', $quizthemequestions->theme_question_id) }}"
-                                method="POST">
+                            <form action="{{ route('quizthemequestion.destroy', $item->question_id) }}" method="POST">
                                 @csrf
                                 @method('DELETE')
                                 <div class="modal-content">

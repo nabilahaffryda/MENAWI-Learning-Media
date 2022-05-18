@@ -8,14 +8,18 @@ use Illuminate\Database\Eloquent\Model;
 class QuizThemeQuestion extends Model
 {
     use HasFactory;
-    protected $primaryKey = 'theme_question_id';
+    protected $primaryKey = 'question_id';
     protected $table = 'quiz_theme_question';
     protected $fillable = [
-        'theme_question_id',
+        'question_id',
         'theme_id',
         'question',
         'question_pict',
         'question_point',
     ];
     public $timestamps = false;
+    public function tema()
+    {
+        return $this->belongsTo(QuizTheme::class, 'theme_id');
+    }
 }

@@ -19,4 +19,8 @@ class QuizTheme extends Model
     {
         return $this->belongsTo(QuizLevel::class, 'level_id');
     }
+    public function question()
+    {
+        return $this->hasMany(QuizThemeQuestion::class);
+    }
 }

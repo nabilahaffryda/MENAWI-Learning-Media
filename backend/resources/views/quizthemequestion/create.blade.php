@@ -35,10 +35,15 @@
                             <form action="{{ route('quizthemequestion.store') }}" method="POST"
                                 enctype="multipart/form-data">
                                 @csrf
-                                <div class="form-group"><label for="theme_id" class=" form-control-label">Theme
-                                        ID</label>
-                                    <input type="integer" id="theme_id" name="theme_id" placeholder="Theme ID"
-                                        class="form-control">
+                                <div class="form-group">
+                                    <label for="theme_id" class=" form-control-label">Theme</label>
+                                    <select id="theme_id" name="theme_id" placeholder="Theme" style="width: 100%"
+                                        class="form-control select2">
+                                        <option disabled value>Choose Theme</option>
+                                        @foreach ($quest as $item)
+                                            <option value="{{ $item->theme_id }}">{{ $item->theme_name }}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                                 <div class="form-group">
                                     <label for="question" class=" form-control-label">Question</label>

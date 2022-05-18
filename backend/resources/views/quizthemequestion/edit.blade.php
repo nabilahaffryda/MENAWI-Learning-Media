@@ -32,18 +32,27 @@
                             <strong>Quiz Theme Question</strong> Edit Data
                         </div>
                         <div class="card-body card-block">
-                            <form action="{{ route('quizthemequestion.update', $quizthemequestion->theme_question_id) }}"
+                            <form action="{{ route('quizthemequestion.update', $quizthemequestion->question_id) }}"
                                 enctype="multipart/form-data" method="POST">
                                 @csrf
                                 @method('PUT')
-                                <div class="form-group"><label for="theme_question_id" class=" form-control-label">Theme
-                                        Question ID</label><input type="integer" id="theme_question_id"
-                                        name="theme_question_id" placeholder="Theme Question ID" class="form-control"
-                                        value="{{ $quizthemequestion->theme_question_id }}">
+                                <div class="form-group"><label for="question_id" class=" form-control-label">
+                                        Question ID</label><input type="integer" id="question_id" name="question_id"
+                                        placeholder="Question ID" class="form-control"
+                                        value="{{ $quizthemequestion->question_id }}">
                                 </div>
-                                <div class="form-group"><label for="theme_id" class=" form-control-label">Theme
-                                        ID</label><input type="integer" id="theme_id" name="theme_id" placeholder="Theme ID"
-                                        value="{{ $quizthemequestion->theme_id }}" class="form-control"></div>
+                                <div class="form-group">
+                                    <label for="theme_id" class=" form-control-label">Theme</label>
+                                    <select id="theme_id" name="theme_id" placeholder="Theme" style="width: 100%"
+                                        class="form-control select2">
+                                        <option disabled value>Choose Theme</option>
+                                        <option value="{{ $quizthemequestion->theme_id }}">
+                                            {{ $quizthemequestion->tema->theme_name }}
+                                            @foreach ($quest as $item)
+                                        <option value="{{ $item->theme_id }}">{{ $item->theme_name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
                                 <div class="form-group"><label for="question"
                                         class=" form-control-label">Question</label><input type="text" id="question"
                                         value="{{ $quizthemequestion->question }}" name="question" placeholder="Question"
