@@ -40,21 +40,21 @@
                                     <tr>
                                         <th>No</th>
                                         <th>Theme ID</th>
-                                        <th>Level ID</th>
+                                        <th>Level</th>
                                         <th>Theme Name</th>
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($quiztheme as $index => $quizthemes)
+                                    @foreach ($quiztheme as $item)
                                         <tr>
-                                            <td>{{ $index + 1 }}</td>
-                                            <td>{{ $quizthemes->theme_id }}</td>
-                                            <td>{{ $quizthemes->level_id }}</td>
-                                            <td>{{ $quizthemes->theme_name }}</td>
+                                            <td>{{ $loop->iteration }}</td>
+                                            <td>{{ $item->theme_id }}</td>
+                                            <td>{{ $item->level->level_name }}</td>
+                                            <td>{{ $item->theme_name }}</td>
                                             <td>
                                                 <div>
-                                                    <a href="{{ route('quiztheme.edit', $quizthemes->theme_id) }}"
+                                                    <a href="{{ route('quiztheme.edit', $item->theme_id) }}"
                                                         class="btn btn-primary btn sm">
                                                         <i class="fa fa-pencil"></i>
                                                     </a>
@@ -73,7 +73,7 @@
                     <div class="modal fade" id="smallmodal" tabindex="-1" role="dialog"
                         aria-labelledby="smallmodalLabel" aria-hidden="true" data-backdrop="false">
                         <div class="modal-dialog modal-sm" role="document">
-                            <form action="{{ route('quiztheme.destroy', $quizthemes->theme_id) }}" method="POST">
+                            <form action="{{ route('quiztheme.destroy', $item->theme_id) }}" method="POST">
                                 @csrf
                                 @method('DELETE')
                                 <div class="modal-content">

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\QuizLevel;
 use App\Models\QuizTheme;
 use Illuminate\Http\Request;
 
@@ -9,13 +10,14 @@ class QuizThemeController extends Controller
 {
     public function index()
     {
-        $quiztheme = QuizTheme::all();
+        $quiztheme = QuizTheme::with('level')->get();
         return view('quiztheme.index', compact('quiztheme'));
     }
 
     public function create()
     {
-        return view('quiztheme.create');
+        $lev = QuizLevel::all();
+        return view('quiztheme.create', compact('lev'));
     }
 
     public function store(Request $request)
@@ -35,8 +37,9 @@ class QuizThemeController extends Controller
 
     public function edit($theme_id)
     {
-        $quiztheme = QuizTheme::findOrFail($theme_id);
-        return view('quiztheme.edit', compact('quiztheme'));
+        $lev = QuizLevel::all();
+        $quiztheme = QuizTheme::with('level')->findOrFail($theme_id);
+        return view('quiztheme.edit', compact('quiztheme', 'lev'));
     }
 
     public function update(Request $request, $theme_id)

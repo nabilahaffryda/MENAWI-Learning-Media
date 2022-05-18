@@ -38,9 +38,18 @@
                                 <div class="form-group"><label for="theme_id" class=" form-control-label">Theme
                                         ID</label><input type="integer" id="theme_id" name="theme_id" placeholder="Theme ID"
                                         class="form-control" value="{{ $quiztheme->theme_id }}"></div>
-                                <div class="form-group"><label for="level_id" class=" form-control-label">Level
-                                        ID</label><input type="text" id="level_id" name="level_id" placeholder="Level ID"
-                                        class="form-control" value="{{ $quiztheme->level_id }}"></div>
+                                <div class="form-group">
+                                    <label for="level_id" class=" form-control-label">Level</label>
+                                    <select id="level_id" name="level_id" placeholder="Level ID" style="width: 100%"
+                                        class="form-control select2">
+                                        <option disabled value>Choose Level</option>
+                                        <option value="{{ $quiztheme->level_id }}">{{ $quiztheme->level->level_name }}
+                                        </option>
+                                        @foreach ($lev as $item)
+                                            <option value="{{ $item->level_id }}">{{ $item->level_name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
                                 <div class="form-group"><label for="theme_name" class=" form-control-label">Theme
                                         Name</label><input type="text" id="theme_name" name="theme_name"
                                         placeholder="Theme Name" class="form-control"

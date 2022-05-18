@@ -34,12 +34,22 @@
                         <div class="card-body card-block">
                             <form action="{{ route('quiztheme.store') }}" method="POST">
                                 @csrf
-                                <div class="form-group"><label for="level_id" class=" form-control-label">Level
-                                        ID</label><input type="text" id="level_id" name="level_id" placeholder="Level ID"
-                                        class="form-control"></div>
-                                <div class="form-group"><label for="theme_name" class=" form-control-label">Theme
-                                        Name</label><input type="text" id="theme_name" name="theme_name"
-                                        placeholder="Theme Name" class="form-control"></div>
+                                <div class="form-group">
+                                    <label for="level_id" class=" form-control-label">Level</label>
+                                    <select id="level_id" name="level_id" placeholder="Level ID" style="width: 100%"
+                                        class="form-control select2">
+                                        <option disabled value>Choose Level</option>
+                                        @foreach ($lev as $item)
+                                            <option value="{{ $item->level_id }}">{{ $item->level_name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="theme_name" class=" form-control-label">Theme
+                                        Name</label>
+                                    <input type="text" id="theme_name" name="theme_name" placeholder="Theme Name"
+                                        class="form-control">
+                                </div>
                                 <div class="form-group">
                                     <button type="submit" class="btn btn-success btn-sm pull-right">
                                         Submit

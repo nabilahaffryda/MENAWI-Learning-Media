@@ -2,12 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class QuizTheme extends Model
 {
-    use HasFactory;
     protected $primaryKey = 'theme_id';
     protected $table = 'quiz_theme';
     protected $fillable = [
@@ -16,4 +14,9 @@ class QuizTheme extends Model
         'theme_name',
     ];
     public $timestamps = false;
+
+    public function level()
+    {
+        return $this->belongsTo(QuizLevel::class, 'level_id');
+    }
 }
