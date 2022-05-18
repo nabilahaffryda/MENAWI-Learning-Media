@@ -14,8 +14,8 @@ return new class extends Migration
     public function up()
     {
         Schema::create('user_point', function (Blueprint $table) {
-            $table->unsignedBigInteger('question_id');
-            $table->foreign('question_id')->references('question_id')->on('quiz_theme_question');
+            $table->unsignedBigInteger('theme_id');
+            $table->foreign('theme_id')->references('theme_id')->on('quiz_theme');
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('user_id')->on('users');
             $table->integer('total_point');
