@@ -23,4 +23,8 @@ class QuizTheme extends Model
     {
         return $this->hasMany(QuizThemeQuestion::class);
     }
+    public function point()
+    {
+        return $this->hasMany(UserPoint::class);
+    }
 }

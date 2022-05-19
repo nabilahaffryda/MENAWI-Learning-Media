@@ -39,22 +39,22 @@
                                 <thead>
                                     <tr>
                                         <th>No</th>
-                                        <th>User ID</th>
-                                        <th>Theme Question ID</th>
+                                        <th>User</th>
+                                        <th>Theme</th>
                                         <th>Total Point</th>
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($userpoint as $index => $userpoints)
+                                    @foreach ($userpoint as $item)
                                         <tr>
-                                            <td>{{ $index + 1 }}</td>
-                                            <td>{{ $userpoints->user_id }}</td>
-                                            <td>{{ $userpoints->theme_question_id }}</td>
-                                            <td>{{ $userpoints->total_point }}</td>
+                                            <td>{{ $loop->iteration }}</td>
+                                            <td>{{ $item->users->username }}</td>
+                                            <td>{{ $item->themes->theme_name }}</td>
+                                            <td>{{ $item->total_point }}</td>
                                             <td>
                                                 <div>
-                                                    <a href="{{ route('userpoint.edit', $userpoints->theme_question_id) }}"
+                                                    <a href="{{ route('userpoint.edit', $item->theme_id) }}"
                                                         class="btn btn-primary btn sm">
                                                         <i class="fa fa-pencil"></i>
                                                     </a>
@@ -73,7 +73,7 @@
                     <div class="modal fade" id="smallmodal" tabindex="-1" role="dialog"
                         aria-labelledby="smallmodalLabel" aria-hidden="true" data-backdrop="false">
                         <div class="modal-dialog modal-sm" role="document">
-                            <form action="{{ route('userpoint.destroy', $userpoints->theme_question_id) }}" method="POST">
+                            <form action="{{ route('userpoint.destroy', $item->theme_id) }}" method="POST">
                                 @csrf
                                 @method('DELETE')
                                 <div class="modal-content">

@@ -35,14 +35,24 @@
                             <form action="{{ route('userpoint.store') }}" method="POST">
                                 @csrf
                                 <div class="form-group">
-                                    <label for="user_id" class="form-control-label">User ID</label>
-                                    <input type="integer" id="user_id" name="user_id" placeholder="User ID"
-                                        class="form-control">
+                                    <label for="user_id" class=" form-control-label">User</label>
+                                    <select id="user_id" name="user_id" placeholder="User" style="width: 100%"
+                                        class="form-control select2">
+                                        <option disabled value>Choose User</option>
+                                        @foreach ($usr as $item)
+                                            <option value="{{ $item->user_id }}">{{ $item->username }}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                                 <div class="form-group">
-                                    <label for="theme_question_id" class="form-control-label">Theme Question ID</label>
-                                    <input type="integer" id="theme_question_id" name="theme_question_id"
-                                        placeholder="Theme Question ID" class="form-control">
+                                    <label for="theme_id" class=" form-control-label">Theme</label>
+                                    <select id="theme_id" name="theme_id" placeholder="Theme" style="width: 100%"
+                                        class="form-control select2">
+                                        <option disabled value>Choose Theme</option>
+                                        @foreach ($thm as $item)
+                                            <option value="{{ $item->theme_id }}">{{ $item->theme_name }}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                                 <div class="form-group"><label for="total_point" class=" form-control-label">Total
                                         Point</label><input type="integer" id="total_point" name="total_point"
