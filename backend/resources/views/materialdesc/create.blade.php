@@ -35,10 +35,14 @@
                             <form action="{{ route('materialdesc.store') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <div class="form-group">
-                                    <label for="material_id" class=" form-control-label">Material
-                                        ID</label>
-                                    <input type="integer" id="material_id" name="material_id" placeholder="Material ID"
-                                        class="form-control">
+                                    <label for="material_id" class=" form-control-label">Material</label>
+                                    <select id="material_id" name="material_id" placeholder="Material" style="width: 100%"
+                                        class="form-control select2">
+                                        <option disabled value>Choose Material</option>
+                                        @foreach ($mtrl as $item)
+                                            <option value="{{ $item->material_id }}">{{ $item->material_name }}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                                 <div class="form-group">
                                     <label for="description" class=" form-control-label">Description</label>

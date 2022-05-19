@@ -15,4 +15,8 @@ class Material extends Model
         'material_name',
     ];
     public $timestamps = false;
+    public function desc()
+    {
+        return $this->hasMany(MaterialDesc::class);
+    }
 }

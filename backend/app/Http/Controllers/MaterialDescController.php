@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Material;
 use App\Models\MaterialDesc;
 use Illuminate\Http\Request;
 
@@ -10,13 +11,14 @@ class MaterialDescController extends Controller
 
     public function index()
     {
-        $materialdesc = MaterialDesc::all();
+        $materialdesc = MaterialDesc::with('materi')->get();
         return view('materialdesc.index', compact('materialdesc'));
     }
 
     public function create()
     {
-        return view('materialdesc.create');
+        $mtrl = Material::all();
+        return view('materialdesc.create', compact('mtrl'));
     }
 
     public function store(Request $request)
@@ -35,8 +37,9 @@ class MaterialDescController extends Controller
 
     public function edit($desc_id)
     {
-        $materialdesc = MaterialDesc::where('desc_id', $desc_id)->first();
-        return view('materialdesc.edit', compact('materialdesc'));
+        $mtrl = Material::all();
+        $materialdesc = MaterialDesc::with('materi')->where('desc_id', $desc_id)->first();
+        return view('materialdesc.edit', compact('materialdesc', 'mtrl'));
     }
 
     public function update(Request $request, $desc_id)

@@ -17,4 +17,9 @@ class MaterialDesc extends Model
         'desc_pict',
     ];
     public $timestamps = false;
+
+    public function materi()
+    {
+        return $this->belongsTo(Material::class, 'material_id');
+    }
 }
