@@ -42,10 +42,17 @@
                                         class="form-control" value="{{ $quizthemeanswer->answer_id }}">
                                 </div>
                                 <div class="form-group">
-                                    <label for="theme_question_id" class=" form-control-label">Theme Question ID</label>
-                                    <input type="integer" id="theme_question_id" name="theme_question_id"
-                                        placeholder="Theme Question ID" class="form-control"
-                                        value="{{ $quizthemeanswer->theme_question_id }}">
+                                    <label for="question_id" class=" form-control-label">Question</label>
+                                    <select id="question_id" name="question_id" placeholder="Question" style="width: 100%"
+                                        class="form-control select2">
+                                        <option disabled value>Choose Question</option>
+                                        <option value="{{ $quizthemeanswer->question_id }}">
+                                            {{ $quizthemeanswer->questions->question }}
+                                        </option>
+                                        @foreach ($ques as $item)
+                                            <option value="{{ $item->question_id }}">{{ $item->question }}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                                 <div class="form-group">
                                     <label for="answer" class=" form-control-label">Answer</label>

@@ -22,4 +22,8 @@ class QuizThemeQuestion extends Model
     {
         return $this->belongsTo(QuizTheme::class, 'theme_id');
     }
+    public function answer()
+    {
+        return $this->hasMany(QuizThemeAnswer::class);
+    }
 }

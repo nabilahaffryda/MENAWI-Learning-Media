@@ -40,7 +40,7 @@
                                     <tr>
                                         <th>No</th>
                                         <th>Answer ID</th>
-                                        <th>Theme Question ID</th>
+                                        <th>Question</th>
                                         <th>Answer</th>
                                         <th>Answer Status</th>
                                         <th>Answer Picture</th>
@@ -48,26 +48,25 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($quizthemeanswer as $index => $quizthemeanswers)
+                                    @foreach ($quizthemeanswer as $item)
                                         <tr>
-                                            <td>{{ $index + 1 }}</td>
-                                            <td>{{ $quizthemeanswers->answer_id }}</td>
-                                            <td>{{ $quizthemeanswers->theme_question_id }}</td>
-                                            <td>{{ $quizthemeanswers->answer }}</td>
-                                            <td>{{ $quizthemeanswers->answer_status }}</td>
+                                            <td>{{ $loop->iteration }}</td>
+                                            <td>{{ $item->answer_id }}</td>
+                                            <td>{{ $item->questions->question }}</td>
+                                            <td>{{ $item->answer }}</td>
+                                            <td>{{ $item->answer_status }}</td>
                                             <td>
-                                                @if ($quizthemeanswers->answer_pict)
+                                                @if ($item->answer_pict)
                                                     <div style="max-height: 100px; max-width:100px; overflow:hidden;">
-                                                        <img src="{{ asset('storage/' . $quizthemeanswers->answer_pict) }}"
-                                                            alt="{{ $quizthemeanswers->answer_pict }}"
-                                                            class="img-fluid">
+                                                        <img src="{{ asset('storage/' . $item->answer_pict) }}"
+                                                            alt="{{ $item->answer_pict }}" class="img-fluid">
                                                     </div>
                                                 @else
                                                 @endif
                                             </td>
                                             <td>
                                                 <div>
-                                                    <a href="{{ route('quizthemeanswer.edit', $quizthemeanswers->answer_id) }}"
+                                                    <a href="{{ route('quizthemeanswer.edit', $item->answer_id) }}"
                                                         class="btn btn-primary btn sm">
                                                         <i class="fa fa-pencil"></i>
                                                     </a>
@@ -86,8 +85,7 @@
                     <div class="modal fade" id="smallmodal" tabindex="-1" role="dialog"
                         aria-labelledby="smallmodalLabel" aria-hidden="true" data-backdrop="false">
                         <div class="modal-dialog modal-sm" role="document">
-                            <form action="{{ route('quizthemeanswer.destroy', $quizthemeanswers->answer_id) }}"
-                                method="POST">
+                            <form action="{{ route('quizthemeanswer.destroy', $item->answer_id) }}" method="POST">
                                 @csrf
                                 @method('DELETE')
                                 <div class="modal-content">
