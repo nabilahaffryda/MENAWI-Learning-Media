@@ -39,22 +39,24 @@
                                 <thead>
                                     <tr>
                                         <th>No</th>
-                                        <th>Badge ID</th>
-                                        <th>User ID</th>
+                                        <th>User Badge ID</th>
+                                        <th>Badge</th>
+                                        <th>User</th>
                                         <th>Badge Status</th>
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($userbadge as $index => $userbadges)
+                                    @foreach ($userbadge as $item)
                                         <tr>
-                                            <td>{{ $index + 1 }}</td>
-                                            <td>{{ $userbadges->badge_id }}</td>
-                                            <td>{{ $userbadges->user_id }}</td>
-                                            <td>{{ $userbadges->badge_status }}</td>
+                                            <td>{{ $loop->iteration }}</td>
+                                            <td>{{ $item->user_badge_id }}</td>
+                                            <td>{{ $item->badge->badge_name }}</td>
+                                            <td>{{ $item->user->username }}</td>
+                                            <td>{{ $item->badge_status }}</td>
                                             <td>
                                                 <div>
-                                                    <a href="{{ route('userbadge.edit', $userbadges->user_id) }}"
+                                                    <a href="{{ route('userbadge.edit', $item->user_badge_id) }}"
                                                         class="btn btn-primary btn sm">
                                                         <i class="fa fa-pencil"></i>
                                                     </a>
@@ -73,7 +75,7 @@
                     <div class="modal fade" id="smallmodal" tabindex="-1" role="dialog"
                         aria-labelledby="smallmodalLabel" aria-hidden="true" data-backdrop="false">
                         <div class="modal-dialog modal-sm" role="document">
-                            <form action="{{ route('userbadge.destroy', $userbadges->user_id) }}" method="POST">
+                            <form action="{{ route('userbadge.destroy', $item->user_badge_id) }}" method="POST">
                                 @csrf
                                 @method('DELETE')
                                 <div class="modal-content">

@@ -19,4 +19,8 @@ class Badge extends Model
         'badge_pict_non_active',
     ];
     public $timestamps = false;
+    public function userBadge()
+    {
+        return $this->hasMany(UserBadge::class);
+    }
 }

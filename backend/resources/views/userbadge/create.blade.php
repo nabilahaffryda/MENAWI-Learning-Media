@@ -35,14 +35,24 @@
                             <form action="{{ route('userbadge.store') }}" method="POST">
                                 @csrf
                                 <div class="form-group">
-                                    <label for="badge_id" class="form-control-label">Badge ID</label>
-                                    <input type="integer" id="badge_id" name="badge_id" placeholder="Badge ID"
-                                        class="form-control">
+                                    <label for="badge_id" class=" form-control-label">Badge</label>
+                                    <select id="badge_id" name="badge_id" placeholder="Badge" style="width: 100%"
+                                        class="form-control select2">
+                                        <option disabled value>Choose Badge</option>
+                                        @foreach ($bdg as $item)
+                                            <option value="{{ $item->badge_id }}">{{ $item->badge_name }}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                                 <div class="form-group">
-                                    <label for="user_id" class="form-control-label">User ID</label>
-                                    <input type="integer" id="user_id" name="user_id" placeholder="User ID"
-                                        class="form-control">
+                                    <label for="user_id" class=" form-control-label">User</label>
+                                    <select id="user_id" name="user_id" placeholder="User" style="width: 100%"
+                                        class="form-control select2">
+                                        <option disabled value>Choose User</option>
+                                        @foreach ($us as $item)
+                                            <option value="{{ $item->user_id }}">{{ $item->username }}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                                 <div class="form-group">
                                     <label for="badge_status" class="form-control-label">Badge Status</label>

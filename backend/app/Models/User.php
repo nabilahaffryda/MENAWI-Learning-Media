@@ -29,4 +29,8 @@ class User extends Authenticatable
     {
         return $this->hasMany(UserPoint::class);
     }
+    public function badges()
+    {
+        return $this->hasMany(UserBadge::class);
+    }
 }
