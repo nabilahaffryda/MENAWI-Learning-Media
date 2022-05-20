@@ -9,7 +9,12 @@
       </v-toolbar-title>
       <v-spacer />
       <!-- level -->
-      <v-menu :close-on-content-click="false" :nudge-width="150" offset-y>
+      <v-menu
+        :close-on-content-click="false"
+        :nudge-width="150"
+        offset-y
+        v-if="isLoggedIn"
+      >
         <template v-slot:activator="{ on, attrs }">
           <v-btn text v-bind="attrs" v-on="on">
             <v-icon color="green">mdi-star-circle</v-icon>
@@ -39,7 +44,12 @@
       </v-menu>
 
       <!-- badge -->
-      <v-menu :close-on-content-click="false" :nudge-width="150" offset-y>
+      <v-menu
+        :close-on-content-click="false"
+        :nudge-width="150"
+        offset-y
+        v-if="isLoggedIn"
+      >
         <template v-slot:activator="{ on, attrs }">
           <v-btn text v-bind="attrs" v-on="on">
             <v-icon color="yellow">mdi-trophy</v-icon>
@@ -71,7 +81,12 @@
       </v-menu>
 
       <!-- account -->
-      <v-menu :close-on-content-click="false" offset-y :nudge-width="150">
+      <v-menu
+        :close-on-content-click="false"
+        offset-y
+        :nudge-width="150"
+        v-if="isLoggedIn"
+      >
         <template v-slot:activator="{ on, attrs }">
           <v-btn text v-bind="attrs" v-on="on">
             <v-icon color="primary">mdi-account-circle</v-icon>
@@ -136,7 +151,14 @@ export default {
   data() {
     return {
       dialogLogout: false,
+      isLoggedIn: false,
     };
+  },
+  mounted() {
+    this.$root.$on("login", () => {
+      this.isLoggedIn = true;
+    });
+    this.isLoggedIn = !!localStorage.getItem("auth");
   },
   methods: {
     close() {
@@ -152,6 +174,7 @@ export default {
     logout() {
       User.logout().then(() => {
         localStorage.removeItem("auth");
+        this.isLoggedIn = false;
         this.$router.push({ name: "Login" });
       });
     },

@@ -84,6 +84,7 @@ export default {
     login() {
       User.login(this.form)
         .then(() => {
+          this.$root.$emit("login", true);
           localStorage.setItem("auth", "true");
           this.$router.push({ name: "Home" });
         })
