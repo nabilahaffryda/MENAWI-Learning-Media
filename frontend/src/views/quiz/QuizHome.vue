@@ -23,49 +23,40 @@
                           style="margin-top: 20px"
                           class="d-block ml-auto mr-auto"
                         ></v-img>
-                        <v-flex id="themes">
-                          <v-col class="text-center">
+                        <v-col class="text-center">
+                          <v-flex>
                             <v-card :to="item.route" flat>
-                              <v-flex>
-                                <v-img
-                                  max-width="90px"
-                                  :src="item.tema1"
-                                  style="margin-top: 20px"
-                                  class="d-block ml-auto mr-auto"
-                                ></v-img>
-
-                                <v-img
-                                  max-width="90px"
-                                  :src="item.tema2"
-                                  style="margin-top: 20px"
-                                  class="d-block ml-auto mr-auto"
-                                ></v-img>
-                              </v-flex>
-                            </v-card>
-                            <v-flex>
+                              <v-img
+                                max-width="90px"
+                                :src="item.tema1"
+                                style="margin-top: 20px"
+                                class="d-block ml-auto mr-auto"
+                              ></v-img>
                               <h1
-                                class="
-                                  font-weight-thin
-                                  black--text
-                                  ml-auto
-                                  mr-auto
-                                "
+                                class="font-weight-thin black--text ml-auto mr-auto"
                               >
                                 {{ item.title1 }}
                               </h1>
+                            </v-card>
+                            <v-card
+                              flat
+                              :to="item.route"
+                              style="margin-left: 50px"
+                            >
+                              <v-img
+                                max-width="90px"
+                                :src="item.tema2"
+                                style="margin-top: 20px"
+                                class="d-block ml-auto mr-auto"
+                              ></v-img>
                               <h1
-                                class="
-                                  font-weight-thin
-                                  black--text
-                                  ml-auto
-                                  mr-auto
-                                "
+                                class="font-weight-thin black--text ml-auto mr-auto"
                               >
                                 {{ item.title2 }}
                               </h1>
-                            </v-flex>
-                          </v-col>
-                        </v-flex>
+                            </v-card>
+                          </v-flex>
+                        </v-col>
                       </v-col>
                     </v-row>
                   </v-col>
