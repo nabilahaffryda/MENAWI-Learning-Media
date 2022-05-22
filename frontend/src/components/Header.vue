@@ -8,6 +8,10 @@
         </v-btn>
       </v-toolbar-title>
       <v-spacer />
+      <!-- home -->
+      <v-btn text color="white" to="home">
+        <v-icon color="brown">mdi-home</v-icon>
+      </v-btn>
       <!-- level -->
       <v-menu
         :close-on-content-click="false"
