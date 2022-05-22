@@ -13,9 +13,9 @@
     <div>
       <h1 v-html="loading ? 'Loading...' : currentQuestion.question"></h1>
       <img
-        src="@/assets/kuis.png"
+        src="@/assets/tema2.png"
         alt="Question Picture"
-        height="150px"
+        height="130px"
         class="d-block ml-auto mr-auto"
         style="margin-bottom: 10px; margin: top 10px"
       />

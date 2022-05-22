@@ -1,7 +1,7 @@
 <template>
   <div id="QuestionContent">
-    <v-btn to="quizhome" style="margin-left: 100px; margin-top: 5px" text
-      >Kembali</v-btn
+    <v-btn to="quizhome" style="margin-left: 320px; margin-top: 5px" text
+      ><v-icon>mdi-window-close</v-icon></v-btn
     >
     <Quiz @quiz-completed="handleQuizCompleted" :key="quizKey" />
     <Modal
