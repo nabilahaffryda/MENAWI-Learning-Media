@@ -13,11 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('quiz_theme', function (Blueprint $table) {
-            $table->id('theme_id');
-            $table->string('theme_name');
-            $table->unsignedBigInteger('level_id');
-            $table->foreign('level_id')->references('level_id')->on('quiz_level');
+        Schema::create('badge', function (Blueprint $table) {
+            $table->id('badge_id');
+            $table->string('badge_name');
         });
     }
 
@@ -28,6 +26,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('quiz_theme');
+        Schema::dropIfExists('badge');
     }
 };

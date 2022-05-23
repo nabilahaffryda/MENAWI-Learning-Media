@@ -13,13 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('badge', function (Blueprint $table) {
-            $table->id('badge_id');
-            $table->string('badge_name');
-            $table->binary('badge_pict_active');
-            $table->binary('badge_pict_non_active');
-            $table->integer('badge_point');
-            $table->integer('badge_level');
+        Schema::create('theme', function (Blueprint $table) {
+            $table->id('theme_id');
+            $table->string('theme_name');
+            $table->unsignedBigInteger('level_id');
+            $table->foreign('level_id')->references('level_id')->on('level');
         });
     }
 
@@ -30,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('badge');
+        Schema::dropIfExists('theme');
     }
 };

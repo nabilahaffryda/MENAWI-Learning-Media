@@ -13,9 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('badge', function (Blueprint $table) {
-            $table->string('badge_pict_active')->unsigned()->nullable()->change();
-            $table->string('badge_pict_non_active')->unsigned()->nullable()->change();
+        Schema::create('description', function (Blueprint $table) {
+            $table->id('desc_id');
+            $table->unsignedBigInteger('material_id');
+            $table->foreign('material_id')->references('material_id')->on('material');
+            $table->text('description');
+            $table->string('desc_pict')->unsigned()->nullable()->change();
         });
     }
 
@@ -26,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('description');
     }
 };
