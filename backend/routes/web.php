@@ -1,17 +1,16 @@
 <?php
 
+use App\Http\Controllers\AnswerController;
 use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UsersController;
-use App\Http\Controllers\QuizLevelController;
-use App\Http\Controllers\QuizThemeController;
-use App\Http\Controllers\QuizThemeQuestionController;
-use App\Http\Controllers\QuizThemeAnswerController;
 use App\Http\Controllers\MaterialController;
-use App\Http\Controllers\MaterialDescController;
 use App\Http\Controllers\BadgeController;
-use App\Http\Controllers\UserBadgeController;
-use App\Http\Controllers\UserPointController;
+use App\Http\Controllers\DescriptionController;
+use App\Http\Controllers\LevelController;
+use App\Http\Controllers\QuestionController;
+use App\Http\Controllers\ThemeController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -27,15 +26,13 @@ Route::get('home', function () {
     return view('home');
 });
 Route::resource('user', UsersController::class);
-Route::resource('quizlevel', QuizLevelController::class);
-Route::resource('quiztheme', QuizThemeController::class);
-Route::resource('quizthemequestion', QuizThemeQuestionController::class);
-Route::resource('quizthemeanswer', QuizThemeAnswerController::class);
+Route::resource('level', LevelController::class);
+Route::resource('theme', ThemeController::class);
+Route::resource('question', QuestionController::class);
+Route::resource('answer', AnswerController::class);
 Route::resource('material', MaterialController::class);
-Route::resource('materialdesc', MaterialDescController::class);
+Route::resource('description', DescriptionController::class);
 Route::resource('badge', BadgeController::class);
-Route::resource('userbadge', UserBadgeController::class);
-Route::resource('userpoint', UserPointController::class);
 
 Route::get('/', [AuthController::class, 'index']);
 Route::get('/login', [AuthController::class, 'login']);

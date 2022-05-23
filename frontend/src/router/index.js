@@ -59,6 +59,7 @@ const routes = [
     path: "/",
     name: "LandingPage",
     component: LandingPage,
+    meta: { guestOnly: true },
   },
 ];
 
