@@ -1,11 +1,11 @@
 @extends('main')
-@section('title', 'Quiz Theme Question Add Data')
+@section('title', 'Question Add Data')
 @section('breadcrumbs')
     <div class="breadcrumbs">
         <div class="col-sm-4">
             <div class="page-header float-left">
                 <div class="page-title">
-                    <h1> Quiz Theme Question Add Data</h1>
+                    <h1>Question Add Data</h1>
                 </div>
             </div>
         </div>
@@ -14,7 +14,7 @@
                 <div class="page-title">
                     <ol class="breadcrumb text-right">
                         <li><a href="/">Dashboard</a></li>
-                        <li><a href="javascript:history.back()">Quiz Theme Question</a></li>
+                        <li><a href="javascript:history.back()">Question</a></li>
                         <li class="active">Add</li>
                     </ol>
                 </div>
@@ -29,11 +29,10 @@
                 <div class="col-lg-6">
                     <div class="card">
                         <div class="card-header">
-                            <strong>Quiz Theme Question</strong> Add Data
+                            <strong>Question</strong> Add Data
                         </div>
                         <div class="card-body card-block">
-                            <form action="{{ route('quizthemequestion.store') }}" method="POST"
-                                enctype="multipart/form-data">
+                            <form action="{{ route('question.store') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <div class="form-group">
                                     <label for="theme_id" class=" form-control-label">Theme</label>
@@ -51,9 +50,14 @@
                                         class="form-control">
                                 </div>
                                 <div class="form-group">
-                                    <label for="question_point" class=" form-control-label">Question Point</label>
-                                    <input type="integer" id="question_point" name="question_point"
-                                        placeholder="Question Point" class="form-control">
+                                    <label for="correct_answer" class=" form-control-label">Correct Answer</label>
+                                    <input type="text" id="correct_answer" name="correct_answer"
+                                        placeholder="Correct Answer" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label for="bank_answer" class=" form-control-label">Bank Answer</label>
+                                    <input type="text" id="bank_answer" name="bank_answer" placeholder="Bank Answer"
+                                        class="form-control">
                                 </div>
                                 <div class="mb-3">
                                     <label for="question_pict" class="form-label">Question

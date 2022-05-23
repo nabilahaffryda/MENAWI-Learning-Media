@@ -1,11 +1,11 @@
 @extends('main')
-@section('title', 'User Badge')
+@section('title', 'Question')
 @section('breadcrumbs')
     <div class="breadcrumbs">
         <div class="col-sm-4">
             <div class="page-header float-left">
                 <div class="page-title">
-                    <h1>User Badge</h1>
+                    <h1>Question</h1>
                 </div>
             </div>
         </div>
@@ -14,7 +14,7 @@
                 <div class="page-title">
                     <ol class="breadcrumb text-right">
                         <li><a href="/">Dashboard</a></li>
-                        <li><a href="">User Badge</a></li>
+                        <li><a href="">Question</a></li>
                     </ol>
                 </div>
             </div>
@@ -29,7 +29,7 @@
                     <div class="card">
                         <div class="card-header">
                             <div class="pull-left"><strong class="card-title">Data Table</strong></div>
-                            <div class="pull-right"><a href="{{ route('userbadge.create') }}"
+                            <div class="pull-right"><a href="{{ route('question.create') }}"
                                     class="btn btn-primary btn sm">
                                     Add Data</a>
                             </div>
@@ -39,24 +39,36 @@
                                 <thead>
                                     <tr>
                                         <th>No</th>
-                                        <th>User Badge ID</th>
-                                        <th>Badge</th>
-                                        <th>User</th>
-                                        <th>Badge Status</th>
+                                        <th>Question ID</th>
+                                        <th>Theme</th>
+                                        <th>Question</th>
+                                        <th>Correct Answer</th>
+                                        <th>Bank Answer</th>
+                                        <th>Question Picture</th>
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($userbadge as $item)
+                                    @foreach ($question as $item)
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
-                                            <td>{{ $item->user_badge_id }}</td>
-                                            <td>{{ $item->badge->badge_name }}</td>
-                                            <td>{{ $item->user->username }}</td>
-                                            <td>{{ $item->badge_status }}</td>
+                                            <td>{{ $item->question_id }}</td>
+                                            <td>{{ $item->tema->theme_name }}</td>
+                                            <td>{{ $item->question }}</td>
+                                            <td>{{ $item->correct_answer }}</td>
+                                            <td>{{ $item->bank_answer }}</td>
+                                            <td>
+                                                @if ($item->question_pict)
+                                                    <div style="max-height: 100px; max-width:100px; overflow:hidden;">
+                                                        <img src="{{ asset('storage/' . $item->question_pict) }}"
+                                                            alt="{{ $item->question_pict }}" class="img-fluid">
+                                                    </div>
+                                                @else
+                                                @endif
+                                            </td>
                                             <td>
                                                 <div>
-                                                    <a href="{{ route('userbadge.edit', $item->user_badge_id) }}"
+                                                    <a href="{{ route('question.edit', $item->question_id) }}"
                                                         class="btn btn-primary btn sm">
                                                         <i class="fa fa-pencil"></i>
                                                     </a>
@@ -75,7 +87,7 @@
                     <div class="modal fade" id="smallmodal" tabindex="-1" role="dialog"
                         aria-labelledby="smallmodalLabel" aria-hidden="true" data-backdrop="false">
                         <div class="modal-dialog modal-sm" role="document">
-                            <form action="{{ route('userbadge.destroy', $item->user_badge_id) }}" method="POST">
+                            <form action="{{ route('question.destroy', $item->question_id) }}" method="POST">
                                 @csrf
                                 @method('DELETE')
                                 <div class="modal-content">

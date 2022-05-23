@@ -1,11 +1,11 @@
 @extends('main')
-@section('title', 'Quiz Theme Answer Add Data')
+@section('title', 'Answer Add Data')
 @section('breadcrumbs')
     <div class="breadcrumbs">
         <div class="col-sm-4">
             <div class="page-header float-left">
                 <div class="page-title">
-                    <h1> Quiz Theme Answer Add Data</h1>
+                    <h1>Answer Add Data</h1>
                 </div>
             </div>
         </div>
@@ -14,7 +14,7 @@
                 <div class="page-title">
                     <ol class="breadcrumb text-right">
                         <li><a href="/">Dashboard</a></li>
-                        <li><a href="javascript:history.back()">Quiz Theme Answer</a></li>
+                        <li><a href="javascript:history.back()">Answer</a></li>
                         <li class="active">Add</li>
                     </ol>
                 </div>
@@ -29,18 +29,27 @@
                 <div class="col-lg-6">
                     <div class="card">
                         <div class="card-header">
-                            <strong>Quiz Theme Answer</strong> Add Data
+                            <strong>Answer</strong> Add Data
                         </div>
                         <div class="card-body card-block">
-                            <form action="{{ route('quizthemeanswer.store') }}" enctype="multipart/form-data"
-                                method="POST">
+                            <form action="{{ route('answer.store') }}" enctype="multipart/form-data" method="POST">
                                 @csrf
+                                <div class="form-group">
+                                    <label for="user_id" class=" form-control-label">User</label>
+                                    <select id="user_id" name="user_id" placeholder="User" style="width: 100%"
+                                        class="form-control select2">
+                                        <option disabled value>Choose User</option>
+                                        @foreach ($usr as $item)
+                                            <option value="{{ $item->user_id }}">{{ $item->username }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
                                 <div class="form-group">
                                     <label for="question_id" class=" form-control-label">Question</label>
                                     <select id="question_id" name="question_id" placeholder="Question" style="width: 100%"
                                         class="form-control select2">
                                         <option disabled value>Choose Question</option>
-                                        @foreach ($ques as $item)
+                                        @foreach ($quest as $item)
                                             <option value="{{ $item->question_id }}">{{ $item->question }}</option>
                                         @endforeach
                                     </select>
@@ -51,17 +60,9 @@
                                         class="form-control">
                                 </div>
                                 <div class="form-group">
-                                    <label for="answer_status" class=" form-control-label">Answer Status</label>
-                                    <input type="text" id="answer_status" name="answer_status" placeholder="Answer Status"
+                                    <label for="point" class=" form-control-label">Point</label>
+                                    <input type="integer" id="point" name="point" placeholder="Point"
                                         class="form-control">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="answer_pict" class=" form-label">Answer Picture</label>
-                                    <input type="file" id="answer_pict" name="answer_pict"
-                                        class="form-control @error('answer_pict') is-invalid @enderror">
-                                    @error('answer_pict')
-                                        <div class="invalid-feedback">{{ 'Image size is too big' }}</div>
-                                    @enderror
                                 </div>
                                 <div class="form-group">
                                     <button type="submit" class="btn btn-success btn-sm pull-right">

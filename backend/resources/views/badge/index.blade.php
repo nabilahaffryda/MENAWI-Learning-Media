@@ -41,43 +41,18 @@
                                         <th>No</th>
                                         <th>Badge ID</th>
                                         <th>Badge Name</th>
-                                        <th>Badge Point</th>
-                                        <th>Badge Level</th>
-                                        <th>Badge Pict Active</th>
-                                        <th>Badge Pict Non-Active</th>
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($badge as $index => $badges)
+                                    @foreach ($badge as $item)
                                         <tr>
-                                            <td>{{ $index + 1 }}</td>
-                                            <td>{{ $badges->badge_id }}</td>
-                                            <td>{{ $badges->badge_name }}</td>
-                                            <td>{{ $badges->badge_point }}</td>
-                                            <td>{{ $badges->badge_level }}</td>
-                                            <td>
-                                                @if ($badges->badge_pict_active)
-                                                    <div style="max-height: 100px; max-width:100px; overflow:hidden;">
-                                                        <img src="{{ asset('storage/' . $badges->badge_pict_active) }}"
-                                                            alt="{{ $badges->badge_pict_active }}" class="img-fluid">
-                                                    </div>
-                                                @else
-                                                @endif
-                                            </td>
-                                            <td>
-                                                @if ($badges->badge_pict_non_active)
-                                                    <div style="max-height: 100px; max-width:100px; overflow:hidden;">
-                                                        <img src="{{ asset('storage/' . $badges->badge_pict_non_active) }}"
-                                                            alt="{{ $badges->badge_pict_non_active }}"
-                                                            class="img-fluid">
-                                                    </div>
-                                                @else
-                                                @endif
-                                            </td>
+                                            <td>{{ $loop->iteration }}</td>
+                                            <td>{{ $item->badge_id }}</td>
+                                            <td>{{ $item->badge_name }}</td>
                                             <td>
                                                 <div>
-                                                    <a href="{{ route('badge.edit', $badges->badge_id) }}"
+                                                    <a href="{{ route('badge.edit', $item->badge_id) }}"
                                                         class="btn btn-primary btn sm">
                                                         <i class="fa fa-pencil"></i>
                                                     </a>
@@ -96,7 +71,7 @@
                     <div class="modal fade" id="smallmodal" tabindex="-1" role="dialog"
                         aria-labelledby="smallmodalLabel" aria-hidden="true" data-backdrop="false">
                         <div class="modal-dialog modal-sm" role="document">
-                            <form action="{{ route('badge.destroy', $badges->badge_id) }}" method="POST">
+                            <form action="{{ route('badge.destroy', $item->badge_id) }}" method="POST">
                                 @csrf
                                 @method('DELETE')
                                 <div class="modal-content">

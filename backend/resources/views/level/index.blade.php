@@ -1,11 +1,11 @@
 @extends('main')
-@section('title', 'Quiz Level')
+@section('title', 'Level')
 @section('breadcrumbs')
     <div class="breadcrumbs">
         <div class="col-sm-4">
             <div class="page-header float-left">
                 <div class="page-title">
-                    <h1>Quiz Level</h1>
+                    <h1>Level</h1>
                 </div>
             </div>
         </div>
@@ -14,7 +14,7 @@
                 <div class="page-title">
                     <ol class="breadcrumb text-right">
                         <li><a href="/">Dashboard</a></li>
-                        <li><a href="">Quiz Level</a></li>
+                        <li><a href="">Level</a></li>
                     </ol>
                 </div>
             </div>
@@ -29,7 +29,7 @@
                     <div class="card">
                         <div class="card-header">
                             <div class="pull-left"><strong class="card-title">Data Table</strong></div>
-                            <div class="pull-right"><a href="{{ route('quizlevel.create') }}"
+                            <div class="pull-right"><a href="{{ route('level.create') }}"
                                     class="btn btn-primary btn sm">
                                     Add Data</a>
                             </div>
@@ -45,14 +45,14 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($quizlevel as $index => $quizlevels)
+                                    @foreach ($level as $item)
                                         <tr>
-                                            <td>{{ $index + 1 }}</td>
-                                            <td>{{ $quizlevels->level_id }}</td>
-                                            <td>{{ $quizlevels->level_name }}</td>
+                                            <td>{{ $loop->iteration }}</td>
+                                            <td>{{ $item->level_id }}</td>
+                                            <td>{{ $item->level_name }}</td>
                                             <td>
                                                 <div>
-                                                    <a href="{{ route('quizlevel.edit', $quizlevels->level_id) }}"
+                                                    <a href="{{ route('level.edit', $item->level_id) }}"
                                                         class="btn btn-primary btn sm">
                                                         <i class="fa fa-pencil"></i>
                                                     </a>
@@ -71,7 +71,7 @@
                     <div class="modal fade" id="smallmodal" tabindex="-1" role="dialog"
                         aria-labelledby="smallmodalLabel" aria-hidden="true" data-backdrop="false">
                         <div class="modal-dialog modal-sm" role="document">
-                            <form action="{{ route('quizlevel.destroy', $quizlevels->level_id) }}" method="POST">
+                            <form action="{{ route('level.destroy', $item->level_id) }}" method="POST">
                                 @csrf
                                 @method('DELETE')
                                 <div class="modal-content">

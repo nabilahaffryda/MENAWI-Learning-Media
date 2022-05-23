@@ -1,11 +1,11 @@
 @extends('main')
-@section('title', 'Quiz Theme Question')
+@section('title', 'Description')
 @section('breadcrumbs')
     <div class="breadcrumbs">
         <div class="col-sm-4">
             <div class="page-header float-left">
                 <div class="page-title">
-                    <h1>Quiz Theme Question</h1>
+                    <h1>Description</h1>
                 </div>
             </div>
         </div>
@@ -14,7 +14,7 @@
                 <div class="page-title">
                     <ol class="breadcrumb text-right">
                         <li><a href="/">Dashboard</a></li>
-                        <li><a href="">Quiz Theme Question</a></li>
+                        <li><a href="">Description</a></li>
                     </ol>
                 </div>
             </div>
@@ -29,7 +29,7 @@
                     <div class="card">
                         <div class="card-header">
                             <div class="pull-left"><strong class="card-title">Data Table</strong></div>
-                            <div class="pull-right"><a href="{{ route('quizthemequestion.create') }}"
+                            <div class="pull-right"><a href="{{ route('description.create') }}"
                                     class="btn btn-primary btn sm">
                                     Add Data</a>
                             </div>
@@ -39,34 +39,32 @@
                                 <thead>
                                     <tr>
                                         <th>No</th>
-                                        <th>Question ID</th>
-                                        <th>Theme</th>
-                                        <th>Question</th>
-                                        <th>Question Point</th>
-                                        <th>Question Picture</th>
+                                        <th>Description ID</th>
+                                        <th>Material</th>
+                                        <th>Description</th>
+                                        <th>Description Pict</th>
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($quizthemequestion as $item)
+                                    @foreach ($description as $item)
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
-                                            <td>{{ $item->question_id }}</td>
-                                            <td>{{ $item->tema->theme_name }}</td>
-                                            <td>{{ $item->question }}</td>
-                                            <td>{{ $item->question_point }}</td>
+                                            <td>{{ $item->desc_id }}</td>
+                                            <td>{{ $item->material->material_name }}</td>
+                                            <td>{{ $item->description }}</td>
                                             <td>
-                                                @if ($item->question_pict)
+                                                @if ($item->desc_pict)
                                                     <div style="max-height: 100px; max-width:100px; overflow:hidden;">
-                                                        <img src="{{ asset('storage/' . $item->question_pict) }}"
-                                                            alt="{{ $item->question_pict }}" class="img-fluid">
+                                                        <img src="{{ asset('storage/' . $item->desc_pict) }}"
+                                                            alt="{{ $item->desc_pict }}" class="img-fluid">
                                                     </div>
                                                 @else
                                                 @endif
                                             </td>
                                             <td>
                                                 <div>
-                                                    <a href="{{ route('quizthemequestion.edit', $item->question_id) }}"
+                                                    <a href="{{ route('description.edit', $item->desc_id) }}"
                                                         class="btn btn-primary btn sm">
                                                         <i class="fa fa-pencil"></i>
                                                     </a>
@@ -85,7 +83,7 @@
                     <div class="modal fade" id="smallmodal" tabindex="-1" role="dialog"
                         aria-labelledby="smallmodalLabel" aria-hidden="true" data-backdrop="false">
                         <div class="modal-dialog modal-sm" role="document">
-                            <form action="{{ route('quizthemequestion.destroy', $item->question_id) }}" method="POST">
+                            <form action="{{ route('description.destroy', $item->desc_id) }}" method="POST">
                                 @csrf
                                 @method('DELETE')
                                 <div class="modal-content">

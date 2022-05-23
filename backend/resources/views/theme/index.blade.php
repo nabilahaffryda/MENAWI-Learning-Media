@@ -1,11 +1,11 @@
 @extends('main')
-@section('title', 'User Point')
+@section('title', 'Theme')
 @section('breadcrumbs')
     <div class="breadcrumbs">
         <div class="col-sm-4">
             <div class="page-header float-left">
                 <div class="page-title">
-                    <h1>User Point</h1>
+                    <h1>Theme</h1>
                 </div>
             </div>
         </div>
@@ -14,7 +14,7 @@
                 <div class="page-title">
                     <ol class="breadcrumb text-right">
                         <li><a href="/">Dashboard</a></li>
-                        <li><a href="">User Point</a></li>
+                        <li><a href="">Theme</a></li>
                     </ol>
                 </div>
             </div>
@@ -29,7 +29,7 @@
                     <div class="card">
                         <div class="card-header">
                             <div class="pull-left"><strong class="card-title">Data Table</strong></div>
-                            <div class="pull-right"><a href="{{ route('userpoint.create') }}"
+                            <div class="pull-right"><a href="{{ route('theme.create') }}"
                                     class="btn btn-primary btn sm">
                                     Add Data</a>
                             </div>
@@ -39,22 +39,22 @@
                                 <thead>
                                     <tr>
                                         <th>No</th>
-                                        <th>User</th>
-                                        <th>Theme</th>
-                                        <th>Total Point</th>
+                                        <th>Theme ID</th>
+                                        <th>Level</th>
+                                        <th>Theme Name</th>
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($userpoint as $item)
+                                    @foreach ($theme as $item)
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
-                                            <td>{{ $item->users->username }}</td>
-                                            <td>{{ $item->themes->theme_name }}</td>
-                                            <td>{{ $item->total_point }}</td>
+                                            <td>{{ $item->theme_id }}</td>
+                                            <td>{{ $item->level->level_name }}</td>
+                                            <td>{{ $item->theme_name }}</td>
                                             <td>
                                                 <div>
-                                                    <a href="{{ route('userpoint.edit', $item->theme_id) }}"
+                                                    <a href="{{ route('theme.edit', $item->theme_id) }}"
                                                         class="btn btn-primary btn sm">
                                                         <i class="fa fa-pencil"></i>
                                                     </a>
@@ -73,7 +73,7 @@
                     <div class="modal fade" id="smallmodal" tabindex="-1" role="dialog"
                         aria-labelledby="smallmodalLabel" aria-hidden="true" data-backdrop="false">
                         <div class="modal-dialog modal-sm" role="document">
-                            <form action="{{ route('userpoint.destroy', $item->theme_id) }}" method="POST">
+                            <form action="{{ route('theme.destroy', $item->theme_id) }}" method="POST">
                                 @csrf
                                 @method('DELETE')
                                 <div class="modal-content">

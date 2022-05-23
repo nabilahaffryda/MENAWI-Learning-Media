@@ -1,11 +1,11 @@
 @extends('main')
-@section('title', 'Quiz Theme Add Data')
+@section('title', 'Level Add Data')
 @section('breadcrumbs')
     <div class="breadcrumbs">
         <div class="col-sm-4">
             <div class="page-header float-left">
                 <div class="page-title">
-                    <h1> Quiz Theme Add Data</h1>
+                    <h1>Level Add Data</h1>
                 </div>
             </div>
         </div>
@@ -14,7 +14,7 @@
                 <div class="page-title">
                     <ol class="breadcrumb text-right">
                         <li><a href="/">Dashboard</a></li>
-                        <li><a href="javascript:history.back()">Quiz Theme</a></li>
+                        <li><a href="javascript:history.back()">Level</a></li>
                         <li class="active">Add</li>
                     </ol>
                 </div>
@@ -29,25 +29,14 @@
                 <div class="col-lg-6">
                     <div class="card">
                         <div class="card-header">
-                            <strong>Quiz Theme</strong> Add Data
+                            <strong>Level</strong> Add Data
                         </div>
                         <div class="card-body card-block">
-                            <form action="{{ route('quiztheme.store') }}" method="POST">
+                            <form action="{{ route('level.store') }}" method="POST">
                                 @csrf
                                 <div class="form-group">
-                                    <label for="level_id" class=" form-control-label">Level</label>
-                                    <select id="level_id" name="level_id" placeholder="Level ID" style="width: 100%"
-                                        class="form-control select2">
-                                        <option disabled value>Choose Level</option>
-                                        @foreach ($lev as $item)
-                                            <option value="{{ $item->level_id }}">{{ $item->level_name }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label for="theme_name" class=" form-control-label">Theme
-                                        Name</label>
-                                    <input type="text" id="theme_name" name="theme_name" placeholder="Theme Name"
+                                    <label for="level_name" class="form-control-label">Level Name</label>
+                                    <input type="text" id="level_name" name="level_name" placeholder="Level Name"
                                         class="form-control">
                                 </div>
                                 <div class="form-group">
@@ -57,6 +46,7 @@
                                 </div>
                             </form>
                         </div>
+
                     </div>
                 </div>
             </div>

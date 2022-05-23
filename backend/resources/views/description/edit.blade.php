@@ -1,11 +1,11 @@
 @extends('main')
-@section('title', 'Material Desc Add Data')
+@section('title', 'Description Edit Data')
 @section('breadcrumbs')
     <div class="breadcrumbs">
         <div class="col-sm-4">
             <div class="page-header float-left">
                 <div class="page-title">
-                    <h1> Material Desc Add Data</h1>
+                    <h1> Description Edit Data</h1>
                 </div>
             </div>
         </div>
@@ -14,8 +14,8 @@
                 <div class="page-title">
                     <ol class="breadcrumb text-right">
                         <li><a href="/">Dashboard</a></li>
-                        <li><a href="javascript:history.back()">Material Desc</a></li>
-                        <li class="active">Add</li>
+                        <li><a href="javascript:history.back()">Description</a></li>
+                        <li class="active">Edit</li>
                     </ol>
                 </div>
             </div>
@@ -29,34 +29,49 @@
                 <div class="col-lg-6">
                     <div class="card">
                         <div class="card-header">
-                            <strong>Material Desc</strong> Add Data
+                            <strong>Description</strong> Edit Data
                         </div>
                         <div class="card-body card-block">
-                            <form action="{{ route('materialdesc.store') }}" method="POST" enctype="multipart/form-data">
-                                @csrf
+                            <form action="{{ route('description.update', $description->desc_id) }}"
+                                enctype="multipart/form-data" method="POST">
+                                <div class="form-group">
+                                    @csrf
+                                    @method('PUT')
+                                    <label for="desc_id" class=" form-control-label">Material Desc
+                                        ID</label>
+                                    <input type="integer" id="desc_id" name="desc_id" placeholder="Material Desc ID"
+                                        class="form-control" value="{{ $description->desc_id }}">
+                                </div>
                                 <div class="form-group">
                                     <label for="material_id" class=" form-control-label">Material</label>
                                     <select id="material_id" name="material_id" placeholder="Material" style="width: 100%"
                                         class="form-control select2">
                                         <option disabled value>Choose Material</option>
-                                        @foreach ($mtrl as $item)
-                                            <option value="{{ $item->material_id }}">{{ $item->material_name }}</option>
+                                        <option value="{{ $description->material_id }}">
+                                            {{ $description->material->material_name }}
+                                            @foreach ($mtrl as $item)
+                                        <option value="{{ $item->material_id }}">{{ $item->material_name }}</option>
                                         @endforeach
                                     </select>
                                 </div>
                                 <div class="form-group">
                                     <label for="description" class=" form-control-label">Description</label>
                                     <input type="text" id="description" name="description" placeholder="Description"
-                                        class="form-control">
+                                        class="form-control" value="{{ $description->description }}">
                                 </div>
                                 <div class="form-group">
-                                    <label for="desc_pict" class="form-label">Description
+                                    <label for="desc_pict" class=" form-control-label">Description
                                         Pict</label>
-                                    <input type="file" id="desc_pict" name="desc_pict"
-                                        class="form-control @error('desc_pict') is-invalid @enderror">
-                                    @error('desc_pict')
-                                        <div class="invalid-feedback">{{ 'Image size is too big' }}</div>
-                                    @enderror
+                                    <input type="file" id="desc_pict" name="desc_pict" class="form-control-file"
+                                        value="{{ $description->desc_pict }}">
+                                    <br>
+                                    @if ($description->desc_pict)
+                                        <div style="max-height: 100px; max-width:100px; overflow:hidden;">
+                                            <img src="{{ asset('storage/' . $description->desc_pict) }}"
+                                                alt="{{ $description->desc_pict }}" class="img-fluid">
+                                        </div>
+                                    @else
+                                    @endif
                                 </div>
                                 <div class="form-group">
                                     <button type="submit" class="btn btn-success btn-sm pull-right">

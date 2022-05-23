@@ -38,9 +38,7 @@
                             aria-expanded="false"> <i class="menu-icon fa fa-user"></i>User</a>
                         <ul class="sub-menu children dropdown-menu">
                             <li><i class="fa fa-laptop"></i><a href="{{ url('user') }}">User</a></li>
-                            <li><i class="fa fa-fire"></i><a href="{{ url('userpoint') }}">User Point</a></li>
                             <li><i class="fa fa-id-badge"></i><a href="{{ url('badge') }}">Badge</a></li>
-                            <li><i class="fa fa-id-badge"></i><a href="{{ url('userbadge') }}">User Badge</a></li>
                         </ul>
                     </li>
                     <li class="menu-item-has-children active dropdown">
@@ -48,7 +46,8 @@
                             aria-expanded="false"> <i class="menu-icon fa fa-table"></i>Material</a>
                         <ul class="sub-menu children dropdown-menu">
                             <li><i class="fa fa-table"></i><a href="{{ url('material') }}">Material</a></li>
-                            <li><i class="fa fa-table"></i><a href="{{ url('materialdesc') }}">Material Desc</a>
+                            <li><i class="fa fa-table"></i><a href="{{ url('description') }}">Material
+                                    Description</a>
                             </li>
                         </ul>
                     </li>
@@ -56,12 +55,10 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
                             aria-expanded="false"> <i class="menu-icon fa fa-th"></i>Quiz</a>
                         <ul class="sub-menu children dropdown-menu">
-                            <li><i class="menu-icon fa fa-th"></i><a href="{{ url('quizlevel') }}">Level</a></li>
-                            <li><i class="menu-icon fa fa-th"></i><a href="{{ url('quiztheme') }}">Theme</a></li>
-                            <li><i class="menu-icon fa fa-th"></i><a href="{{ url('quizthemequestion') }}">Theme
-                                    Question</a></li>
-                            <li><i class="menu-icon fa fa-th"></i><a href="{{ url('quizthemeanswer') }}">Theme
-                                    Answer</a></li>
+                            <li><i class="menu-icon fa fa-th"></i><a href="{{ url('level') }}">Level</a></li>
+                            <li><i class="menu-icon fa fa-th"></i><a href="{{ url('theme') }}">Theme</a></li>
+                            <li><i class="menu-icon fa fa-th"></i><a href="{{ url('question') }}">Question</a></li>
+                            <li><i class="menu-icon fa fa-th"></i><a href="{{ url('answer') }}">Answer</a></li>
                         </ul>
                     </li>
                 </ul>

@@ -49,46 +49,6 @@
                                         value="{{ $badge->badge_name }}" class="form-control">
                                 </div>
                                 <div class="form-group">
-                                    <label for="badge_point" class="form-control-label">Badge
-                                        Point</label>
-                                    <input type="integer" id="badge_point" name="badge_point" placeholder="Badge Point"
-                                        value="{{ $badge->badge_point }}" class="form-control">
-                                </div>
-                                <div class="form-group">
-                                    <label for="badge_level" class="form-control-label">Badge
-                                        Level</label>
-                                    <input type="integer" id="badge_level" name="badge_level" placeholder="Badge Level"
-                                        value="{{ $badge->badge_level }}" class="form-control">
-                                </div>
-                                <div class="form-group">
-                                    <label for="badge_pict_active" class="form-label">Badge
-                                        Pict Active</label>
-                                    <input type="file" id="badge_pict_active" name="badge_pict_active"
-                                        value="{{ $badge->badge_pict_active }}" class="form-control-file">
-                                    <br>
-                                    @if ($badge->badge_pict_active)
-                                        <div style="max-height: 100px; max-width:100px; overflow:hidden;">
-                                            <img src="{{ asset('storage/' . $badge->badge_pict_active) }}"
-                                                alt="{{ $badge->badge_pict_active }}" class="img-fluid">
-                                        </div>
-                                    @else
-                                    @endif
-                                </div>
-                                <div class="form-group">
-                                    <label for="badge_pict_non_active" class="form-label">Badge Pict
-                                        Non-Active</label>
-                                    <input type="file" id="badge_pict_non_active" name="badge_pict_non_active"
-                                        value="{{ $badge->badge_pict_non_active }}" class="form-control-file">
-                                    <br>
-                                    @if ($badge->badge_pict_non_active)
-                                        <div style="max-height: 100px; max-width:100px; overflow:hidden;">
-                                            <img src="{{ asset('storage/' . $badge->badge_pict_non_active) }}"
-                                                alt="{{ $badge->badge_pict_non_active }}" class="img-fluid">
-                                        </div>
-                                    @else
-                                    @endif
-                                </div>
-                                <div class="form-group">
                                     <button type="submit" class="btn btn-success btn-sm pull-right">
                                         Submit
                                     </button>

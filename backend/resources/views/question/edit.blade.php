@@ -1,11 +1,11 @@
 @extends('main')
-@section('title', 'Quiz Theme Question Edit Data')
+@section('title', 'Question Edit Data')
 @section('breadcrumbs')
     <div class="breadcrumbs">
         <div class="col-sm-4">
             <div class="page-header float-left">
                 <div class="page-title">
-                    <h1> Quiz Theme Question Edit Data</h1>
+                    <h1>Question Edit Data</h1>
                 </div>
             </div>
         </div>
@@ -14,7 +14,7 @@
                 <div class="page-title">
                     <ol class="breadcrumb text-right">
                         <li><a href="/">Dashboard</a></li>
-                        <li><a href="javascript:history.back()">Quiz Theme Question</a></li>
+                        <li><a href="javascript:history.back()">Question</a></li>
                         <li class="active">Edit</li>
                     </ol>
                 </div>
@@ -29,25 +29,25 @@
                 <div class="col-lg-6">
                     <div class="card">
                         <div class="card-header">
-                            <strong>Quiz Theme Question</strong> Edit Data
+                            <strong>Question</strong> Edit Data
                         </div>
                         <div class="card-body card-block">
-                            <form action="{{ route('quizthemequestion.update', $quizthemequestion->question_id) }}"
+                            <form action="{{ route('question.update', $question->question_id) }}"
                                 enctype="multipart/form-data" method="POST">
                                 @csrf
                                 @method('PUT')
                                 <div class="form-group"><label for="question_id" class=" form-control-label">
                                         Question ID</label><input type="integer" id="question_id" name="question_id"
                                         placeholder="Question ID" class="form-control"
-                                        value="{{ $quizthemequestion->question_id }}">
+                                        value="{{ $question->question_id }}">
                                 </div>
                                 <div class="form-group">
                                     <label for="theme_id" class=" form-control-label">Theme</label>
                                     <select id="theme_id" name="theme_id" placeholder="Theme" style="width: 100%"
                                         class="form-control select2">
                                         <option disabled value>Choose Theme</option>
-                                        <option value="{{ $quizthemequestion->theme_id }}">
-                                            {{ $quizthemequestion->tema->theme_name }}
+                                        <option value="{{ $question->theme_id }}">
+                                            {{ $question->tema->theme_name }}
                                             @foreach ($quest as $item)
                                         <option value="{{ $item->theme_id }}">{{ $item->theme_name }}</option>
                                         @endforeach
@@ -55,21 +55,28 @@
                                 </div>
                                 <div class="form-group"><label for="question"
                                         class=" form-control-label">Question</label><input type="text" id="question"
-                                        value="{{ $quizthemequestion->question }}" name="question" placeholder="Question"
+                                        value="{{ $question->question }}" name="question" placeholder="Question"
                                         class="form-control"></div>
-                                <div class="form-group"><label for="question_point" class=" form-control-label">Question
-                                        Point</label><input type="integer" id="question_point" name="question_point"
-                                        value="{{ $quizthemequestion->question_point }}" placeholder="Question Point"
-                                        class="form-control"></div>
+                                <div class="form-group">
+                                    <label for="correct_answer" class=" form-control-label">Correct Answer</label>
+                                    <input type="text" id="correct_answer" name="correct_answer"
+                                        value="{{ $question->correct_answer }}" placeholder="Correct Answer"
+                                        class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label for="bank_answer" class=" form-control-label">Bank Answer</label>
+                                    <input type="text" id="bank_answer" name="bank_answer" placeholder="Bank Answer"
+                                        value="{{ $question->bank_answer }}" class="form-control">
+                                </div>
                                 <div class="form-group"><label for="question_pict" class=" form-control-label">Question
                                         Picture</label>
                                     <input type="file" id="question_pict" name="question_pict"
-                                        value="{{ $quizthemequestion->question_pict }}" class="form-control-file">
+                                        value="{{ $question->question_pict }}" class="form-control-file">
                                     <br>
-                                    @if ($quizthemequestion->question_pict)
+                                    @if ($question->question_pict)
                                         <div style="max-height: 100px; max-width:100px; overflow:hidden;">
-                                            <img src="{{ asset('storage/' . $quizthemequestion->question_pict) }}"
-                                                alt="{{ $quizthemequestion->question_pict }}" class="img-fluid">
+                                            <img src="{{ asset('storage/' . $question->question_pict) }}"
+                                                alt="{{ $question->question_pict }}" class="img-fluid">
                                         </div>
                                     @else
                                     @endif
