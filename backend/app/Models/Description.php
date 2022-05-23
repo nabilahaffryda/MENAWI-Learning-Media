@@ -5,11 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class MaterialDesc extends Model
+class Description extends Model
 {
     use HasFactory;
     protected $primaryKey = 'desc_id';
-    protected $table = 'material_desc';
+    protected $table = 'description';
     protected $fillable = [
         'desc_id',
         'material_id',
@@ -18,7 +18,7 @@ class MaterialDesc extends Model
     ];
     public $timestamps = false;
 
-    public function materi()
+    public function material()
     {
         return $this->belongsTo(Material::class, 'material_id');
     }

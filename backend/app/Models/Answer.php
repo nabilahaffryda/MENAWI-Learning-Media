@@ -9,17 +9,21 @@ class QuizThemeAnswer extends Model
 {
     use HasFactory;
     protected $primaryKey = 'answer_id';
-    protected $table = 'quiz_theme_answer';
+    protected $table = 'answer';
     protected $fillable = [
         'answer_id',
         'question_id',
         'answer',
-        'answer_status',
-        'answer_pict',
+        'point',
+        'user_id'
     ];
     public $timestamps = false;
-    public function questions()
+    public function quest()
     {
-        return $this->belongsTo(QuizThemeQuestion::class, 'question_id');
+        return $this->belongsTo(Question::class, 'question_id');
+    }
+    public function users()
+    {
+        return $this->belongsTo(User::class, 'user_id');
     }
 }

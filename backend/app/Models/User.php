@@ -2,15 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, Notifiable;
 
     protected $primaryKey = 'user_id';
 
@@ -25,12 +20,16 @@ class User extends Authenticatable
         'password',
         'remember_token',
     ];
-    public function points()
+    public function jawaban()
     {
-        return $this->hasMany(UserPoint::class);
+        return $this->hasMany(Answer::class);
     }
-    public function badges()
+    public function badge()
     {
-        return $this->hasMany(UserBadge::class);
+        return $this->hasMany(Badge::class);
+    }
+    public function level()
+    {
+        return $this->hasMany(Level::class);
     }
 }

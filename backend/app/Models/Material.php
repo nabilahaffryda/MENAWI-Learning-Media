@@ -17,6 +17,6 @@ class Material extends Model
     public $timestamps = false;
     public function desc()
     {
-        return $this->hasMany(MaterialDesc::class);
+        return $this->hasMany(Description::class);
     }
 }

@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class QuizTheme extends Model
 {
     protected $primaryKey = 'theme_id';
-    protected $table = 'quiz_theme';
+    protected $table = 'theme';
     protected $fillable = [
         'theme_id',
         'level_id',
@@ -17,14 +17,10 @@ class QuizTheme extends Model
 
     public function level()
     {
-        return $this->belongsTo(QuizLevel::class, 'level_id');
+        return $this->belongsTo(Level::class, 'level_id');
     }
     public function question()
     {
-        return $this->hasMany(QuizThemeQuestion::class);
-    }
-    public function point()
-    {
-        return $this->hasMany(UserPoint::class);
+        return $this->hasMany(Question::class);
     }
 }

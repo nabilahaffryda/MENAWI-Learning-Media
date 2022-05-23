@@ -13,14 +13,10 @@ class Badge extends Model
     protected $fillable = [
         'badge_id',
         'badge_name',
-        'badge_point',
-        'badge_level',
-        'badge_pict_active',
-        'badge_pict_non_active',
     ];
     public $timestamps = false;
-    public function userBadge()
+    public function usr()
     {
-        return $this->hasMany(UserBadge::class);
+        return $this->belongsTo(User::class, 'user_id');
     }
 }
