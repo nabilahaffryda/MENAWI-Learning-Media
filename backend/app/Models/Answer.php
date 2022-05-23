@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class QuizThemeAnswer extends Model
+class Answer extends Model
 {
     use HasFactory;
     protected $primaryKey = 'answer_id';

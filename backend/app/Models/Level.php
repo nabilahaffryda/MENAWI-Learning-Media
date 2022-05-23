@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class QuizLevel extends Model
+class Level extends Model
 {
     protected $primaryKey = 'level_id';
     protected $table = 'level';

@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class QuizTheme extends Model
+class Theme extends Model
 {
     protected $primaryKey = 'theme_id';
     protected $table = 'theme';
