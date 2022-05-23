@@ -23,17 +23,8 @@ class BadgeController extends Controller
     {
         $validatedData = $request->validate([
             'badge_name' => 'required',
-            'badge_point' => 'required',
-            'badge_level' => 'required',
-            'badge_pict_active' => 'image|file|max:1024',
-            'badge_pict_non_active' => 'image|file|max:1024',
+
         ]);
-        if ($request->file('badge_pict_active')) {
-            $validatedData['badge_pict_active'] = $request->file('badge_pict_active')->store('post-images');
-        }
-        if ($request->file('badge_pict_non_active')) {
-            $validatedData['badge_pict_non_active'] = $request->file('badge_pict_non_active')->store('post-images');
-        }
         Badge::create($validatedData);
         return redirect()->route('badge.index');
     }
@@ -49,17 +40,8 @@ class BadgeController extends Controller
         $validatedData = $request->validate([
             'badge_id' => 'required',
             'badge_name' => 'required',
-            'badge_point' => 'required',
-            'badge_level' => 'required',
-            'badge_pict_active' => 'image|file|max:1024',
-            'badge_pict_non_active' => 'image|file|max:1024',
+
         ]);
-        if ($request->file('badge_pict_active')) {
-            $validatedData['badge_pict_active'] = $request->file('badge_pict_active')->store('post-images');
-        }
-        if ($request->file('badge_pict_non_active')) {
-            $validatedData['badge_pict_non_active'] = $request->file('badge_pict_non_active')->store('post-images');
-        }
         Badge::where('badge_id', $badge_id)->update($validatedData);
         return redirect()->route('badge.index');
     }

@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
-use Illuminate\Support\Str;
 
 class UsersController extends Controller
 {
@@ -22,18 +21,12 @@ class UsersController extends Controller
 
     public function store(Request $request)
     {
-        $this->validate($request, [
+        $validatedData = $request->validate([
             'username' => 'required',
             'name' => 'required',
             'password' => 'required'
         ]);
-
-        $user = User::create([
-            'username' => $request->input('username'),
-            'name' => $request->input('name'),
-            'password' => $request->input('password'),
-        ]);
-
+        User::create($validatedData);
         return redirect()->route('user.index');
     }
 
@@ -45,20 +38,13 @@ class UsersController extends Controller
 
     public function update(Request $request, $user_id)
     {
-
-        $this->validate($request, [
+        $validatedData = $request->validate([
             'user_id' => 'required',
             'username' => 'required',
             'name' => 'required',
             'password' => 'required'
         ]);
-        $user = User::where('user_id', $user_id)->update([
-            'user_id' => $request->input('user_id'),
-            'username' => $request->input('username'),
-            'name' => $request->input('name'),
-            'password' => $request->input('password'),
-        ]);
-
+        User::where('user_id', $user_id)->update($validatedData);
         return redirect()->route('user.index');
     }
 

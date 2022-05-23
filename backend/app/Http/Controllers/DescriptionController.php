@@ -3,22 +3,22 @@
 namespace App\Http\Controllers;
 
 use App\Models\Material;
-use App\Models\MaterialDesc;
+use App\Models\Description;
 use Illuminate\Http\Request;
 
-class MaterialDescController extends Controller
+class DescriptionController extends Controller
 {
 
     public function index()
     {
-        $materialdesc = MaterialDesc::with('materi')->get();
-        return view('materialdesc.index', compact('materialdesc'));
+        $description = Description::with('material')->get();
+        return view('description.index', compact('description'));
     }
 
     public function create()
     {
         $mtrl = Material::all();
-        return view('materialdesc.create', compact('mtrl'));
+        return view('description.create', compact('mtrl'));
     }
 
     public function store(Request $request)
@@ -31,15 +31,15 @@ class MaterialDescController extends Controller
         if ($request->file('desc_pict')) {
             $validatedData['desc_pict'] = $request->file('desc_pict')->store('post-images');
         }
-        MaterialDesc::create($validatedData);
-        return redirect()->route('materialdesc.index');
+        Description::create($validatedData);
+        return redirect()->route('description.index');
     }
 
     public function edit($desc_id)
     {
         $mtrl = Material::all();
-        $materialdesc = MaterialDesc::with('materi')->where('desc_id', $desc_id)->first();
-        return view('materialdesc.edit', compact('materialdesc', 'mtrl'));
+        $description = Description::with('material')->where('desc_id', $desc_id)->first();
+        return view('description.edit', compact('description', 'mtrl'));
     }
 
     public function update(Request $request, $desc_id)
@@ -53,17 +53,17 @@ class MaterialDescController extends Controller
         if ($request->file('desc_pict')) {
             $validatedData['desc_pict'] = $request->file('desc_pict')->store('post-images');
         }
-        MaterialDesc::where('desc_id', $desc_id)->update($validatedData);
-        return redirect()->route('materialdesc.index');
+        Description::where('desc_id', $desc_id)->update($validatedData);
+        return redirect()->route('description.index');
     }
 
     public function destroy($desc_id)
     {
-        $materialdesc = MaterialDesc::where('desc_id', $desc_id)->first();
-        if ($materialdesc != null) {
-            $materialdesc->delete();
-            return redirect()->route('materialdesc.index');
+        $description = Description::where('desc_id', $desc_id)->first();
+        if ($description != null) {
+            $description->delete();
+            return redirect()->route('description.index');
         }
-        return redirect()->route('materialdesc.index');
+        return redirect()->route('description.index');
     }
 }
