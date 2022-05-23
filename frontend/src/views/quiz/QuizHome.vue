@@ -41,7 +41,7 @@
                             <v-card
                               flat
                               :to="item.route"
-                              style="margin-left: 87px"
+                              style="margin-left: 60px"
                             >
                               <v-img
                                 max-width="90px"
