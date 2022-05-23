@@ -20,7 +20,7 @@ return new class extends Migration
             $table->text('question');
             $table->text('correct_answer');
             $table->text('bank_answer');
-            $table->string('question_pict')->unsigned()->nullable()->change();
+            $table->string('question_pict')->nullable();
         });
     }
 
