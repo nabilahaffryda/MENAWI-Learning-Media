@@ -15,8 +15,4 @@ class Badge extends Model
         'badge_name',
     ];
     public $timestamps = false;
-    public function usr()
-    {
-        return $this->belongsTo(User::class, 'user_id');
-    }
 }

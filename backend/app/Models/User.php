@@ -24,12 +24,4 @@ class User extends Authenticatable
     {
         return $this->hasMany(Answer::class);
     }
-    public function badge()
-    {
-        return $this->hasMany(Badge::class);
-    }
-    public function level()
-    {
-        return $this->hasMany(Level::class);
-    }
 }
