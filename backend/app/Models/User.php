@@ -3,12 +3,14 @@
 namespace App\Models;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Tymon\JWTAuth\Contracts\JWTSubject;
+use Illuminate\Notifications\Notifiable;
 
-class User extends Authenticatable
+class User extends Authenticatable implements JWTSubject
 {
 
     protected $primaryKey = 'user_id';
-
+    use Notifiable;
     protected $fillable = [
         'user_id',
         'username',
@@ -23,5 +25,13 @@ class User extends Authenticatable
     public function jawaban()
     {
         return $this->hasMany(Answer::class);
+    }
+    public function getJWTIdentifier()
+    {
+        return $this->getKey();
+    }
+    public function getJWTCustomClaims()
+    {
+        return [];
     }
 }

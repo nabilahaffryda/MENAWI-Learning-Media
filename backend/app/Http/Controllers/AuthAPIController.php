@@ -2,44 +2,46 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ValidateUserLogin;
+use App\Http\Requests\ValidateUserRegistration;
 use App\Models\User;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Validation\ValidationException;
+use App\Http\Resources\User as UserResource;
 
 class AuthAPIController extends Controller
 {
-    public function register(Request $request)
+    public function __construct()
     {
-        $request->validate([
-            'name' => 'required',
-            'username' => 'required|unique:users',
-            'password' => 'required|min:8',
-        ]);
-        User::create([
+        $this->middleware('auth:api', ['except' => ['login', 'register']]);
+    }
+    public function register(ValidateUserRegistration $request)
+    {
+        $user = User::create([
             'name' => $request->name,
             'username' => $request->username,
-            'password' => Hash::make($request->password)
+            'password' => bcrypt($request->password),
         ]);
+        return new UserResource($user);
     }
 
-    public function login(Request $request)
+    public function login(ValidateUserLogin $request)
     {
-        $request->validate([
-            'username' => 'required',
-            'password' => 'required',
-        ]);
-        if (Auth::attempt($request->only('username', 'password'))) {
-            return response()->json(Auth::user(), 200);
+        $credentials = request(['username', 'password']);
+        if (!$token = auth()->attempt($credentials)) {
+            return  response()->json([
+                'errors' => [
+                    'msg' => ['Incorrect username or password.']
+                ]
+            ], 401);
         }
-        throw ValidationException::withMessages([
-            'username' => 'The provided credentials are incorrect'
+
+        return response()->json([
+            'type' => 'success',
+            'message' => 'Logged in.',
+            'token' => $token
         ]);
     }
-
-    public function logout()
+    public function user()
     {
-        Auth::logout();
+        return new UserResource(auth()->user());
     }
 }
