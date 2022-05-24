@@ -9,15 +9,15 @@
       </v-toolbar-title>
       <v-spacer />
       <!-- home -->
-      <v-btn text color="white" to="home">
+      <v-btn text color="white" to="home" v-if="isLoggedIn">
         <v-icon color="brown">mdi-home</v-icon>
       </v-btn>
       <!-- level -->
       <v-menu
+        v-if="isLoggedIn"
         :close-on-content-click="false"
         :nudge-width="150"
         offset-y
-        v-if="isLoggedIn"
       >
         <template v-slot:activator="{ on, attrs }">
           <v-btn text v-bind="attrs" v-on="on">
@@ -119,11 +119,7 @@
           <v-card-actions>
             <v-spacer></v-spacer>
             <v-btn color="green darken-1" text @click="close">Cancel</v-btn>
-            <v-btn
-              color="green darken-1"
-              type="submit"
-              text
-              @click.prevent="logout"
+            <v-btn color="green darken-1" type="submit" text @click="logout"
               >OK</v-btn
             >
           </v-card-actions>
@@ -146,20 +142,19 @@
 </style>
 
 <script>
-import User from "../apis/User";
+import { mapGetters } from "vuex";
 export default {
   name: "Header",
   data() {
     return {
       dialogLogout: false,
-      isLoggedIn: false,
     };
   },
-  mounted() {
-    this.$root.$on("login", () => {
-      this.isLoggedIn = true;
-    });
-    this.isLoggedIn = !!localStorage.getItem("auth");
+  computed: {
+    ...mapGetters({
+      isLoggedIn: "isLoggedIn",
+      user: "user",
+    }),
   },
   methods: {
     close() {
@@ -172,11 +167,10 @@ export default {
     logoutDialog() {
       this.dialogLogout = true;
     },
-    logout() {
-      User.logout().then(() => {
-        localStorage.removeItem("auth");
-        this.isLoggedIn = false;
-        this.$router.push({ name: "Login" });
+    logout: function () {
+      this.$store.dispatch("logout").then(() => {
+        this.dialogLogout = false;
+        this.$router.push("/");
       });
     },
   },

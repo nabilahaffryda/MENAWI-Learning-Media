@@ -18,7 +18,9 @@
                 >
                   <span class="white--text text-h5">CJ</span>
                 </v-avatar>
-                <h1 style="margin-top: 60px; margin-left: 20px">Nama</h1>
+                <h1 style="margin-top: 60px; margin-left: 20px">
+                  {{ user.name }}
+                </h1>
                 <v-btn
                   rounded
                   depressed
@@ -39,13 +41,13 @@
                           md="10"
                           style="margin-left: 35px; margin-top: 10px"
                         >
-                          <v-text-field solo></v-text-field>
+                          <h4 style="margin-top: 10px">{{ user.username }}</h4>
                         </v-col>
                       </v-flex>
                       <v-flex>
                         <h3 style="margin-top: 20px">Nama</h3>
                         <v-col md="10" style="margin-left: 70px">
-                          <v-text-field solo></v-text-field>
+                          <h4 style="margin-top: 10px">{{ user.name }}</h4>
                         </v-col>
                       </v-flex>
                       <v-flex>
@@ -69,7 +71,14 @@
   </v-main>
 </template>
 <script>
+import { mapGetters } from "vuex";
 export default {
   name: "Profile",
+  computed: {
+    ...mapGetters({
+      isLoggedIn: "isLoggedIn",
+      user: "user",
+    }),
+  },
 };
 </script>

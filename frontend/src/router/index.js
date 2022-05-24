@@ -9,6 +9,7 @@ import QuizHome from "../views/quiz/QuizHome";
 import MaterialHome from "../views/material/MaterialHome";
 import QuestionContent from "../views/quiz/QuestionContent";
 import MaterialContent from "../views/material/MaterialContent";
+import store from "../store/index.js";
 
 Vue.use(VueRouter);
 
@@ -17,49 +18,73 @@ const routes = [
     path: "/home",
     name: "Home",
     component: Home,
+    meta: {
+      auth: true,
+    },
   },
   {
     path: "/login",
     name: "Login",
     component: Login,
-    meta: { guestOnly: true },
+    meta: {
+      guest: true,
+    },
   },
   {
     path: "/register",
     name: "Register",
     component: Register,
-    meta: { guestOnly: true },
+    meta: {
+      guest: true,
+    },
   },
   {
     path: "/profile",
     name: "Profile",
     component: Profile,
+    meta: {
+      auth: true,
+    },
   },
   {
     path: "/materialhome",
     name: "MaterialHome",
     component: MaterialHome,
+    meta: {
+      auth: true,
+    },
   },
   {
     path: "/quizhome",
     name: "QuizHome",
     component: QuizHome,
+    meta: {
+      auth: true,
+    },
   },
   {
     path: "/questioncontent",
     name: "QuestionContent",
     component: QuestionContent,
+    meta: {
+      auth: true,
+    },
   },
   {
     path: "/materialcontent",
     name: "MaterialContent",
     component: MaterialContent,
+    meta: {
+      auth: true,
+    },
   },
   {
     path: "/",
     name: "LandingPage",
     component: LandingPage,
-    meta: { guestOnly: true },
+    meta: {
+      guest: true,
+    },
   },
 ];
 
@@ -68,34 +93,21 @@ const router = new VueRouter({
   base: process.env.BASE_URL,
   routes,
 });
-function isLoggedIn() {
-  return localStorage.getItem("auth");
-}
 router.beforeEach((to, from, next) => {
-  if (to.matched.some((record) => record.meta.authOnly)) {
-    // this route requires auth, check if logged in
-    // if not, redirect to login page.
-    if (!isLoggedIn()) {
-      next({
-        path: "/login",
-        query: { redirect: to.fullPath },
-      });
-    } else {
+  if (to.matched.some((record) => record.meta.auth)) {
+    if (store.getters.isLoggedIn && store.getters.user) {
       next();
+      return;
     }
-  } else if (to.matched.some((record) => record.meta.guestOnly)) {
-    // this route requires auth, check if logged in
-    // if not, redirect to login page.
-    if (isLoggedIn()) {
-      next({
-        path: "/home",
-        query: { redirect: to.fullPath },
-      });
-    } else {
-      next();
-    }
-  } else {
-    next(); // make sure to always call next()!
   }
+
+  if (to.matched.some((record) => record.meta.guest)) {
+    if (!store.getters.isLoggedIn) {
+      next();
+      return;
+    }
+  }
+  next();
 });
+
 export default router;

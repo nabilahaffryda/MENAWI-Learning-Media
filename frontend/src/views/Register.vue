@@ -6,8 +6,15 @@
           <div class="text-center" style="margin-bottom: 20px">
             <h2 class="indigo--text">Buat Profilmu</h2>
           </div>
-          <form>
+          <form @submit.prevent="register">
             <v-card-text class="text-center">
+              <div
+                class="alert alert-danger"
+                v-for="(error, index) in errors"
+                :key="index"
+              >
+                {{ error[0] }}
+              </div>
               <div class="form-group">
                 <v-text-field
                   filled
@@ -22,9 +29,6 @@
                   type="text"
                 >
                 </v-text-field>
-                <p class="text-center red--text" v-if="errors.name">
-                  {{ errors.name[0] }}
-                </p>
               </div>
               <div class="form-group">
                 <v-text-field
@@ -40,9 +44,6 @@
                   type="text"
                 >
                 </v-text-field>
-                <p class="text-center red--text" v-if="errors.username">
-                  {{ errors.username[0] }}
-                </p>
               </div>
               <div class="form-group">
                 <v-text-field
@@ -58,9 +59,6 @@
                   type="password"
                 >
                 </v-text-field>
-                <p class="text-center red--text" v-if="errors.password">
-                  {{ errors.password[0] }}
-                </p>
               </div>
               <v-btn
                 type="submit"
@@ -70,7 +68,6 @@
                 filled
                 rounded
                 dense
-                @click.prevent="register"
               >
                 <span class="white--text px-8">DAFTAR</span>
               </v-btn>
@@ -86,7 +83,6 @@
   </v-container>
 </template>
 <script>
-import User from "../apis/User";
 export default {
   name: "Register",
   data() {
@@ -96,19 +92,21 @@ export default {
         username: "",
         password: "",
       },
-      errors: [],
+      errors: null,
     };
   },
   methods: {
-    register() {
-      User.register(this.form)
-        .then(() => {
-          this.$router.push({ name: "Login" });
+    register: function () {
+      this.$store
+        .dispatch("register", this.form)
+        .then((response) => {
+          console.log(response);
+          this.$router.push({
+            name: "Login",
+          });
         })
         .catch((error) => {
-          if (error.response.status === 422) {
-            this.errors = error.response.data.errors;
-          }
+          this.errors = error.response.data.errors;
         });
     },
   },

@@ -6,8 +6,16 @@
           <div class="text-center" style="margin-bottom: 20px">
             <h2 class="indigo--text">Selamat datang kembali!</h2>
           </div>
-          <form>
-            <v-card-text class="text-center">
+
+          <form @submit.prevent="userLogin">
+            <v-card-text class="text-center"
+              ><div
+                class="alert alert-danger"
+                v-for="(error, index) in errors"
+                :key="index"
+              >
+                {{ error[0] }}
+              </div>
               <div class="form-group">
                 <v-text-field
                   filled
@@ -22,9 +30,6 @@
                   type="text"
                 >
                 </v-text-field>
-                <p class="text-center red--text" v-if="errors.username">
-                  {{ errors.username[0] }}
-                </p>
               </div>
               <div class="form-group">
                 <v-text-field
@@ -40,9 +45,6 @@
                   class="form-control"
                 >
                 </v-text-field>
-                <p class="text-center red--text" v-if="errors.password">
-                  {{ errors.password[0] }}
-                </p>
               </div>
               <v-btn
                 type="submit"
@@ -52,7 +54,6 @@
                 filled
                 rounded
                 dense
-                @click.prevent="login"
               >
                 <span class="white--text px-8">MASUK</span>
               </v-btn>
@@ -68,30 +69,27 @@
   </v-container>
 </template>
 <script>
-import User from "../apis/User";
 export default {
   name: "Login",
   data() {
     return {
       form: {
-        email: "",
+        username: "",
         password: "",
       },
-      errors: [],
+      errors: null,
     };
   },
   methods: {
-    login() {
-      User.login(this.form)
-        .then(() => {
-          this.$root.$emit("login", true);
-          localStorage.setItem("auth", "true");
+    userLogin() {
+      this.$store
+        .dispatch("login", this.form)
+        .then((response) => {
+          console.log(response);
           this.$router.push({ name: "Home" });
         })
         .catch((error) => {
-          if (error.response.status === 422) {
-            this.errors = error.response.data.errors;
-          }
+          this.errors = error.response.data.errors;
         });
     },
   },
