@@ -87,28 +87,31 @@
                     <div class="modal fade" id="smallmodal" tabindex="-1" role="dialog"
                         aria-labelledby="smallmodalLabel" aria-hidden="true" data-backdrop="false">
                         <div class="modal-dialog modal-sm" role="document">
-                            <form action="{{ route('question.destroy', $item->question_id) }}" method="POST">
-                                @csrf
-                                @method('DELETE')
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="staticModalLabel">Delete</h5>
-                                        <button type="button" class="close" data-dismiss="modal"
-                                            aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
+                            @foreach ($question as $item)
+                                <form action="{{ route('question.destroy', $item->question_id) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="staticModalLabel">Delete</h5>
+                                            <button type="button" class="close" data-dismiss="modal"
+                                                aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p>
+                                                Are you sure you want to delete this data?
+                                            </p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary"
+                                                data-dismiss="modal">Cancel</button>
+                                            <button type="submit" class="btn btn-primary">Confirm</button>
+                                        </div>
                                     </div>
-                                    <div class="modal-body">
-                                        <p>
-                                            Are you sure you want to delete this data?
-                                        </p>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                                        <button type="submit" class="btn btn-primary">Confirm</button>
-                                    </div>
-                                </div>
-                            </form>
+                                </form>
+                            @endforeach
                         </div>
                     </div>
                 </div>

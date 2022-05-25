@@ -7,7 +7,7 @@
     <meta name="description" content="MENAWI Admin">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="apple-touch-icon" href="apple-icon.png">
-    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="shortcut icon" href="#">
     <link rel="stylesheet" href="{{ asset('style/assets/css/normalize.css') }}">
     <link rel="stylesheet" href="{{ asset('style/assets/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('style/assets/css/font-awesome.min.css') }}">
@@ -106,6 +106,9 @@
 
         <!-- content -->
         @yield('content')
+
+        {{-- javascript --}}
+        @stack('js')
     </div>
     </div>
     <script src="{{ asset('style/assets/js/vendor/jquery-2.1.4.min.js') }}"></script>

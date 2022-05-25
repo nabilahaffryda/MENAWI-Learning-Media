@@ -19,6 +19,7 @@ class Question extends Model
         'bank_answer'
     ];
     public $timestamps = false;
+
     public function tema()
     {
         return $this->belongsTo(Theme::class, 'theme_id');
