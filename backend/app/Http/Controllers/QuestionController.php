@@ -29,15 +29,10 @@ class QuestionController extends Controller
             'bank_answer' => 'required|array',
             'question_pict' => 'image|file|max:1024',
         ]);
-        print_r($request->bank_answer);
-        $data = json_decode($request->bank_answer);
-        echo $data;
-        print_r(json_decode($data));
         if ($request->file('question_pict')) {
             $validatedData['question_pict'] = $request->file('question_pict')->store('post-images');
         }
         Question::create($validatedData);
-
         return redirect()->route('question.index');
     }
 
@@ -54,7 +49,7 @@ class QuestionController extends Controller
             'question_id' => 'required',
             'theme_id' => 'required',
             'correct_answer' => 'required',
-            'bank_answer' => 'required',
+            'bank_answer' => 'required|array',
             'question_pict' => 'image|file|max:1024',
         ]);
 

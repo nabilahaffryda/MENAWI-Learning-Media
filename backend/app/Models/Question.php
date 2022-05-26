@@ -19,6 +19,9 @@ class Question extends Model
         'bank_answer'
     ];
     public $timestamps = false;
+    protected $casts = [
+        'bank_answer' => 'array'
+    ];
 
     public function tema()
     {

@@ -64,18 +64,6 @@
                                             id="button-addon2">Add</button>
                                     </div>
                                 </div>
-                                {{-- @foreach ($question as $item)
-                                    @if ($loop->iteration != 1)
-                                        <label for="bank_answer" class=" form-control-label">Bank Answer</label>
-                                        <div class="input-group mb-3">
-                                            <input type="text" id="bank_answer" name="bank_answer[]"
-                                                placeholder="Bank Answer" class="form-control"
-                                                aria-describedby="button-addon2">
-                                            <button class="btn btn-outline-danger remove_answer" type="button"
-                                                id="button-addon2">Remove</button>
-                                        </div>
-                                    @endif
-                                @endforeach --}}
                                 <div id="extra-answer"></div>
                                 <div class="mb-3">
                                     <label for="question_pict" class="form-label">Question
@@ -104,7 +92,6 @@
             add.forEach(function(e) {
                 e.addEventListener('click', function() {
                     let element = this.parentElement
-                    // console.log(element);
                     // add new button
                     let newElement = document.createElement('div')
                     newElement.classList.add('input-group', 'mb-3')
@@ -113,17 +100,13 @@
                                         <button class="btn btn-outline-danger remove_answer" type="button"
                                             id="button-addon2">Remove</button>`
                     document.getElementById('extra-answer').appendChild(newElement)
+                    // remove button
+                    document.querySelectorAll('.remove_answer').forEach(function(remove) {
+                        remove.addEventListener('click', function(elmClick) {
+                            elmClick.target.parentElement.remove()
+                        })
+                    })
                 })
             });
-            // callEvent()
-
-            // function callEvent() {
-            // remove button
-            document.querySelector('form').querySelectorAll('.remove_answer').forEach(function(remove) {
-                remove.live('click', function(elmClick) {
-                    elmClick.target.parentElement.remove()
-                })
-            })
-            // }
         </script>
     @endpush
