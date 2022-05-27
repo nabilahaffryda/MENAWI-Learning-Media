@@ -10,53 +10,42 @@
             style="margin-bottom: 20px; margin-top: 20px"
           >
           </v-img>
-          <v-col v-for="item in items" v-bind:key="item.id">
-            <v-sheet min-height="60vh" rounded="lg" outlined
+          <v-col v-for="level in levels" v-bind:key="level.level_id">
+            <v-sheet max-height="70vh" rounded="lg" outlined
               ><v-container fluid>
                 <v-row align="center" justify="center">
                   <v-col cols="12">
                     <v-row align="center" justify="space-around">
                       <v-col cols="12" sm="6" class="text-center">
                         <v-img
-                          :src="item.img"
+                          :src="level.img"
                           max-width="120px"
                           style="margin-top: 20px"
                           class="d-block ml-auto mr-auto"
                         ></v-img>
-                        <v-col class="text-center">
-                          <v-flex>
-                            <v-card :to="item.route" flat>
-                              <v-img
-                                max-width="90px"
-                                :src="item.tema1"
-                                style="margin-top: 20px"
-                                class="d-block ml-auto mr-auto"
-                              ></v-img>
-                              <h1
-                                class="font-weight-thin black--text ml-auto mr-auto"
-                              >
-                                {{ item.title1 }}
-                              </h1>
-                            </v-card>
+                        <v-flex justify-center>
+                          <div
+                            v-for="theme in themes"
+                            v-bind:key="theme.theme_id"
+                          >
                             <v-card
                               flat
-                              :to="item.route"
-                              style="margin-left: 60px"
+                              v-if="theme.level_id === level.level_id"
                             >
                               <v-img
                                 max-width="90px"
-                                :src="item.tema2"
-                                style="margin-top: 20px"
+                                :src="theme.img"
+                                @click="openQuestion(theme.level_id, theme.theme_id)"
+                                style="margin-top: 10px"
                                 class="d-block ml-auto mr-auto"
                               ></v-img>
-                              <h1
+                              <h2
                                 class="font-weight-thin black--text ml-auto mr-auto"
-                              >
-                                {{ item.title2 }}
-                              </h1>
+                                style="margin-top: 10px"
+                              ></h2>
                             </v-card>
-                          </v-flex>
-                        </v-col>
+                          </div>
+                        </v-flex>
                       </v-col>
                     </v-row>
                   </v-col>
@@ -75,67 +64,72 @@
 }
 </style>
 <script>
+import axios from "axios";
 export default {
   name: "QuizHome",
   data() {
     return {
-      items: [
-        {
-          id: 1,
-          img: require("@/assets/level1.png"),
-          tema1: require("@/assets/tema1.png"),
-          title1: "Tema 1",
-          route: "questioncontent",
-          tema2: require("@/assets/tema2.png"),
-          title2: "Tema 2",
-        },
-        {
-          id: 2,
-          img: require("@/assets/level2.png"),
-          tema1: require("@/assets/tema1.png"),
-          title1: "Tema 1",
-          route: "questioncontent",
-          tema2: require("@/assets/tema2.png"),
-          title2: "Tema 2",
-        },
-        {
-          id: 3,
-          img: require("@/assets/level3.png"),
-          tema1: require("@/assets/tema1.png"),
-          title1: "Tema 1",
-          route: "questioncontent",
-          tema2: require("@/assets/tema2.png"),
-          title2: "Tema 2",
-        },
-        {
-          id: 4,
-          img: require("@/assets/level4.png"),
-          tema1: require("@/assets/tema1.png"),
-          title1: "Tema 1",
-          route: "questioncontent",
-          tema2: require("@/assets/tema2.png"),
-          title2: "Tema 2",
-        },
-        {
-          id: 5,
-          img: require("@/assets/level5.png"),
-          tema1: require("@/assets/tema1.png"),
-          title1: "Tema 1",
-          route: "questioncontent",
-          tema2: require("@/assets/tema2.png"),
-          title2: "Tema 2",
-        },
-        {
-          id: 6,
-          img: require("@/assets/level6.png"),
-          tema1: require("@/assets/tema1.png"),
-          title1: "Tema 1",
-          route: "questioncontent",
-          tema2: require("@/assets/tema2.png"),
-          title2: "Tema 2",
-        },
-      ],
+      levels: [],
+      themes: [],
     };
+  },
+  mounted() {
+    this.fetchLevel();
+    this.fetchTheme();
+  },
+  methods: {
+    async fetchLevel() {
+      try {
+        const url = `http://localhost:8000/api/levels/`;
+        const response = await axios.get(url);
+        const results = response.data;
+        this.levels = results.map((level) => ({
+          level_id: level.level_id,
+          level_name: level.level_name,
+          img: require(`@/assets/level${level.level_id}.png`),
+        }));
+        // console.log(this.levels);
+      } catch (err) {
+        if (err.response) {
+          // client received an error response (5xx, 4xx)
+          console.log("Server Error:", err);
+        } else if (err.request) {
+          // client never received a response, or request never left
+          console.log("Network Error:", err);
+        } else {
+          console.log("Client Error:", err);
+        }
+      }
+    },
+    async fetchTheme() {
+      try {
+        const url = `http://localhost:8000/api/themes/`;
+        const response = await axios.get(url);
+        const results = response.data;
+        // console.log(response.data);
+        this.themes = results.map((theme) => ({
+          level_id: theme.level_id,
+          theme_id: theme.theme_id,
+          level_name: theme.level_name,
+          theme_name: theme.theme_name,
+          img: require(`@/assets/level${theme.level_id}tema${theme.theme_id}.svg`),
+        }));
+        console.log(this.themes);
+      } catch (err) {
+        if (err.response) {
+          // client received an error response (5xx, 4xx)
+          console.log("Server Error:", err);
+        } else if (err.request) {
+          // client never received a response, or request never left
+          console.log("Network Error:", err);
+        } else {
+          console.log("Client Error:", err);
+        }
+      }
+    },
+    openQuestion(level_id, theme_id) {
+      this.$router.push({name: 'QuestionContent', params: {data: {level_id, theme_id}}});
+    },
   },
 };
 </script>
