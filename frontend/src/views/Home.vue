@@ -140,12 +140,12 @@ export default {
     return {
       features: [
         {
-          img: require("@/assets/materi.png"),
+          img: require("@/assets/Materi homepage.svg"),
           title: "BELAJAR",
           route: "materialhome",
         },
         {
-          img: require("@/assets/kuis.png"),
+          img: require("@/assets/quiz homepage.svg"),
           title: "KUIS",
           route: "quizhome",
         },
