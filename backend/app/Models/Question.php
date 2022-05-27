@@ -16,7 +16,8 @@ class Question extends Model
         'question',
         'question_pict',
         'correct_answer',
-        'bank_answer'
+        'bank_answer',
+        'level_id'
     ];
     public $timestamps = false;
     protected $casts = [
@@ -30,5 +31,9 @@ class Question extends Model
     public function answer()
     {
         return $this->hasMany(Answer::class);
+    }
+    public function lev()
+    {
+        return $this->belongsTo(Level::class, 'level_id');
     }
 }

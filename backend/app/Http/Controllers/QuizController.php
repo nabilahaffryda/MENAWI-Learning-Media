@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Level;
 use App\Models\Question;
 use App\Models\Theme;
 use Illuminate\Http\Request;
@@ -27,5 +28,22 @@ class QuizController extends Controller
     {
         $quest = Question::with('tema')->where('theme_id', $theme_id)->get();
         return response()->json($quest);
+    }
+    public function getLevel()
+    {
+        $lev = Level::all();
+        return response()->json($lev);
+    }
+    public function getThemeByLevelId($level_id)
+    {
+        $lev = Theme::with('level')->where('level_id', $level_id)->get();
+        return response()->json($lev);
+    }
+    public function getQuestionByLevelTheme($level_id, $theme_id){
+        $qst = Question::with('lev','tema')->where('level_id', $level_id)->where('theme_id', $theme_id)->get();
+        return response()->json($qst);
+    }
+    public function saveAnswer(){
+        
     }
 }

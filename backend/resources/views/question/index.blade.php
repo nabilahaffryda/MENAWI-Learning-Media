@@ -40,6 +40,7 @@
                                     <tr>
                                         <th>No</th>
                                         <th>Question ID</th>
+                                        <th>Level</th>
                                         <th>Theme</th>
                                         <th>Question</th>
                                         <th>Correct Answer</th>
@@ -53,6 +54,7 @@
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
                                             <td>{{ $item->question_id }}</td>
+                                            <td>{{ $item->lev->level_name }}</td>
                                             <td>{{ $item->tema->theme_name }}</td>
                                             <td>{{ $item->question }}</td>
                                             <td>{{ $item->correct_answer }}</td>

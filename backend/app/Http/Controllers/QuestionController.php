@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Level;
 use App\Models\Theme;
 use App\Models\Question;
 use Illuminate\Http\Request;
@@ -10,20 +11,22 @@ class QuestionController extends Controller
 {
     public function index()
     {
-        $question = Question::with('tema')->get();
+        $question = Question::with('tema', 'lev')->get();
         return view('question.index', compact('question'));
     }
 
     public function create()
     {
         $quest = Theme::all();
-        return view('question.create', compact('quest'));
+        $lvl = Level::all();
+        return view('question.create', compact('quest', 'lvl'));
     }
 
     public function store(Request $request)
     {
         $validatedData = $request->validate([
             'theme_id' => 'required',
+            'level_id' => 'required',
             'question' => 'required',
             'correct_answer' => 'required',
             'bank_answer' => 'required|array',
@@ -39,8 +42,9 @@ class QuestionController extends Controller
     public function edit($question_id)
     {
         $quest = Theme::all();
-        $question = Question::with('tema')->findOrFail($question_id);
-        return view('question.edit', compact('question', 'quest'));
+        $lvl = Level::all();
+        $question = Question::with('tema', 'lev')->findOrFail($question_id);
+        return view('question.edit', compact('question', 'quest', 'lvl'));
     }
 
     public function update(Request $request, $question_id)
@@ -48,6 +52,7 @@ class QuestionController extends Controller
         $validatedData = $request->validate([
             'question_id' => 'required',
             'theme_id' => 'required',
+            'level_id' => 'required',
             'correct_answer' => 'required',
             'bank_answer' => 'required|array',
             'question_pict' => 'image|file|max:1024',

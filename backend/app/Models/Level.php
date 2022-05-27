@@ -18,4 +18,8 @@ class Level extends Model
     {
         return $this->hasMany(Theme::class);
     }
+    public function qst()
+    {
+        return $this->hasMany(Question::class);
+    }
 }

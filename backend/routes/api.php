@@ -19,4 +19,7 @@ Route::controller(QuizController::class)->group(function(){
     Route::get('/themes/{id}', 'getThemeById');
     Route::get('/questions', 'getQuestion');
     Route::get('/questions/{id}', 'getQuestionByThemeId');
+    Route::get('/levels', 'getLevel');
+    Route::get('/levels/{id}', 'getThemeByLevelId');
+    Route::get('/levels/{level_id}/themes/{theme_id}', 'getQuestionByLevelTheme');
 });

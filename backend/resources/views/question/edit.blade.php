@@ -42,6 +42,18 @@
                                         value="{{ $question->question_id }}">
                                 </div>
                                 <div class="form-group">
+                                    <label for="level_id" class=" form-control-label">Level</label>
+                                    <select id="level_id" name="level_id" placeholder="Level" style="width: 100%"
+                                        class="form-control select2">
+                                        <option disabled value>Choose Level</option>
+                                        <option value="{{ $question->level_id }}">
+                                            {{ $question->lev->level_name }}
+                                        @foreach ($lvl as $item)
+                                            <option value="{{ $item->level_id }}">{{ $item->level_name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="form-group">
                                     <label for="theme_id" class=" form-control-label">Theme</label>
                                     <select id="theme_id" name="theme_id" placeholder="Theme" style="width: 100%"
                                         class="form-control select2">
