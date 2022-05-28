@@ -6,6 +6,7 @@ use App\Http\Requests\ValidateUserLogin;
 use App\Http\Requests\ValidateUserRegistration;
 use App\Models\User;
 use App\Http\Resources\User as UserResource;
+use Illuminate\Support\Facades\Auth;
 
 class AuthAPIController extends Controller
 {
@@ -26,6 +27,7 @@ class AuthAPIController extends Controller
     public function login(ValidateUserLogin $request)
     {
         $credentials = request(['username', 'password']);
+        $user = Auth::user();
         if (!$token = auth()->attempt($credentials)) {
             return  response()->json([
                 'errors' => [
@@ -37,7 +39,8 @@ class AuthAPIController extends Controller
         return response()->json([
             'type' => 'success',
             'message' => 'Logged in.',
-            'token' => $token
+            'token' => $token,
+            'user' => $user
         ]);
     }
     public function user()

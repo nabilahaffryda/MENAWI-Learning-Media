@@ -31,7 +31,11 @@ export default {
           .post("login", data)
           .then((response) => {
             const token = response.data.token;
+            dispatch("getCurrentUser")
+            const user = response.data.user;
             localStorage.setItem("token", token);
+            localStorage.setItem("user", JSON.stringify(user));
+            console.log(response.data)
             setHeaderToken(token);
             dispatch("get_user");
             resolve(response);
@@ -39,9 +43,13 @@ export default {
           .catch((err) => {
             commit("reset_user");
             localStorage.removeItem("token");
+            localStorage.removeItem("user");
             reject(err);
           });
       });
+    },
+    async getCurrentUser(){
+      return JSON.parse(localStorage.getItem("user"))
     },
     async get_user({ commit }) {
       if (!localStorage.getItem("token")) {
@@ -54,6 +62,7 @@ export default {
         commit("reset_user");
         removeHeaderToken();
         localStorage.removeItem("token");
+        localStorage.removeItem("user");
         return error;
       }
     },
@@ -61,6 +70,7 @@ export default {
       return new Promise((resolve) => {
         commit("reset_user");
         localStorage.removeItem("token");
+        localStorage.removeItem("user");
         removeHeaderToken();
         resolve();
       });
