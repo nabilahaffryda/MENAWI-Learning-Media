@@ -68,13 +68,28 @@
                                 <div class="form-group">
                                     <label for="bank_answer" class=" form-control-label">Bank Answer</label>
                                     <div class="input-group mb-3">
-                                        <input type="text" id="bank_answer" name="bank_answer[]" placeholder="Bank Answer"
-                                            class="form-control" aria-describedby="button-addon2">
-                                        <button class="btn btn-outline-secondary add_answer" type="button"
-                                            id="button-addon2">Add</button>
+                                        <input type="text" id="bank_answer" name="bank_answer[]" placeholder="Bank Answer A"
+                                            class="form-control">
                                     </div>
                                 </div>
-                                <div id="extra-answer"></div>
+                                <div class="form-group">
+                                    <div class="input-group mb-3">
+                                        <input type="text" id="bank_answer" name="bank_answer[]" placeholder="Bank Answer B"
+                                            class="form-control">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="input-group mb-3">
+                                        <input type="text" id="bank_answer" name="bank_answer[]" placeholder="Bank Answer C"
+                                            class="form-control">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="input-group mb-3">
+                                        <input type="text" id="bank_answer" name="bank_answer[]" placeholder="Bank Answer D"
+                                            class="form-control">
+                                    </div>
+                                </div>
                                 <div class="mb-3">
                                     <label for="question_pict" class="form-label">Question
                                         Picture</label>
@@ -96,27 +111,3 @@
             </div>
         </div>
     @endsection
-    @push('js')
-        <script>
-            const add = document.querySelectorAll(".input-group .add_answer")
-            add.forEach(function(e) {
-                e.addEventListener('click', function() {
-                    let element = this.parentElement
-                    // add new button
-                    let newElement = document.createElement('div')
-                    newElement.classList.add('input-group', 'mb-3')
-                    newElement.innerHTML = `<input type="text" id="bank_answer" name="bank_answer[]" placeholder="Bank Answer"
-                                            class="form-control" aria-describedby="button-addon2">
-                                        <button class="btn btn-outline-danger remove_answer" type="button"
-                                            id="button-addon2">Remove</button>`
-                    document.getElementById('extra-answer').appendChild(newElement)
-                    // remove button
-                    document.querySelectorAll('.remove_answer').forEach(function(remove) {
-                        remove.addEventListener('click', function(elmClick) {
-                            elmClick.target.parentElement.remove()
-                        })
-                    })
-                })
-            });
-        </script>
-    @endpush

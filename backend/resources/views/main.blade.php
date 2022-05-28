@@ -102,13 +102,8 @@
         </header>
         <!--breadcrumb-->
         @yield('breadcrumbs')
-
-
         <!-- content -->
         @yield('content')
-
-        {{-- javascript --}}
-        @stack('js')
     </div>
     </div>
     <script src="{{ asset('style/assets/js/vendor/jquery-2.1.4.min.js') }}"></script>
