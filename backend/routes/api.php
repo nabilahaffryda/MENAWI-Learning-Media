@@ -22,4 +22,6 @@ Route::controller(QuizController::class)->group(function(){
     Route::get('/levels', 'getLevel');
     Route::get('/levels/{id}', 'getThemeByLevelId');
     Route::get('/levels/{level_id}/themes/{theme_id}', 'getQuestionByLevelTheme');
+    Route::post('/answers', 'saveAnswer');
+    Route::get('/answers/{user_id}', 'checkAnswerByUserID');
 });

@@ -11,7 +11,7 @@
           >
           </v-img>
           <v-col v-for="level in levels" v-bind:key="level.level_id">
-            <v-sheet max-height="70vh" rounded="lg" outlined
+            <v-sheet height="60vh" rounded="lg" outlined
               ><v-container fluid>
                 <v-row align="center" justify="center">
                   <v-col cols="12">
@@ -33,16 +33,16 @@
                               v-if="theme.level_id === level.level_id"
                             >
                               <v-img
-                                max-width="90px"
+                                max-width="100px"
                                 :src="theme.img"
-                                @click="openQuestion(theme.level_id, theme.theme_id)"
-                                style="margin-top: 10px"
-                                class="d-block ml-auto mr-auto"
+                                @click="openQuestion(theme.level_id, theme.theme_id, user.user_id)"
+                                style="margin-top: 10px;"
+                                class="ml-auto mr-auto"
                               ></v-img>
-                              <h2
+                              <h3
                                 class="font-weight-thin black--text ml-auto mr-auto"
                                 style="margin-top: 10px"
-                              ></h2>
+                              >{{theme.title}}</h3>
                             </v-card>
                           </div>
                         </v-flex>
@@ -64,7 +64,8 @@
 }
 </style>
 <script>
-import axios from "axios";
+import axios from "axios"; 
+import { mapGetters } from "vuex";
 export default {
   name: "QuizHome",
   data() {
@@ -72,6 +73,12 @@ export default {
       levels: [],
       themes: [],
     };
+  },
+  computed:{
+...mapGetters({
+      isLoggedIn: "isLoggedIn",
+      user: "user",
+    }),
   },
   mounted() {
     this.fetchLevel();
@@ -113,6 +120,7 @@ export default {
           level_name: theme.level_name,
           theme_name: theme.theme_name,
           img: require(`@/assets/level${theme.level_id}tema${theme.theme_id}.svg`),
+          title: theme.theme_name
         }));
         console.log(this.themes);
       } catch (err) {
@@ -127,8 +135,8 @@ export default {
         }
       }
     },
-    openQuestion(level_id, theme_id) {
-      this.$router.push({name: 'QuestionContent', params: {data: {level_id, theme_id}}});
+    openQuestion(level_id, theme_id, user_id) {
+      this.$router.push({name: 'QuestionContent', params: {data: {level_id, theme_id, user_id}}});
     },
   },
 };

@@ -36,12 +36,13 @@
                   outlined
                   color="primary"
                   dark
+                  class="btnAnswer"
                   v-for="answer in currentQuestion.bank_answer"
                   :index="currentQuestion.key"
                   :key="answer"
-                  >{{answer}}</v-btn
+                  @click="saveAnswerAPI(answer, user.user_id, currentQuestion)"
+                  >{{ answer }}</v-btn
                 >
-                <h1> {{ user.user_id }}</h1>
               </form>
             </div>
           </v-sheet>
@@ -56,28 +57,15 @@
           >
             <h4 class="dark grey--text">LOMPATI</h4></v-btn
           >
-          <v-bottom-sheet v-model="sheet" inset>
-            <template v-slot:activator="{ on, attrs }">
-              <v-btn
-                rounded
-                text
-                style="margin-top: 30px"
-                v-bind="attrs"
-                v-on="on"
-                class="primary float-right" 
-              >
-                <h4>PERIKSA</h4></v-btn
-              >
-            </template>
-            <v-sheet class="text-center" height="120px">
-              <v-flex justify-center>
-                <div class="mt-10" style="margin-right: 50px">
-                  Jawaban benar
-                </div>
-                <v-btn class="mt-10" color="green" dark> Lanjutkan </v-btn>
-              </v-flex>
-            </v-sheet>
-          </v-bottom-sheet>
+          <v-btn
+            rounded
+            text
+            style="margin-top: 30px"
+            @click="handleButtonNext()" v-if="answerUsers.length > 0"
+            class="primary float-right"
+          >
+            <h4>Lanjut</h4></v-btn
+          >
         </v-col>
       </v-row>
     </v-container>
@@ -86,6 +74,23 @@
 <style>
 .flex {
   display: flex;
+}
+.btnAnswer {
+  font-size: 1.1rem;
+  box-sizing: border-box;
+  padding: 1rem;
+  margin: 0.3rem;
+  width: 47%;
+  background-color: rgba(100, 100, 100, 0.3);
+  border: none;
+  border-radius: 0.4rem;
+  box-shadow: 3px 5px 5px rgba(0, 0, 0, 0.2);
+}
+.form {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 </style>
 <script>
@@ -98,12 +103,14 @@ export default {
     questions: [],
     index: 0,
     loading: true,
+    answerUsers: []
   }),
-  
+
   computed: {
     currentQuestion() {
       if (this.questions !== []) {
         return this.questions[this.index];
+
       }
       return null;
     },
@@ -115,9 +122,11 @@ export default {
   mounted() {
     if (this.$route.params.data) {
       this.fetchLevelTheme();
+      this.checkAnswerByUserID();
     } else {
       this.$router.push("/quizhome");
     }
+    
   },
   methods: {
     async fetchLevelTheme() {
@@ -130,10 +139,10 @@ export default {
           level_id: question.level_id,
           theme_id: question.theme_id,
           question: question.question,
-          question_pict : question.question_pict,
+          question_pict: question.question_pict,
           correct_answer: question.correct_answer,
           bank_answer: question.bank_answer,
-          question_id: question.question_id
+          question_id: question.question_id,
         }));
         this.loading = false;
       } catch (err) {
@@ -148,9 +157,65 @@ export default {
         }
       }
     },
-    checkAnswer() {
-      
+    handleButtonNext() {
+      this.index += 1;
+      this.answerUsers = []
     },
+    async saveAnswerAPI(answer, user_id, currentQuestion) {
+      try {
+        const data = {
+          user_id: user_id,
+          answer: answer,
+          question_id: currentQuestion.question_id,
+          point: currentQuestion.correct_answer === answer ? 20 : 0,
+        };
+        const url = `http://localhost:8000/api/answers`;
+        const response = await axios.post(url, data, {
+          headers: {
+            Authorization: "bearer " + localStorage.getItem("token"),
+            Accept: "application/json",
+            "cache-control": "no-cache",
+            "Content-Type": "application/json",
+          },
+        });
+        console.log(response.data);
+       this.checkAnswerByUserID();
+      } catch (err) {
+        if (err.response) {
+          // client received an error response (5xx, 4xx)
+          console.log("Server Error:", err);
+        } else if (err.request) {
+          // client never received a response, or request never left
+          console.log("Network Error:", err);
+        } else {
+          console.log("Client Error:", err);
+        }
+      }
+    },
+    async checkAnswerByUserID(){
+      try {
+        const url = `http://localhost:8000/api/answers/${this.$route.params.data.user_id}`;
+        const response = await axios.get(url);
+        const results = response.data;
+        console.log(response.data);
+        this.answerUsers = results.map((answerUser) => ({
+          user_id: answerUser.user_id,
+          question_id: answerUser.question_id,
+          answer: answerUser.answer,
+          point: answerUser.point,
+        }));
+      } catch (err) {
+        if (err.response) {
+          // client received an error response (5xx, 4xx)
+          console.log("Server Error:", err);
+        } else if (err.request) {
+          // client never received a response, or request never left
+          console.log("Network Error:", err);
+        } else {
+          console.log("Client Error:", err);
+        }
+      }
+    }
   },
 };
 </script>
