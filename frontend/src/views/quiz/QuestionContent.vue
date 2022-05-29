@@ -3,23 +3,15 @@
     ><v-container>
       <v-row>
         <v-col cols="8" class="d-block ml-auto mr-auto">
-          <v-flex>
+          
             <v-btn
-              style="margin-right: 20px; margin-top: 10px"
+              style="margin-top: 10px; margin-bottom: 10px;"
               to="quizhome"
-              text
+              text 
               fab
               ><v-icon>mdi-window-close</v-icon></v-btn
             >
-            <v-progress-linear
-              rounded
-              height="15"
-              value="20"
-              class="d-block ml-auto mr-auto"
-              style="margin-top: 30px; margin-bottom: 30px"
-            ></v-progress-linear>
-          </v-flex>
-          <v-sheet min-height="55vh" rounded="lg" outlined>
+          <v-sheet height="60vh" rounded="lg" outlined>
             <div class="text-center">
               <h1
                 v-html="loading ? 'Loading...' : currentQuestion.question"
@@ -44,21 +36,17 @@
               </form>
             </div>
           </v-sheet>
-          <v-divider style="margin-top: 30px"></v-divider>
-          <!-- <v-btn
-            color="white"
-            text
+          <v-divider style="margin-top: 20px"></v-divider>
+          <v-btn
             rounded
-            outlined
-            style="margin-top: 30px"
+            style="margin-top: 20px"
             class="float-left"
           >
             <h4 class="dark grey--text">LOMPATI</h4></v-btn
-          > -->
+          >
           <v-btn
             rounded
-            text
-            style="margin-top: 30px"
+            style="margin-top: 20px"
             @click="handleButtonNext()"
             v-if="answerUsers.length > 0"
             class="primary float-right"

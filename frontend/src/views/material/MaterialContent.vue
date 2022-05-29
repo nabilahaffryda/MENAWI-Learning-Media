@@ -5,19 +5,12 @@
         <v-col cols="8" class="d-block ml-auto mr-auto">
           <v-flex>
             <v-btn
-              style="margin-right: 20px; margin-top: 20px"
+              style="margin-right: 20px; margin-top: 10px; margin-bottom: 10px;"
               to="materialhome"
               text
               fab
               ><v-icon>mdi-window-close</v-icon></v-btn
             >
-            <v-progress-linear
-              rounded
-              height="15"
-              value="20"
-              class="d-block ml-auto mr-auto"
-              style="margin-top: 40px; margin-bottom: 30px"
-            ></v-progress-linear>
           </v-flex>
           <v-sheet height="55vh" rounded="lg" outlined>
             <v-container fluid>
@@ -56,9 +49,9 @@
           </v-sheet>
           <v-divider style="margin-top: 30px"></v-divider>
           <v-btn
-            class="secondary float-left"
+            class="float-left"
             rounded
-            style="margin-top: 30px"
+            style="margin-top: 30px" 
             @click="handleButtonBack()"
           >
             <h4>KEMBALI</h4></v-btn

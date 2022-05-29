@@ -11,7 +11,7 @@
           >
           </v-img>
           <v-col v-for="level in levels" v-bind:key="level.level_id">
-            <v-sheet height="60vh" rounded="lg" outlined
+            <v-sheet height="75vh" rounded="lg" outlined
               ><v-container fluid>
                 <v-row align="center" justify="center">
                   <v-col cols="12">
@@ -19,11 +19,11 @@
                       <v-col cols="12" sm="6" class="text-center">
                         <v-img
                           :src="level.img"
-                          max-width="120px"
+                          max-width="150px"
                           style="margin-top: 20px"
                           class="d-block ml-auto mr-auto"
                         ></v-img>
-                        <v-flex justify-center>
+                        <v-flex>
                           <div
                             v-for="theme in themes"
                             v-bind:key="theme.theme_id"
@@ -32,17 +32,18 @@
                               flat
                               v-if="theme.level_id === level.level_id"
                             >
+                            <div class="col-md-12">
                               <v-img
-                                max-width="100px"
+                                max-width="120px"
                                 :src="theme.img"
                                 @click="openQuestion(theme.level_id, theme.theme_id, user.user_id)"
                                 style="margin-top: 10px;"
                                 class="ml-auto mr-auto"
                               ></v-img>
                               <h3
-                                class="font-weight-thin black--text ml-auto mr-auto"
-                                style="margin-top: 10px"
-                              >{{theme.title}}</h3>
+                                class="font-weight-reguler black--text ml-auto mr-auto"
+                                style="margin-top: 10px; "
+                              >{{theme.title}}</h3></div>
                             </v-card>
                           </div>
                         </v-flex>
@@ -61,6 +62,7 @@
 <style>
 .flex {
   display: flex;
+  justify-content: center;
 }
 </style>
 <script>

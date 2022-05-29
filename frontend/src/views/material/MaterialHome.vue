@@ -14,7 +14,7 @@
             v-for="material in materials"
             v-bind:key="material.material_id"
           >
-            <v-sheet min-height="55vh" rounded="lg" outlined
+            <v-sheet height="50vh" rounded="lg" outlined
               ><v-container fluid>
                 <v-row align="center" justify="center">
                   <v-col cols="12">
@@ -48,10 +48,9 @@
                         </v-flex>
                         <div>
                         <v-btn
-                          color="green"
+                          color="#58cc02" class="white--text"
                           rounded
-                          style="margin-top: 50px"
-                          class="ml-auto mr-auto white--text"
+                          style="margin-top: 30px"
                           @click="openMaterial(material.material_id)"
                         >
                           MULAI
