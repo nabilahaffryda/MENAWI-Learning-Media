@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthAPIController;
+use App\Http\Controllers\MaterialAPIController;
 use App\Http\Controllers\QuizController;
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
@@ -24,4 +25,9 @@ Route::controller(QuizController::class)->group(function(){
     Route::get('/levels/{level_id}/themes/{theme_id}', 'getQuestionByLevelTheme');
     Route::post('/answers', 'saveAnswer');
     Route::get('/answers/{user_id}', 'checkAnswerByUserID');
+});
+
+Route::controller(MaterialAPIController::class)->group(function () {
+    Route::get('/materials', 'getAllMaterial');
+    Route::get('/materials/{material_id}', 'getDescByMaterial');
 });
