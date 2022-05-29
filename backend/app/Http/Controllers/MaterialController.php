@@ -22,6 +22,7 @@ class MaterialController extends Controller
     {
         $validatedData = $request->validate([
             'material_name' => 'required',
+            'material_desc' => 'required',
         ]);
         Material::create($validatedData);
         return redirect()->route('material.index');
@@ -38,6 +39,7 @@ class MaterialController extends Controller
         $validatedData = $request->validate([
             'material_id' => 'required',
             'material_name' => 'required',
+            'material_desc' => 'required',
         ]);
         Material::where('material_id', $material_id)->update($validatedData);
         return redirect()->route('material.index');

@@ -41,6 +41,7 @@
                                         <th>No</th>
                                         <th>Material ID</th>
                                         <th>Material Name</th>
+                                        <th>Short Description</th>
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
@@ -50,6 +51,7 @@
                                             <td>{{ $index + 1 }}</td>
                                             <td>{{ $materials->material_id }}</td>
                                             <td>{{ $materials->material_name }}</td>
+                                            <td>{{ $materials->material_desc }}</td>
                                             <td>
                                                 <div>
                                                     <a href="{{ route('material.edit', $materials->material_id) }}"

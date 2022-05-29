@@ -37,6 +37,9 @@
                                 <div class="form-group"><label for="material_name" class=" form-control-label">Material
                                         Name</label><input type="text" id="material_name" name="material_name"
                                         placeholder="Material Name" class="form-control"></div>
+                                <div class="form-group"><label for="material_desc" class=" form-control-label">Short
+                                        Description</label><input type="text" id="material_desc" name="material_desc"
+                                        placeholder="Short Description" class="form-control"></div>
                                 <div class="form-group">
                                     <button type="submit" class="btn btn-success btn-sm pull-right">
                                         Submit

@@ -13,6 +13,7 @@ class Material extends Model
     protected $fillable = [
         'material_id',
         'material_name',
+        'material_desc',
     ];
     public $timestamps = false;
     public function desc()
