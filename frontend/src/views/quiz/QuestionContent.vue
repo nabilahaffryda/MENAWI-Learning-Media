@@ -3,11 +3,11 @@
     ><v-container>
       <v-row>
         <v-col cols="8" class="d-block ml-auto mr-auto">
-          
+          <v-flex>
             <v-btn
-              style="margin-top: 10px; margin-bottom: 10px;"
+              style="margin-right: 20px; margin-top: 10px"
               to="quizhome"
-              text 
+              text
               fab
               ><v-icon>mdi-window-close</v-icon></v-btn
             >
@@ -19,12 +19,13 @@
               class="d-block ml-auto mr-auto"
               style="margin-top: 30px; margin-bottom: 30px"
             ></v-progress-linear>
+          </v-flex>
           <v-sheet height="60vh" rounded="lg" outlined>
             <div class="text-center">
+              <!-- currently displayed question, image and answer -->
               <h1
                 v-html="loading ? 'Loading...' : currentQuestion.question"
               ></h1>
-
               <form v-if="currentQuestion">
                 <img
                   :src="`http://localhost:8000/storage/${currentQuestion.question_pict}`"
@@ -33,6 +34,10 @@
                   class="d-block ml-auto mr-auto"
                   style="margin-bottom: 20px; margin: top 20px"
                 />
+                <!-- When the user answers correctly, the button will turn green -->
+                <!-- When the user answers wrong, the button will show which one is wrong in red and which one is correct in green -->
+                <!-- disable when user already answer -->
+                <!-- system will save answer to api -->
                 <v-btn
                   v-for="answer in currentQuestion.bank_answer"
                   :index="currentQuestion.key"
@@ -54,6 +59,9 @@
             </div>
           </v-sheet>
           <v-divider style="margin-top: 20px"></v-divider>
+          <v-btn rounded style="margin-top: 20px" class="float-left">
+            <h4 class="dark grey--text">LOMPATI</h4></v-btn
+          >
           <!-- button next -->
           <v-btn
             rounded
@@ -109,8 +117,8 @@ export default {
     completedQuiz: false,
     valueProgress: 0,
   }),
-
   computed: {
+    // get the current question
     currentQuestion() {
       if (this.questions !== []) {
         return this.questions[this.index];
@@ -121,17 +129,6 @@ export default {
       isLoggedIn: "isLoggedIn",
       user: "user",
     }),
-    quizCompleted() {
-      if (this.questions.length === 0) {
-        return false;
-      }
-      /* Check if all questions have been answered */
-      let questionsAnswered = 0;
-      this.questions.forEach(function (question) {
-        question.rightAnswer !== null ? questionsAnswered++ : null;
-      });
-      return questionsAnswered === this.questions.length;
-    },
   },
   mounted() {
     if (this.$route.params.data) {
@@ -150,6 +147,7 @@ export default {
     },
   },
   methods: {
+    // get data question by level_id and theme_id
     async fetchLevelTheme() {
       try {
         const url = `http://localhost:8000/api/levels/${this.$route.params.data.level_id}/themes/${this.$route.params.data.theme_id}`;
@@ -183,6 +181,8 @@ export default {
         }
       }
     },
+
+    // to go to next question
     handleButtonNext() {
       if (this.index < this.questions.length - 1) {
         setTimeout(
@@ -197,19 +197,19 @@ export default {
         this.answerUsers = [];
         // value progress value will increase by 20
         this.valueProgress += 20;
+      }
     },
+
+    // save answer that user already clicked and check whether the answer is correct or not
     async saveAnswerAPI(answer, user_id, currentQuestion) {
       try {
+        // correct answer will get 20 point, wrong answer get 0 point
         const data = {
           user_id: user_id,
           answer: answer,
           question_id: currentQuestion.question_id,
           point: currentQuestion.correct_answer === answer ? 20 : 0,
         };
-        // let index = event.target.getAttribute("index");
-        // let pollutedUserAnswer = event.target.innerHTML; // innerHTML is polluted with decoded HTML entities e.g ' from &#039;
-        // /* Clear from pollution with ' */
-        // let userAnswer = pollutedUserAnswer.replace(/'/, "&#039;");
         const url = `http://localhost:8000/api/answers`;
         const response = await axios.post(url, data, {
           headers: {
@@ -233,6 +233,8 @@ export default {
         }
       }
     },
+
+    // check answer that already user answered
     async checkAnswerByUserID() {
       try {
         const url = `http://localhost:8000/api/answers/${this.$route.params.data.user_id}`;
@@ -245,6 +247,9 @@ export default {
           answer: answerUser.answer,
           point: answerUser.point,
         }));
+        if (results.length > 4) {
+          this.valueProgress = 100;
+        }
       } catch (err) {
         if (err.response) {
           // client received an error response (5xx, 4xx)
@@ -257,6 +262,7 @@ export default {
         }
       }
     },
+
     // change background based answer
     getBackground(answer, correct_answer) {
       if (this.answerUsers.length) {
