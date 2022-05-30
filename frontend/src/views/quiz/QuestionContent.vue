@@ -64,16 +64,34 @@
           >
             <h4>Lanjut</h4></v-btn
           >
+          <!-- if user already answer all questions -->
           <v-btn
             rounded
             style="margin-top: 20px"
-            @click="handleButtonNext()"
-            v-if="answerUsers.length > 0"
+            @click="handleButtonFinish()"
+            v-if="answerUsers.length > 0 && index > 3"
             class="primary float-right"
           >
-            <h4>Lanjut</h4></v-btn
+            <h4>Selesai</h4></v-btn
           >
         </v-col>
+        <!-- dialog when user completed quiz -->
+        <v-dialog v-model="completedQuiz" max-width="290px" activator="item">
+          <v-card>
+            <v-card-title class="text-h5">Selamat</v-card-title>
+            score calculation
+            <v-card-text
+              >Skor kamu:
+              <span class="highlight">
+                {{ answerUsers.reduce((a, b) => a + Number(b.point), 0) }}
+              </span></v-card-text
+            >
+            <v-card-actions>
+              <v-spacer></v-spacer>
+              <v-btn color="green darken-1" text @click="close">OK</v-btn>
+            </v-card-actions>
+          </v-card>
+        </v-dialog>
       </v-row>
     </v-container>
   </v-main>
@@ -88,6 +106,7 @@ export default {
     index: 0,
     loading: true,
     answerUsers: [],
+    completedQuiz: false,
     valueProgress: 0,
   }),
 
@@ -262,6 +281,16 @@ export default {
       }
     },
 
+    // open completed dialog
+    handleButtonFinish() {
+      this.completedQuiz = true;
+    },
+
+    // close dialog completed dialog
+    close() {
+      this.completedQuiz = false;
+      this.$router.push("/quizhome");
+    },
   },
 };
 </script>
