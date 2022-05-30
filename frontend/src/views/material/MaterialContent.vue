@@ -51,7 +51,8 @@
           <v-btn
             class="float-left"
             rounded
-            style="margin-top: 30px" 
+            style="margin-top: 30px"
+            v-if="index > 0"
             @click="handleButtonBack()"
           >
             <h4>KEMBALI</h4></v-btn
