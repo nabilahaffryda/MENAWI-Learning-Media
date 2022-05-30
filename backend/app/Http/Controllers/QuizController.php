@@ -7,6 +7,7 @@ use App\Models\Level;
 use App\Models\Question;
 use App\Models\Theme;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
 class QuizController extends Controller
@@ -81,8 +82,14 @@ class QuizController extends Controller
             return response()->json(["status" => "failed", "success" => false, "message" => "gagal dibuat"]);
         }
     }
-    public function checkAnswerByUserID($user_id){
-        $answerUser = Answer::with('users')->where('user_id', $user_id)->get();
+    public function checkAnswerByUserID($user_id)
+    {
+        $answerUser = DB::table('answer')
+            ->join('question', 'answer.question_id', '=', 'question.question_id') //join question table with same id
+            ->select('answer.*', 'question.theme_id') //get all answer data added theme id fron question table
+            ->where('user_id', $user_id)
+            ->get();
+        // $answerUser = Answer::with('users')->where('user_id', $user_id)->get();
         return response()->json($answerUser);
     }
 }

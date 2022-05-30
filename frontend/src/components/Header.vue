@@ -25,14 +25,21 @@
             <v-list-item>
               <!-- level avatar -->
               <v-list-item-avatar>
+                <!-- <img
+                  :src="'@/assets/level'+
+                    answerUsers[answerUsers.length - 1]+
+                  '.png'"
+                /> -->
                 <img
-                  src="https://cdn.vuetifyjs.com/images/john.jpg"
-                  alt="John"
+                  :src="require(`@/assets/level${answerUsers[answerUsers.length - 1]}.png`)"
                 />
+                <!-- <v-img src="@/assets/level1.png" max-width="50px" /> -->
               </v-list-item-avatar>
               <v-list-item-content>
                 <v-list-item-title>
-                  <strong>LEVEL</strong>
+                  <strong
+                    >LEVEL {{ answerUsers[answerUsers.length - 1] }}</strong
+                  >
                 </v-list-item-title>
                 <v-list-item-subtitle
                   >Naikkan level keahlianmu!</v-list-item-subtitle
@@ -51,8 +58,7 @@
         v-if="isLoggedIn"
       >
         <template v-slot:activator="{ on, attrs }">
-          <v-btn text v-bind="attrs" v-on="on"> Akun 
-          </v-btn>
+          <v-btn text v-bind="attrs" v-on="on"> Akun </v-btn>
         </template>
         <v-card>
           <v-list>
@@ -101,11 +107,13 @@
 
 <script>
 import { mapGetters } from "vuex";
+import axios from "axios";
 export default {
   name: "Header",
   data() {
     return {
       dialogLogout: false,
+      answerUsers: [],
     };
   },
   computed: {
@@ -113,6 +121,9 @@ export default {
       isLoggedIn: "isLoggedIn",
       user: "user",
     }),
+  },
+  mounted() {
+    this.checkAnswerByUserID();
   },
   methods: {
     close() {
@@ -130,6 +141,42 @@ export default {
         this.dialogLogout = false;
         this.$router.push("/");
       });
+    },
+    // check answer that already user answered
+    async checkAnswerByUserID() {
+      try {
+        const url = `http://localhost:8000/api/answers/${this.user.user_id}`;
+        const response = await axios.get(url);
+        const results = response.data;
+        console.log(response.data);
+        // this.answerUsers = results.map((answerUser) => ({
+        //   user_id: answerUser.user_id,
+        //   question_id: answerUser.question_id,
+        //   answer: answerUser.answer,
+        //   point: answerUser.point,
+        //   theme_id: answerUser.theme_id,
+        // }));
+        let temporary = [];
+
+        results.forEach((f) => {
+          if (temporary.some((s) => s.theme_id === f.theme_id)) {
+            return;
+          } else {
+            temporary.push(f.theme_id);
+          }
+        });
+        this.answerUsers = temporary;
+      } catch (err) {
+        if (err.response) {
+          // client received an error response (5xx, 4xx)
+          console.log("Server Error:", err);
+        } else if (err.request) {
+          // client never received a response, or request never left
+          console.log("Network Error:", err);
+        } else {
+          console.log("Client Error:", err);
+        }
+      }
     },
   },
 };
