@@ -9,9 +9,7 @@
       </v-toolbar-title>
       <v-spacer />
       <!-- home -->
-      <v-btn text color="white" to="home" v-if="isLoggedIn">
-        <v-icon color="brown">mdi-home</v-icon>
-      </v-btn>
+      <v-btn text to="home" v-if="isLoggedIn"> Home </v-btn>
       <!-- level -->
       <v-menu
         v-if="isLoggedIn"
@@ -20,9 +18,7 @@
         offset-y
       >
         <template v-slot:activator="{ on, attrs }">
-          <v-btn text v-bind="attrs" v-on="on">
-            <v-icon color="green">mdi-star-circle</v-icon>
-          </v-btn>
+          <v-btn text v-bind="attrs" v-on="on"> Level </v-btn>
         </template>
         <v-card>
           <v-list>
@@ -47,44 +43,7 @@
         </v-card>
       </v-menu>
 
-      <!-- badge -->
-      <v-menu
-        :close-on-content-click="false"
-        :nudge-width="150"
-        offset-y
-        v-if="isLoggedIn"
-      >
-        <template v-slot:activator="{ on, attrs }">
-          <v-btn text v-bind="attrs" v-on="on">
-            <v-icon color="yellow">mdi-trophy</v-icon>
-          </v-btn>
-        </template>
-        <v-card>
-          <v-list>
-            <v-list-item>
-              <v-list-item-avatar>
-                <img
-                  src="https://cdn.vuetifyjs.com/images/john.jpg"
-                  alt="John"
-                />
-              </v-list-item-avatar>
-              <v-list-item-content>
-                <v-list-item-title>
-                  <strong>PENCAPAIAN</strong></v-list-item-title
-                >
-              </v-list-item-content>
-            </v-list-item>
-            <v-divider />
-            <v-list-item link class="text-center">
-              <v-list-item-subtitle class="text-decoration-underline"
-                >Lihat pencapaian lainnya</v-list-item-subtitle
-              >
-            </v-list-item>
-          </v-list>
-        </v-card>
-      </v-menu>
-
-      <!-- account -->
+      <!-- account-->
       <v-menu
         :close-on-content-click="false"
         offset-y
@@ -92,8 +51,7 @@
         v-if="isLoggedIn"
       >
         <template v-slot:activator="{ on, attrs }">
-          <v-btn text v-bind="attrs" v-on="on">
-            <v-icon color="primary">mdi-account-circle</v-icon>
+          <v-btn text v-bind="attrs" v-on="on"> Akun 
           </v-btn>
         </template>
         <v-card>

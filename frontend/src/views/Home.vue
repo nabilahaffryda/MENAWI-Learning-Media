@@ -1,96 +1,126 @@
 <template>
-  <v-main class="white">
+  <v-main>
     <v-container>
       <v-row>
-        <v-col>
-          <!-- 2 opsi aktivitas -->
-          <v-sheet min-height="90vh" rounded="lg">
-            <div class="text-center pa-8">
-              <h2 class="black--text">
-                Pilih salah satu aktivitas di bawah ini!
-              </h2>
-            </div>
-            <v-container fluid id="features" class="mt-12">
-              <v-row align="center" justify="center">
-                <v-col cols="10">
-                  <v-row align="center" justify="space-around">
-                    <v-col
-                      cols="12"
-                      sm="4"
-                      class="text-center"
-                      v-for="(feature, i) in features"
-                      :key="i"
-                    >
-                      <v-card flat :to="feature.route" rounded-0>
-                        <v-img
-                          :src="feature.img"
-                          max-width="150px"
-                          class="d-block ml-auto mr-auto"
-                        ></v-img>
-                      </v-card>
-                      <h1
-                        class="font-weight-bold black--text"
-                        style="margin-top: 20px"
+        <v-col class="d-block ml-auto mr-auto">
+          <v-row>
+            <v-col cols="1"></v-col>
+            <v-col cols="7">
+              <v-col>
+                <!-- 2 opsi aktivitas -->
+                <v-sheet
+                  min-height="75vh"
+                  rounded="lg"
+                  outlined
+                  style="margin-top: 20px"
+                >
+                  <div class="text-center pa-8">
+                    <h2 class="black--text">
+                      Pilih salah satu aktivitas di bawah ini!
+                    </h2>
+                  </div>
+                  <v-container fluid id="features" class="mt-12">
+                    <v-row align="center" justify="center">
+                      <v-col cols="8">
+                        <v-row align="center" justify="space-around">
+                          <v-col
+                            class="text-center"
+                            v-for="(feature, i) in features"
+                            :key="i"
+                          >
+                            <v-card flat :to="feature.route" rounded-0>
+                              <v-img
+                                :src="feature.img"
+                                max-width="150px"
+                                class="d-block ml-auto mr-auto"
+                              ></v-img>
+                            </v-card>
+                            <h1
+                              class="font-weight-bold black--text"
+                              style="margin-top: 20px"
+                            >
+                              {{ feature.title }}
+                            </h1>
+                          </v-col>
+                        </v-row>
+                      </v-col>
+                    </v-row>
+                  </v-container>
+                </v-sheet>
+              </v-col>
+            </v-col>
+            <v-col cols="3">
+              <!-- hello user -->
+              <v-sheet rounded="lg" style="margin-top: 30px" outlined>
+                <v-list color="transparent">
+                  <v-list-item>
+                    <v-flex>
+                      <h2 style="margin-bottom: 10px; margin-top: 20px">
+                        Hello {{ user.name }}
+                      </h2>
+                      <v-img
+                        class="d-block ml-auto mr-auto"
+                        max-width="50px"
+                        src="@/assets/hand.svg"
+                        style="margin-bottom: 10px; margin-top: 10px"
                       >
-                        {{ feature.title }}
-                      </h1>
-                    </v-col>
-                  </v-row>
-                </v-col>
-              </v-row>
-            </v-container>
-          </v-sheet>
-        </v-col>
-        <v-col cols="3">
-          <!-- leaderboard -->
-          <v-sheet rounded="lg" outlined>
-            <v-list color="transparent">
-              <v-list-item>
-                <v-list-item-content>
-                  <v-list-item-title>
-                    <h2 class="text-center">Leaderboard</h2>
-                  </v-list-item-title>
-                </v-list-item-content>
-              </v-list-item>
-
-              <v-divider></v-divider>
-              <v-virtual-scroll
-                :bench="benched"
-                :items="items"
-                height="350"
-                item-height="64"
-              >
-                <template v-slot:default="{ item }">
-                  <v-list-item :key="item">
-                    <v-list-item-action>
-                      <v-btn
-                        fab
-                        small
-                        depressed
-                        color="white"
-                        class="green--text"
-                      >
-                        {{ item }}
-                      </v-btn>
-                    </v-list-item-action>
+                      </v-img>
+                    </v-flex>
+                  </v-list-item>
+                </v-list>
+              </v-sheet>
+              <!-- leaderboard -->
+              <v-sheet rounded="lg" outlined style="margin-top: 20px">
+                <v-list color="transparent">
+                  <v-list-item>
                     <v-list-item-content>
-                      <v-list-item-title> nama </v-list-item-title>
-                    </v-list-item-content>
-                    <v-list-item-content>
-                      <v-list-item-title> 100 poin </v-list-item-title>
+                      <v-list-item-title>
+                        <h2 class="text-center">Leaderboard</h2>
+                      </v-list-item-title>
                     </v-list-item-content>
                   </v-list-item>
+
                   <v-divider></v-divider>
-                </template>
-              </v-virtual-scroll>
-            </v-list>
-          </v-sheet>
+                  <v-virtual-scroll
+                    :bench="benched"
+                    :items="items"
+                    height="250"
+                    item-height="64"
+                  >
+                    <template v-slot:default="{ item }">
+                      <v-list-item :key="item">
+                        <v-list-item-action>
+                          <v-btn
+                            fab
+                            small
+                            depressed
+                            color="white"
+                            class="green--text"
+                          >
+                            {{ item }}
+                          </v-btn>
+                        </v-list-item-action>
+                        <v-list-item-content>
+                          <v-list-item-title> nama </v-list-item-title>
+                        </v-list-item-content>
+                        <v-list-item-content>
+                          <v-list-item-title> 100 poin </v-list-item-title>
+                        </v-list-item-content>
+                      </v-list-item>
+                      <v-divider></v-divider>
+                    </template>
+                  </v-virtual-scroll>
+                </v-list>
+              </v-sheet>
+            </v-col>
+          </v-row>
         </v-col>
       </v-row>
     </v-container>
   </v-main>
 </template>
 <script>
+import { mapGetters } from "vuex";
 export default {
   name: "Home",
   data() {
@@ -118,6 +148,10 @@ export default {
     length() {
       return 20;
     },
+    ...mapGetters({
+      isLoggedIn: "isLoggedIn",
+      user: "user",
+    }),
   },
 };
 </script>
