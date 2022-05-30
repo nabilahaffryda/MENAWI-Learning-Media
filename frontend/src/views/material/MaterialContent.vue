@@ -3,15 +3,13 @@
     ><v-container>
       <v-row>
         <v-col cols="8" class="d-block ml-auto mr-auto">
-          <v-flex>
-            <v-btn
-              style="margin-right: 20px; margin-top: 10px; margin-bottom: 10px;"
-              to="materialhome"
-              text
-              fab
-              ><v-icon>mdi-window-close</v-icon></v-btn
-            >
-          </v-flex>
+          <v-btn
+            style="margin-top: 10px; margin-bottom: 10px"
+            to="materialhome"
+            text
+            fab
+            ><v-icon>mdi-window-close</v-icon></v-btn
+          >
           <v-sheet height="55vh" rounded="lg" outlined>
             <v-container fluid>
               <v-col
