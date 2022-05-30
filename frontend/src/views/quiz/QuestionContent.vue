@@ -54,12 +54,15 @@
             </div>
           </v-sheet>
           <v-divider style="margin-top: 20px"></v-divider>
+          <!-- button next -->
           <v-btn
             rounded
             style="margin-top: 20px"
-            class="float-left"
+            @click="handleButtonNext()"
+            v-if="answerUsers.length > 0 && index < questions.length - 1"
+            class="primary float-right"
           >
-            <h4 class="dark grey--text">LOMPATI</h4></v-btn
+            <h4>Lanjut</h4></v-btn
           >
           <v-btn
             rounded
@@ -118,6 +121,14 @@ export default {
     } else {
       this.$router.push("/quizhome");
     }
+  },
+  watch: {
+    // to check whether the user already answer the quiz based theme
+    index: {
+      handler(newValue) {
+        console.log(newValue);
+      },
+    },
   },
   methods: {
     async fetchLevelTheme() {
@@ -190,22 +201,7 @@ export default {
           },
         });
         console.log(response.data);
-        /* Set userAnswer on question object in data */
-        // this.questions[index].answer = userAnswer;
-        // /* Set class "clicked" on button with userAnswer -> for CSS Styles; Disable other sibling buttons */
-        // event.target.classList.add("clicked");
-        // console.log(response.data);
-        // let allButtons = document.querySelectorAll(`[index="${index}"]`);
-
-        // for (let i = 0; i < allButtons.length; i++) {
-        //   if (allButtons[i] === event.target) continue;
-
-        //   allButtons[i].setAttribute("disabled", "");
-        // }
-
-        // /* Invoke checkAnswer to check Answer */
-        // this.checkAnswer(event, index);
-        this.checkAnswerByUserID();
+        this.checkAnswerByUserID(); //call user answered
       } catch (err) {
         if (err.response) {
           // client received an error response (5xx, 4xx)
