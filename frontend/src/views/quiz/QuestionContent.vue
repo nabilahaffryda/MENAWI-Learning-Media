@@ -11,6 +11,14 @@
               fab
               ><v-icon>mdi-window-close</v-icon></v-btn
             >
+            <!-- user progress based on the questions that have been answered -->
+            <v-progress-linear
+              rounded
+              height="15"
+              :value="valueProgress"
+              class="d-block ml-auto mr-auto"
+              style="margin-top: 30px; margin-bottom: 30px"
+            ></v-progress-linear>
           <v-sheet height="60vh" rounded="lg" outlined>
             <div class="text-center">
               <h1
@@ -68,6 +76,7 @@ export default {
     index: 0,
     loading: true,
     answerUsers: [],
+    valueProgress: 0,
   }),
 
   computed: {
@@ -145,6 +154,8 @@ export default {
         );
       }
       this.answerUsers = [];
+        // value progress value will increase by 20
+        this.valueProgress += 20;
     },
     async saveAnswerAPI(answer, user_id, currentQuestion) {
       try {
