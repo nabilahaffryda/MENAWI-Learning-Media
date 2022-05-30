@@ -4,8 +4,7 @@
       <v-row>
         <v-col class="d-block ml-auto mr-auto">
           <v-row>
-            <v-col cols="1"></v-col>
-            <v-col cols="7">
+            <v-col cols="8">
               <v-col>
                 <!-- 2 opsi aktivitas -->
                 <v-sheet
@@ -49,14 +48,14 @@
                 </v-sheet>
               </v-col>
             </v-col>
-            <v-col cols="3">
+            <v-col cols="4">
               <!-- hello user -->
               <v-sheet rounded="lg" style="margin-top: 30px" outlined>
                 <v-list color="transparent">
                   <v-list-item>
                     <v-flex>
                       <h2 style="margin-bottom: 10px; margin-top: 20px">
-                        Hello {{ user.name }}
+                        <!-- Hello {{ user.name }} -->
                       </h2>
                       <v-img
                         class="d-block ml-auto mr-auto"
@@ -83,12 +82,12 @@
                   <v-divider></v-divider>
                   <v-virtual-scroll
                     :bench="benched"
-                    :items="items"
-                    height="250"
+                    :items="allanswers"
+                    height="300"
                     item-height="64"
                   >
                     <template v-slot:default="{ item }">
-                      <v-list-item :key="item">
+                      <v-list-item :key="item.user_id">
                         <v-list-item-action>
                           <v-btn
                             fab
@@ -97,14 +96,32 @@
                             color="white"
                             class="green--text"
                           >
-                            {{ item }}
+                            {{ allanswers.indexOf(item) + 1 }}
                           </v-btn>
                         </v-list-item-action>
                         <v-list-item-content>
-                          <v-list-item-title> nama </v-list-item-title>
+                          <v-list-item-title>
+                            <v-flex align-center>
+                              <strong>{{ item.users.username }}</strong>
+                              <v-img
+                                src="@/assets/gold.svg"
+                                max-width="30px" style="margin-left:10px" v-if="allanswers.indexOf(item)===0"
+                              ></v-img>
+                               <v-img
+                                src="@/assets/silver.svg"
+                                max-width="30px" style="margin-left:10px" v-if="allanswers.indexOf(item)===1"
+                              ></v-img>
+                               <v-img
+                                src="@/assets/bronze.svg"
+                                max-width="30px" style="margin-left:10px" v-if="allanswers.indexOf(item)===2"
+                              ></v-img>
+                            </v-flex>
+                          </v-list-item-title>
                         </v-list-item-content>
-                        <v-list-item-content>
-                          <v-list-item-title> 100 poin </v-list-item-title>
+                        <v-list-item-content style="margin-left:20px">
+                          <v-list-item-title>
+                            {{ item.point }} poin
+                          </v-list-item-title>
                         </v-list-item-content>
                       </v-list-item>
                       <v-divider></v-divider>
@@ -121,6 +138,7 @@
 </template>
 <script>
 import { mapGetters } from "vuex";
+import axios from "axios";
 export default {
   name: "Home",
   data() {
@@ -137,21 +155,58 @@ export default {
           route: "quizhome",
         },
       ],
+      allanswers: [],
       benched: 0,
-      targetpoin: 20,
     };
   },
   computed: {
-    items() {
-      return Array.from({ length: this.length }, (k, v) => v + 1);
-    },
-    length() {
-      return 20;
-    },
     ...mapGetters({
       isLoggedIn: "isLoggedIn",
       user: "user",
     }),
+  },
+  mounted() {
+    this.getAllAnswerData();
+  },
+  methods: {
+    async getAllAnswerData() {
+      try {
+        const url = `http://localhost:8000/api/allanswer/`;
+        const response = await axios.get(url);
+        const results = response.data;
+        // this.allanswers = results.map((allanswer) => ({
+        //   answer_id: allanswer.answer_id,
+        //   user_id: allanswer.user_id,
+        //   question_id: allanswer.question_id,
+        //   answer: allanswer.answer,
+        //   point: allanswer.point,
+        // }));
+        let temporary = [];
+
+        results.forEach((f) => {
+          if (temporary.some((s) => s.user_id === f.user_id)) {
+            let index = temporary.findIndex((fi) => fi.user_id === f.user_id);
+            temporary[index] = {
+              ...f,
+              point: temporary[index].point + f.point,
+            };
+          } else {
+            temporary.push(f);
+          }
+        });
+        this.allanswers = temporary.sort((a, b) => b.point - a.point);
+      } catch (err) {
+        if (err.response) {
+          // client received an error response (5xx, 4xx)
+          console.log("Server Error:", err);
+        } else if (err.request) {
+          // client never received a response, or request never left
+          console.log("Network Error:", err);
+        } else {
+          console.log("Client Error:", err);
+        }
+      }
+    },
   },
 };
 </script>

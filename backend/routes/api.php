@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthAPIController;
+use App\Http\Controllers\HomeAPIController;
 use App\Http\Controllers\MaterialAPIController;
 use App\Http\Controllers\QuizController;
 
@@ -30,4 +31,8 @@ Route::controller(QuizController::class)->group(function(){
 Route::controller(MaterialAPIController::class)->group(function () {
     Route::get('/materials', 'getAllMaterial');
     Route::get('/materials/{material_id}', 'getDescByMaterial');
+});
+
+Route::controller(HomeAPIController::class)->group(function () {
+    Route::get('/allanswer', 'getDataAnswer');
 });
