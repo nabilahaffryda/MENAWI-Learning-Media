@@ -34,10 +34,19 @@
                   style="margin-bottom: 20px; margin: top 20px"
                 />
                 <v-btn
-                  class="btnAnswer"
                   v-for="answer in currentQuestion.bank_answer"
                   :index="currentQuestion.key"
                   :key="answer"
+                  class="btnAnswer"
+                  v-bind:class="`${getBackground(
+                    answer,
+                    currentQuestion.correct_answer
+                  )}`"
+                  :disabled="
+                    answerUsers.some(
+                      (e) => e.question_id === currentQuestion.question_id
+                    )
+                  "
                   @click="saveAnswerAPI(answer, user.user_id, currentQuestion)"
                   >{{ answer }}</v-btn
                 >
@@ -153,7 +162,9 @@ export default {
           1000
         );
       }
-      this.answerUsers = [];
+      if (this.answerUsers.length < 5) {
+        // if user already answer and go to next question userAnswer will be left blank
+        this.answerUsers = [];
         // value progress value will increase by 20
         this.valueProgress += 20;
     },
@@ -231,29 +242,30 @@ export default {
         }
       }
     },
-    // checkAnswer(event, index) {
-    //   let question = this.questions[index];
-    //   if (question.userAnswer) {
-    //     if (question.userAnswer === question.correct_answer) {
-    //       /* Set class on Button if user answered right, to celebrate right answer with animation joyfulButton */
-    //       event.target.classList.add("rightAnswer");
-    //       /* Set rightAnswer on question to true, computed property can track a streak out of 10 questions */
-    //       this.questions[index].rightAnswer = true;
-    //     } else {
-    //       /* Mark users answer as wrong answer */
-    //       event.target.classList.add("wrongAnswer");
-    //       this.questions[index].rightAnswer = false;
-    //       /* Show right Answer */
-    //       let correctAnswer = this.questions[index].correct_answer;
-    //       let allButtons = document.querySelectorAll(`[index="${index}"]`);
-    //       allButtons.forEach(function (button) {
-    //         if (button.innerHTML === correctAnswer) {
-    //           button.classList.add("showRightAnswer");
-    //         }
-    //       });
-    //     }
-    //   }
-    // },
+    // change background based answer
+    getBackground(answer, correct_answer) {
+      if (this.answerUsers.length) {
+        if (
+          this.answerUsers[this.index].answer === correct_answer &&
+          this.answerUsers[this.index].answer === answer
+        ) {
+          return "rightAnswer"; //if user answered correctly the button will be green
+        } else if (
+          this.answerUsers[this.index].answer !== correct_answer &&
+          this.answerUsers[this.index].answer === answer
+        ) {
+          return "wrongAnswer"; //if user answered wrongly the button will be green
+        } else if (
+          this.answerUsers[this.index].answer !== correct_answer &&
+          correct_answer === answer
+        ) {
+          return "rightAnswer"; //if user answered wrongly the button will be show which one is right and which one is wrong
+        }
+      } else {
+        return;
+      }
+    },
+
   },
 };
 </script>
