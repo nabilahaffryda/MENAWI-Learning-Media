@@ -86,7 +86,8 @@ class QuizController extends Controller
     {
         $answerUser = DB::table('answer')
             ->join('question', 'answer.question_id', '=', 'question.question_id') //join question table with same id
-            ->select('answer.*', 'question.theme_id') //get all answer data added theme id fron question table
+            ->join('theme', 'question.theme_id', '=', 'theme.theme_id')
+            ->select('answer.*', 'question.theme_id', 'theme.level_id') //get all answer data added theme id fron question table
             ->where('user_id', $user_id)
             ->get();
         // $answerUser = Answer::with('users')->where('user_id', $user_id)->get();
