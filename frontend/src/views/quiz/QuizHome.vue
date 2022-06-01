@@ -31,19 +31,29 @@
                             <v-card
                               flat
                               v-if="theme.level_id === level.level_id"
+                              
                             >
-                            <div class="col-md-12">
-                              <v-img
-                                max-width="120px"
-                                :src="theme.img"
-                                @click="openQuestion(theme.level_id, theme.theme_id, user.user_id)"
-                                style="margin-top: 10px;"
-                                class="ml-auto mr-auto"
-                              ></v-img>
-                              <h3
-                                class="font-weight-reguler black--text ml-auto mr-auto"
-                                style="margin-top: 10px; "
-                              >{{theme.title}}</h3></div>
+                              <div class="col-md-12">
+                                <v-img
+                                  max-width="120px"
+                                  :src="theme.img"
+                                  @click="
+                                    openQuestion(
+                                      theme.level_id,
+                                      theme.theme_id,
+                                      user.user_id
+                                    )
+                                  "
+                                  style="margin-top: 10px"
+                                  class="ml-auto mr-auto"
+                                ></v-img>
+                                <h3
+                                  class="font-weight-reguler black--text ml-auto mr-auto"
+                                  style="margin-top: 10px"
+                                >
+                                  {{ theme.title }}
+                                </h3>
+                              </div>
                             </v-card>
                           </div>
                         </v-flex>
@@ -66,18 +76,20 @@
 }
 </style>
 <script>
-import axios from "axios"; 
+import axios from "axios";
 import { mapGetters } from "vuex";
+import api_url from "../../utils/api_url";
 export default {
   name: "QuizHome",
   data() {
     return {
       levels: [],
       themes: [],
+      answerUsers: [],
     };
   },
-  computed:{
-...mapGetters({
+  computed: {
+    ...mapGetters({
       isLoggedIn: "isLoggedIn",
       user: "user",
     }),
@@ -85,11 +97,12 @@ export default {
   mounted() {
     this.fetchLevel();
     this.fetchTheme();
+    this.checkAnswerByUserID();
   },
   methods: {
     async fetchLevel() {
       try {
-        const url = `http://localhost:8000/api/levels/`;
+        const url = `${api_url}/levels/`;
         const response = await axios.get(url);
         const results = response.data;
         this.levels = results.map((level) => ({
@@ -112,7 +125,7 @@ export default {
     },
     async fetchTheme() {
       try {
-        const url = `http://localhost:8000/api/themes/`;
+        const url = `${api_url}/themes/`;
         const response = await axios.get(url);
         const results = response.data;
         // console.log(response.data);
@@ -122,7 +135,7 @@ export default {
           level_name: theme.level_name,
           theme_name: theme.theme_name,
           img: require(`@/assets/level${theme.level_id}tema${theme.theme_id}.svg`),
-          title: theme.theme_name
+          title: theme.theme_name,
         }));
         console.log(this.themes);
       } catch (err) {
@@ -138,7 +151,36 @@ export default {
       }
     },
     openQuestion(level_id, theme_id, user_id) {
-      this.$router.push({name: 'QuestionContent', params: {data: {level_id, theme_id, user_id}}});
+      this.$router.push({
+        name: "QuestionContent",
+        params: { data: { level_id, theme_id, user_id } },
+      });
+    },
+    // check answer that already user answered
+    async checkAnswerByUserID() {
+      try {
+        const url = `${api_url}/answers/${this.user.user_id}`;
+        const response = await axios.get(url);
+        const results = response.data;
+        console.log(response.data)
+        this.answerUsers = results.map((answerUser) => ({
+          user_id: answerUser.user_id,
+          question_id: answerUser.question_id,
+          answer: answerUser.answer,
+          point: answerUser.point,
+          theme_id: answerUser.theme_id
+        }));
+      } catch (err) {
+        if (err.response) {
+          // client received an error response (5xx, 4xx)
+          console.log("Server Error:", err);
+        } else if (err.request) {
+          // client never received a response, or request never left
+          console.log("Network Error:", err);
+        } else {
+          console.log("Client Error:", err);
+        }
+      }
     },
   },
 };

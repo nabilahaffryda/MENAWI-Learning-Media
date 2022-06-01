@@ -25,20 +25,17 @@
             <v-list-item>
               <!-- level avatar -->
               <v-list-item-avatar>
-                <!-- <img
-                  :src="'@/assets/level'+
-                    answerUsers[answerUsers.length - 1]+
-                  '.png'"
-                /> -->
-                <img
-                  :src="require(`@/assets/level${answerUsers[answerUsers.length - 1]}.png`)"
-                />
-                <!-- <v-img src="@/assets/level1.png" max-width="50px" /> -->
+                <v-img src="@/assets/level1.png" max-width="50px" v-if="answerUsers[answerUsers.length - 1]=== 1 || answerUsers.length === 0"/>
+                 <v-img src="@/assets/level2.png" max-width="50px" v-if="answerUsers[answerUsers.length - 1]=== 2"/>
+                  <v-img src="@/assets/level3.png" max-width="50px" v-if="answerUsers[answerUsers.length - 1]=== 3"/>
+                   <v-img src="@/assets/level4.png" max-width="50px" v-if="answerUsers[answerUsers.length - 1]=== 4"/>
+                    <v-img src="@/assets/level5.png" max-width="50px" v-if="answerUsers[answerUsers.length - 1]=== 5 "/>
+                     <v-img src="@/assets/level6.png" max-width="50px" v-if="answerUsers[answerUsers.length - 1]=== 6"/>
               </v-list-item-avatar>
               <v-list-item-content>
                 <v-list-item-title>
                   <strong
-                    >LEVEL {{ answerUsers[answerUsers.length - 1] }}</strong
+                    >LEVEL {{ answerUsers.length ? answerUsers[answerUsers.length - 1] : 1 }}</strong
                   >
                 </v-list-item-title>
                 <v-list-item-subtitle
@@ -108,6 +105,7 @@
 <script>
 import { mapGetters } from "vuex";
 import axios from "axios";
+import api_url from "../utils/api_url";
 export default {
   name: "Header",
   data() {
@@ -125,6 +123,12 @@ export default {
   mounted() {
     this.checkAnswerByUserID();
   },
+  watch:{
+    answerUsers:{
+      handler(newValue)
+      {console.log(newValue)}
+    }
+  }, 
   methods: {
     close() {
       this.dialogLogout = false;
@@ -145,7 +149,7 @@ export default {
     // check answer that already user answered
     async checkAnswerByUserID() {
       try {
-        const url = `http://localhost:8000/api/answers/${this.user.user_id}`;
+        const url = `${api_url}/answers/${this.user.user_id}`;
         const response = await axios.get(url);
         const results = response.data;
         console.log(response.data);
@@ -159,10 +163,10 @@ export default {
         let temporary = [];
 
         results.forEach((f) => {
-          if (temporary.some((s) => s.theme_id === f.theme_id)) {
+          if (temporary.some((s) =>s=== f.level_id)) {
             return;
           } else {
-            temporary.push(f.theme_id);
+            temporary.push(f.level_id);
           }
         });
         this.answerUsers = temporary;

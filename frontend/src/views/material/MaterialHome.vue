@@ -4,8 +4,7 @@
       <v-row>
         <v-col class="d-block ml-auto mr-auto">
           <v-row>
-            <v-col cols="1"></v-col>
-            <v-col cols="7">
+            <v-col cols="8">
               <v-col
                 v-for="material in materials"
                 v-bind:key="material.material_id"
@@ -22,7 +21,6 @@
                           <v-col cols="12" sm="6" class="text-center">
                             <!-- <v-card outlined width="500px">
                             -->
-
                             <v-img
                               :src="material.img"
                               max-width="100px"
@@ -77,7 +75,7 @@
                 </v-list>
               </v-sheet>
               <!-- leaderboard -->
-              <v-sheet rounded="lg" outlined style="margin-top: 20px">
+              <!-- <v-sheet rounded="lg" outlined style="margin-top: 20px">
                 <v-list color="transparent">
                   <v-list-item>
                     <v-list-item-content>
@@ -118,8 +116,10 @@
                     </template>
                   </v-virtual-scroll>
                 </v-list>
-              </v-sheet> </v-col
-          ></v-row>
+              </v-sheet> -->
+               </v-col
+          >
+          </v-row>
         </v-col>
       </v-row>
     </v-container>
@@ -128,6 +128,7 @@
 <script>
 import axios from "axios";
 import { mapGetters } from "vuex";
+import api_url from "../../utils/api_url";
 export default {
   name: "MaterialHome",
   data() {
@@ -141,7 +142,7 @@ export default {
   methods: {
     async fetchMaterial() {
       try {
-        const url = `http://localhost:8000/api/materials/`;
+        const url = `${api_url}/materials/`;
         const response = await axios.get(url);
         const results = response.data;
         this.materials = results.map((material) => ({

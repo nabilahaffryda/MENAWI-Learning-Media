@@ -59,9 +59,6 @@
             </div>
           </v-sheet>
           <v-divider style="margin-top: 20px"></v-divider>
-          <v-btn rounded style="margin-top: 20px" class="float-left">
-            <h4 class="dark grey--text">LOMPATI</h4></v-btn
-          >
           <!-- button next -->
           <v-btn
             rounded
@@ -87,7 +84,7 @@
         <v-dialog v-model="completedQuiz" max-width="290px" activator="item">
           <v-card>
             <v-card-title class="text-h5">Selamat</v-card-title>
-            score calculation
+            <!-- score calculation -->
             <v-card-text
               >Skor kamu:
               <span class="highlight">
@@ -107,6 +104,7 @@
 <script>
 import axios from "axios";
 import { mapGetters } from "vuex";
+import api_url from "../../utils/api_url";
 export default {
   name: "QuestionContent",
   data: () => ({
@@ -150,7 +148,7 @@ export default {
     // get data question by level_id and theme_id
     async fetchLevelTheme() {
       try {
-        const url = `http://localhost:8000/api/levels/${this.$route.params.data.level_id}/themes/${this.$route.params.data.theme_id}`;
+        const url = `${api_url}/levels/${this.$route.params.data.level_id}/themes/${this.$route.params.data.theme_id}`;
         const response = await axios.get(url, {
           headers: {
             "content-type": "multipart/form-data",
@@ -167,7 +165,7 @@ export default {
           bank_answer: question.bank_answer,
           question_id: question.question_id,
         }));
-        console.log(this.currentQuestion);
+    
         this.loading = false;
       } catch (err) {
         if (err.response) {
@@ -210,7 +208,7 @@ export default {
           question_id: currentQuestion.question_id,
           point: currentQuestion.correct_answer === answer ? 20 : 0,
         };
-        const url = `http://localhost:8000/api/answers`;
+        const url = `${api_url}/answers`;
         const response = await axios.post(url, data, {
           headers: {
             Authorization: "bearer " + localStorage.getItem("token"),
@@ -237,17 +235,19 @@ export default {
     // check answer that already user answered
     async checkAnswerByUserID() {
       try {
-        const url = `http://localhost:8000/api/answers/${this.$route.params.data.user_id}`;
+        const url = `${api_url}/answers/${this.$route.params.data.user_id}`;
         const response = await axios.get(url);
         const results = response.data;
         console.log(response.data);
-        this.answerUsers = results.map((answerUser) => ({
-          user_id: answerUser.user_id,
-          question_id: answerUser.question_id,
-          answer: answerUser.answer,
-          point: answerUser.point,
-        }));
-        if (results.length > 4) {
+        // this.answerUsers = results.map((answerUser) => ({
+        //   user_id: answerUser.user_id,
+        //   question_id: answerUser.question_id,
+        //   answer: answerUser.answer,
+        //   point: answerUser.point,
+        //   theme_id: answerUser.theme_id,
+        // }));
+        this.answerUsers = results.filter(f=>f.theme_id === this.$route.params.data.theme_id)
+        if (results.filter(f=>f.theme_id === this.$route.params.data.theme_id).length > 4) {
           this.valueProgress = 100;
         }
       } catch (err) {

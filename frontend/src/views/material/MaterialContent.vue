@@ -22,8 +22,8 @@
                   <v-col sm="4" class="text-center">
                     <v-img
                       :src="`http://localhost:8000/storage/${currentDescription.desc_pict}`"
-                      height="170px"
-                      width="170px"
+                      height="230px"
+                      width="200px"
                       class="d-block ml-auto mr-auto"
                       style="margin-top: 30px"
                     ></v-img>
@@ -58,7 +58,7 @@
           <v-btn
             rounded
             class="primary float-right"
-            style="margin-top: 30px"
+            style="margin-top: 30px" v-if="index < descriptions.length -1"
             @click="handleButtonNext()"
           >
             <h4>LANJUT</h4></v-btn
@@ -70,6 +70,7 @@
 </template>
 <script>
 import axios from "axios";
+import api_url from "../../utils/api_url";
 export default {
   name: "MaterialContent",
   data: () => ({
@@ -94,7 +95,7 @@ export default {
   methods: {
     async getDescByMaterial() {
       try {
-        const url = `http://localhost:8000/api/materials/${this.$route.params.data.material_id}`;
+        const url = `${api_url}/materials/${this.$route.params.data.material_id}`;
         const response = await axios.get(url, {
           headers: {
             "content-type": "multipart/form-data",

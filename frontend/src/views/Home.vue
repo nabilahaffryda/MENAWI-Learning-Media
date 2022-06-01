@@ -139,6 +139,7 @@
 <script>
 import { mapGetters } from "vuex";
 import axios from "axios";
+import api_url from "../utils/api_url";
 export default {
   name: "Home",
   data() {
@@ -171,7 +172,7 @@ export default {
   methods: {
     async getAllAnswerData() {
       try {
-        const url = `http://localhost:8000/api/allanswer/`;
+        const url = `${api_url}/allanswer/`;
         const response = await axios.get(url);
         const results = response.data;
         // this.allanswers = results.map((allanswer) => ({

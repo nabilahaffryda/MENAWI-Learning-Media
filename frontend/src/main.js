@@ -6,7 +6,8 @@ import axios from "axios";
 import store from "./store";
 
 import { setHeaderToken } from "./utils/auth";
-axios.defaults.baseURL = "http://localhost:8000/api/";
+import api_url from "./utils/api_url";
+axios.defaults.baseURL = api_url;
 Vue.config.productionTip = false;
 const token = localStorage.getItem("token");
 
