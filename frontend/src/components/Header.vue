@@ -1,15 +1,17 @@
 <template>
   <div>
     <v-toolbar flat outlined class="px-8">
-      <v-spacer />
+      <v-spacer></v-spacer>
       <v-toolbar-title>
         <v-btn text to="/" color="white">
-          <v-img src="@/assets/logo2.png" max-width="150px" />
+          <v-img src="@/assets/logo1.png" width="55px" height="55px" />
         </v-btn>
       </v-toolbar-title>
-      <v-spacer />
+      <v-spacer /><v-spacer></v-spacer>
       <!-- home -->
-      <v-btn text to="home" v-if="isLoggedIn"> Home </v-btn>
+      <v-btn text to="home" v-if="isLoggedIn">
+        <v-icon color="orange darken-3">mdi-home</v-icon>
+      </v-btn>
       <!-- level -->
       <v-menu
         v-if="isLoggedIn"
@@ -18,28 +20,62 @@
         offset-y
       >
         <template v-slot:activator="{ on, attrs }">
-          <v-btn text v-bind="attrs" v-on="on"> Level </v-btn>
+          <v-btn text v-bind="attrs" v-on="on">
+            <v-icon color="yellow darken-1">mdi-trophy</v-icon>
+          </v-btn>
         </template>
         <v-card>
           <v-list>
             <v-list-item>
               <!-- level avatar -->
               <v-list-item-avatar>
-                <v-img src="@/assets/level1.png" max-width="50px" v-if="answerUsers[answerUsers.length - 1]=== 1 || answerUsers.length === 0"/>
-                 <v-img src="@/assets/level2.png" max-width="50px" v-if="answerUsers[answerUsers.length - 1]=== 2"/>
-                  <v-img src="@/assets/level3.png" max-width="50px" v-if="answerUsers[answerUsers.length - 1]=== 3"/>
-                   <v-img src="@/assets/level4.png" max-width="50px" v-if="answerUsers[answerUsers.length - 1]=== 4"/>
-                    <v-img src="@/assets/level5.png" max-width="50px" v-if="answerUsers[answerUsers.length - 1]=== 5 "/>
-                     <v-img src="@/assets/level6.png" max-width="50px" v-if="answerUsers[answerUsers.length - 1]=== 6"/>
+                <v-img
+                  src="@/assets/badge1.png"
+                  max-width="50px"
+                  v-if="
+                    answerUsers[answerUsers.length - 1] === 1 ||
+                    answerUsers.length === 0
+                  "
+                />
+                <v-img
+                  src="@/assets/badge2.png"
+                  max-width="50px"
+                  v-if="answerUsers[answerUsers.length - 1] === 2"
+                />
+                <v-img
+                  src="@/assets/badge3.png"
+                  max-width="50px"
+                  v-if="answerUsers[answerUsers.length - 1] === 3"
+                />
+                <v-img
+                  src="@/assets/badge4.png"
+                  max-width="50px"
+                  v-if="answerUsers[answerUsers.length - 1] === 4"
+                />
+                <v-img
+                  src="@/assets/badge5.png"
+                  max-width="50px"
+                  v-if="answerUsers[answerUsers.length - 1] === 5"
+                />
+                <v-img
+                  src="@/assets/badge6.png"
+                  max-width="50px"
+                  v-if="answerUsers[answerUsers.length - 1] === 6"
+                />
               </v-list-item-avatar>
               <v-list-item-content>
                 <v-list-item-title>
                   <strong
-                    >LEVEL {{ answerUsers.length ? answerUsers[answerUsers.length - 1] : 1 }}</strong
+                    >LEVEL
+                    {{
+                      answerUsers.length
+                        ? answerUsers[answerUsers.length - 1]
+                        : 1
+                    }}</strong
                   >
                 </v-list-item-title>
                 <v-list-item-subtitle
-                  >Naikkan level keahlianmu!</v-list-item-subtitle
+                  >Mundhakaken tingkat skill!</v-list-item-subtitle
                 >
               </v-list-item-content>
             </v-list-item>
@@ -55,7 +91,9 @@
         v-if="isLoggedIn"
       >
         <template v-slot:activator="{ on, attrs }">
-          <v-btn text v-bind="attrs" v-on="on"> Akun </v-btn>
+          <v-btn text v-bind="attrs" v-on="on">
+            <v-icon color="blue">mdi-account</v-icon>
+          </v-btn>
         </template>
         <v-card>
           <v-list>
@@ -68,7 +106,7 @@
             </v-list-item>
             <v-divider />
             <v-list-item @click="logoutDialog()">
-              <v-list-item-title>Keluar</v-list-item-title>
+              <v-list-item-title>Metu</v-list-item-title>
             </v-list-item>
           </v-list>
         </v-card>
@@ -76,12 +114,12 @@
       <v-dialog v-model="dialogLogout" max-width="290px" activator="item">
         <v-card>
           <v-card-title class="text-h5">Konfirmasi</v-card-title>
-          <v-card-text>Apakah Anda yakin ingin keluar?</v-card-text>
+          <v-card-text>Apa yakin arep metu?</v-card-text>
           <v-card-actions>
             <v-spacer></v-spacer>
-            <v-btn color="green darken-1" text @click="close">Cancel</v-btn>
+            <v-btn color="green darken-1" text @click="close">Batal</v-btn>
             <v-btn color="green darken-1" type="submit" text @click="logout"
-              >OK</v-btn
+              >Oke</v-btn
             >
           </v-card-actions>
         </v-card>
@@ -99,6 +137,89 @@
 .expand {
   height: 80px !important;
   padding-top: 10px;
+}
+[class*="col-"] {
+  width: 100%;
+}
+
+@media only screen and (min-width: 600px) {
+  /* For tablets: */
+  .col-s-1 {
+    width: 8.33%;
+  }
+  .col-s-2 {
+    width: 16.66%;
+  }
+  .col-s-3 {
+    width: 25%;
+  }
+  .col-s-4 {
+    width: 33.33%;
+  }
+  .col-s-5 {
+    width: 41.66%;
+  }
+  .col-s-6 {
+    width: 50%;
+  }
+  .col-s-7 {
+    width: 58.33%;
+  }
+  .col-s-8 {
+    width: 66.66%;
+  }
+  .col-s-9 {
+    width: 75%;
+  }
+  .col-s-10 {
+    width: 83.33%;
+  }
+  .col-s-11 {
+    width: 91.66%;
+  }
+  .col-s-12 {
+    width: 100%;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  /* For desktop: */
+  .col-1 {
+    width: 8.33%;
+  }
+  .col-2 {
+    width: 16.66%;
+  }
+  .col-3 {
+    width: 25%;
+  }
+  .col-4 {
+    width: 33.33%;
+  }
+  .col-5 {
+    width: 41.66%;
+  }
+  .col-6 {
+    width: 50%;
+  }
+  .col-7 {
+    width: 58.33%;
+  }
+  .col-8 {
+    width: 66.66%;
+  }
+  .col-9 {
+    width: 75%;
+  }
+  .col-10 {
+    width: 83.33%;
+  }
+  .col-11 {
+    width: 91.66%;
+  }
+  .col-12 {
+    width: 100%;
+  }
 }
 </style>
 
@@ -123,12 +244,13 @@ export default {
   mounted() {
     this.checkAnswerByUserID();
   },
-  watch:{
-    answerUsers:{
-      handler(newValue)
-      {console.log(newValue)}
-    }
-  }, 
+  watch: {
+    answerUsers: {
+      handler(newValue) {
+        console.log(newValue);
+      },
+    },
+  },
   methods: {
     close() {
       this.dialogLogout = false;
@@ -153,6 +275,7 @@ export default {
         const response = await axios.get(url);
         const results = response.data;
         console.log(response.data);
+        // console.log(this.user.user_id)
         // this.answerUsers = results.map((answerUser) => ({
         //   user_id: answerUser.user_id,
         //   question_id: answerUser.question_id,
@@ -163,7 +286,7 @@ export default {
         let temporary = [];
 
         results.forEach((f) => {
-          if (temporary.some((s) =>s=== f.level_id)) {
+          if (temporary.some((s) => s === f.level_id)) {
             return;
           } else {
             temporary.push(f.level_id);

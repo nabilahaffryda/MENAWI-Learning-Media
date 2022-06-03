@@ -2,16 +2,9 @@
   <v-main class="white">
     <v-container>
       <v-row>
-        <v-col cols="7" class="d-block ml-auto mr-auto">
-          <v-img
-            class="d-block ml-auto mr-auto"
-            max-width="200px"
-            src="@/assets/kuis-title.png"
-            style="margin-bottom: 20px; margin-top: 20px"
-          >
-          </v-img>
+          <v-col cols="12" lg="6" class="mx-auto">
           <v-col v-for="level in levels" v-bind:key="level.level_id">
-            <v-sheet height="75vh" rounded="lg" outlined
+            <v-sheet height="65vh" rounded="lg" outlined
               ><v-container fluid>
                 <v-row align="center" justify="center">
                   <v-col cols="12">
@@ -74,6 +67,12 @@
   display: flex;
   justify-content: center;
 }
+@media only screen and (max-width: 600px) {
+  /* For mobile phones: */
+  [class*="cols="] {
+    width: 100%;
+  }
+}
 </style>
 <script>
 import axios from "axios";
@@ -102,7 +101,7 @@ export default {
   methods: {
     async fetchLevel() {
       try {
-        const url = `${api_url}/levels/`;
+        const url = `${api_url}/levels`;
         const response = await axios.get(url);
         const results = response.data;
         this.levels = results.map((level) => ({
@@ -125,7 +124,7 @@ export default {
     },
     async fetchTheme() {
       try {
-        const url = `${api_url}/themes/`;
+        const url = `${api_url}/themes`;
         const response = await axios.get(url);
         const results = response.data;
         // console.log(response.data);

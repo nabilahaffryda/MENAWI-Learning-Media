@@ -1,20 +1,23 @@
 <template>
   <v-main>
-    <v-container class="pt-15">
+    <v-container >
       <v-row>
-        <v-col lg="6">
-          <img src="@/assets/landing-logo.png" alt="teamwork" width="75%" />
+        <v-col cols="12" md="6">
+           <div class="text-center" style="margin-top:10px">
+          <img src="@/assets/landing-logo.png" width="75%" /></div>
         </v-col>
-        <v-col lg="6">
-          <h2 class="intro-text">Selamat Datang di MENAWI</h2>
+       <v-col cols="12" md="6">
+          <h2 class="intro-text"  style="margin-top:10px">Sugeng rawuh ing MENAWI</h2>
           <p class="description-text">
-            MENAWI (Mengenal Bahasa Jawi) adalah media pembelajaran bahasa Jawa
-            untuk tingkat sekolah dasar berbasis web.
+            MENAWI (Mengenal Basa Jawi) minangka media pamulangan basa Jawa
+            kangge murid tingkat SD ingkang berbasis web. Tujuane supaya dadi
+            media alternatif pamulangan basa Jawa ingkang bisa digunakake
+            dening siswa SD.
           </p>
           <div class="text-center">
             <v-btn
-              color="#58cc02"
-              min-width="225px"
+              color="#0D94A8"
+              width="200px"
               rounded
               @click.prevent="goRegister"
               class="my-4 white--text"
@@ -28,7 +31,7 @@
               @click.prevent="goLogin"
               rounded
             >
-              Aku sudah punya akun
+              Aku wis duwe akun
             </v-btn>
           </div>
         </v-col>
@@ -51,15 +54,22 @@ export default {
 </script>
 <style scoped>
 .intro-text {
-  font-size: 40px;
+  font-size: 30px;
   font-weight: bold;
-  font-family: cursive;
-  color: #58cc02;
+  color: #0D94A8;
+  text-align: center;
 }
 .description-text {
-  font-size: 19px;
-  font-family: cursive;
+  font-size: 18px;
   margin: 32px 0;
   color: #000000;
+  text-align: center;
+}
+
+@media only screen and (max-width: 600px) {
+/* For mobile phones: */
+    [class*="cols="] {
+        width: 100%;
+    }
 }
 </style>

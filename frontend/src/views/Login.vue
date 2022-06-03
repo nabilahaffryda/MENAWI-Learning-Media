@@ -1,10 +1,10 @@
 <template>
   <v-container>
-    <v-layout wrap style="margin-top: 20px">
-      <v-col cols="10" lg="4" class="mx-auto">
+    <v-layout wrap>
+      <v-col cols="12" lg="4" class="mx-auto">
         <v-card class="pa-8" flat>
-          <div class="text-center" style="margin-bottom: 20px">
-            <h2 class="indigo--text">Selamat datang kembali!</h2>
+          <div class="text-center" style="margin-bottom: 10px">
+            <h1 style="color: #0d94a8">Sugeng Rawuh</h1>
           </div>
 
           <form @submit.prevent="userLogin">
@@ -48,7 +48,7 @@
               </div>
               <v-btn
                 type="submit"
-                color="indigo"
+                color="#0D94A8"
                 block
                 style="margin-bottom: 15px"
                 filled
@@ -58,8 +58,8 @@
                 <span class="white--text px-8">MASUK</span>
               </v-btn>
               <p class="text-center">
-                Tidak punya akun?
-                <router-link to="register">Buat Akun</router-link>
+                Durung nduwe akun?
+                <router-link to="register">Nggawe akun</router-link>
               </p>
             </v-card-text>
           </form>
@@ -95,3 +95,11 @@ export default {
   },
 };
 </script>
+<style>
+@media only screen and (max-width: 600px) {
+  /* For mobile phones: */
+  [class*="cols="] {
+    width: 100%;
+  }
+}
+</style>

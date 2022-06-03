@@ -2,13 +2,14 @@
   <v-main class="white"
     ><v-container>
       <v-row>
-        <v-col cols="8" class="d-block ml-auto mr-auto">
+        <v-col cols="12" lg="8" class="d-block ml-auto mr-auto">
+           <v-col cols="12" md="12">
           <v-flex>
             <v-btn
-              style="margin-right: 20px; margin-top: 10px"
+              style="margin-right: 20px; "
               to="quizhome"
               text
-              fab
+              fab small
               ><v-icon>mdi-window-close</v-icon></v-btn
             >
             <!-- user progress based on the questions that have been answered -->
@@ -17,22 +18,22 @@
               height="15"
               :value="valueProgress"
               class="d-block ml-auto mr-auto"
-              style="margin-top: 30px; margin-bottom: 30px"
+              style="margin-top: 10px; margin-bottom: 30px"
             ></v-progress-linear>
-          </v-flex>
-          <v-sheet height="60vh" rounded="lg" outlined>
-            <div class="text-center">
+          </v-flex></v-col>
+          <v-sheet elevation="1" rounded="lg" outlined>
+            <v-container fluid>
+            <v-col class="text-center">
               <!-- currently displayed question, image and answer -->
-              <h1
-                v-html="loading ? 'Loading...' : currentQuestion.question"
+              <h1 class="text-center"
+                v-html="loading ? 'Loading...' : currentQuestion.question" 
               ></h1>
               <form v-if="currentQuestion">
                 <img
-                  :src="`http://localhost:8000/storage/${currentQuestion.question_pict}`"
-                  alt="Question Picture"
-                  height="150px"
+                  :src="`https://admin.menawi.com/storage/${currentQuestion.question_pict}`"
+                  height="200px"
                   class="d-block ml-auto mr-auto"
-                  style="margin-bottom: 20px; margin: top 20px"
+                  style="margin-bottom: 10px; margin-top: 10px"
                 />
                 <!-- When the user answers correctly, the button will turn green -->
                 <!-- When the user answers wrong, the button will show which one is wrong in red and which one is correct in green -->
@@ -56,7 +57,8 @@
                   >{{ answer }}</v-btn
                 >
               </form>
-            </div>
+            </v-col>
+            </v-container>
           </v-sheet>
           <v-divider style="margin-top: 20px"></v-divider>
           <!-- button next -->
@@ -82,14 +84,23 @@
         </v-col>
         <!-- dialog when user completed quiz -->
         <v-dialog v-model="completedQuiz" max-width="290px" activator="item">
-          <v-card>
-            <v-card-title class="text-h5">Selamat</v-card-title>
+          <v-card justify-center>
+            <v-col>
+            <v-img
+            class="d-block ml-auto mr-auto text-center"
+            max-width="150px"
+            src="@/assets/horay.png"
+            style="margin-bottom: 10px; margin-top: 10px"
+          >
+          </v-img></v-col>
+          <v-card-title class="text-h5 justify-center">Selamat</v-card-title>
             <!-- score calculation -->
-            <v-card-text
-              >Skor kamu:
+            <v-card-text class="text-h6 text-center"
+              >Skormu yaiku:
+              <strong>
               <span class="highlight">
                 {{ answerUsers.reduce((a, b) => a + Number(b.point), 0) }}
-              </span></v-card-text
+              </span></strong></v-card-text
             >
             <v-card-actions>
               <v-spacer></v-spacer>
@@ -155,7 +166,7 @@ export default {
           },
         });
         const results = response.data;
-        console.log(response.data);
+        // console.log(response.data);
         this.questions = results.map((question) => ({
           level_id: question.level_id,
           theme_id: question.theme_id,
@@ -238,7 +249,7 @@ export default {
         const url = `${api_url}/answers/${this.$route.params.data.user_id}`;
         const response = await axios.get(url);
         const results = response.data;
-        console.log(response.data);
+        // console.log(response.data);
         // this.answerUsers = results.map((answerUser) => ({
         //   user_id: answerUser.user_id,
         //   question_id: answerUser.question_id,
@@ -318,7 +329,7 @@ export default {
   transform: scale(1.05);
 }
 .btnAnswer {
-  font-size: 1.1rem;
+  font-size: 0.7rem;
   box-sizing: border-box;
   padding: 1rem;
   margin: 0.3rem;
@@ -383,7 +394,10 @@ export default {
     rgba(0, 178, 72, 0.5)
   );
 }
-h1 {
-  padding: 0.7rem;
+@media only screen and (max-width: 600px) {
+  /* For mobile phones: */
+  [class*="cols="] {
+    width: 100%;
+  }
 }
 </style>

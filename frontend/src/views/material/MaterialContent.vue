@@ -1,47 +1,29 @@
 <template>
-  <v-main class="white"
+  <v-main
     ><v-container>
       <v-row>
-        <v-col cols="8" class="d-block ml-auto mr-auto">
-          <v-btn
-            style="margin-top: 10px; margin-bottom: 10px"
-            to="materialhome"
-            text
-            fab
+        <v-col cols="12" lg="8" class="d-block ml-auto mr-auto">
+          <v-btn style="margin-bottom: 10px" to="materialhome" text fab small
             ><v-icon>mdi-window-close</v-icon></v-btn
           >
-          <v-sheet height="55vh" rounded="lg" outlined>
+          <v-sheet elevation="1" rounded="lg" outlined>
             <v-container fluid>
-              <v-col
-                cols="12"
-                sm="12"
-                class="text-center"
-                v-if="currentDescription"
-              >
-                <v-flex justify-center>
-                  <v-col sm="4" class="text-center">
+              <v-col v-if="currentDescription">
+                <v-row>
+                  <v-col cols="12" md="4">
                     <v-img
-                      :src="`http://localhost:8000/storage/${currentDescription.desc_pict}`"
-                      height="230px"
-                      width="200px"
-                      class="d-block ml-auto mr-auto"
-                      style="margin-top: 30px"
+                      :src="`https://admin.menawi.com/storage/${currentDescription.desc_pict}`"
+                      height="auto" class="d-block ml-auto mr-auto"
+                      width="230px"
+                      style="margin-top: 10px"
                     ></v-img>
                   </v-col>
-                  <v-divider
-                    vertical
-                    style="
-                      margin-top: 30px;
-                      margin-right: 20px;
-                      margin-left: 20px;
-                    "
-                  ></v-divider>
-                  <v-col cols="12" sm="6" class="text-center">
-                    <h3 style="margin-top: 30px">
+                  <v-col cols="12" md="8">
+                    <h3 style="margin-top: 10px" class="d-block ml-auto mr-auto text-center">
                       {{ currentDescription.description }}
                     </h3>
                   </v-col>
-                </v-flex>
+                </v-row>
               </v-col>
             </v-container>
           </v-sheet>
@@ -53,15 +35,16 @@
             v-if="index > 0"
             @click="handleButtonBack()"
           >
-            <h4>KEMBALI</h4></v-btn
+            <h4>Mbalik</h4></v-btn
           >
           <v-btn
             rounded
             class="primary float-right"
-            style="margin-top: 30px" v-if="index < descriptions.length -1"
+            style="margin-top: 30px"
+            v-if="index < descriptions.length - 1"
             @click="handleButtonNext()"
           >
-            <h4>LANJUT</h4></v-btn
+            <h4>Lanjut</h4></v-btn
           >
         </v-col>
       </v-row>
@@ -144,3 +127,11 @@ export default {
   },
 };
 </script>
+<style>
+@media only screen and (max-width: 600px) {
+  /* For mobile phones: */
+  [class*="cols="] {
+    width: 100%;
+  }
+}
+</style>

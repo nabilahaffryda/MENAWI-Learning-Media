@@ -28,8 +28,3 @@ store
   .catch((error) => {
     console.error(error);
   });
-// new Vue({
-//   vuetify,
-//   router,
-//   render: (h) => h(App),
-// }).$mount("#app");

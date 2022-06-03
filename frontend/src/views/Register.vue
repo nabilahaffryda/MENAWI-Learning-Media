@@ -1,10 +1,10 @@
 <template>
   <v-container>
-    <v-layout wrap style="margin-top: 20px">
-      <v-col cols="10" lg="4" class="mx-auto">
+    <v-layout wrap>
+      <v-col cols="12" lg="4" class="mx-auto">
         <v-card class="pa-8" flat>
-          <div class="text-center" style="margin-bottom: 20px">
-            <h2 class="indigo--text">Buat Profilmu</h2>
+          <div class="text-center" style="margin-bottom: 10px">
+            <h1 style="color: #0d94a8">Nggawe Akun</h1>
           </div>
           <form @submit.prevent="register">
             <v-card-text class="text-center">
@@ -24,7 +24,7 @@
                   dense
                   id="name"
                   class="form-control"
-                  label="Name"
+                  label="Jeneng"
                   v-model="form.name"
                   type="text"
                 >
@@ -62,7 +62,7 @@
               </div>
               <v-btn
                 type="submit"
-                color="indigo"
+                color="#0D94A8"
                 block
                 style="margin-bottom: 15px"
                 filled
@@ -72,7 +72,7 @@
                 <span class="white--text px-8">DAFTAR</span>
               </v-btn>
               <p class="text-center">
-                Sudah punya akun?
+                Wis duwe akun?
                 <router-link to="login">Masuk</router-link>
               </p>
             </v-card-text>
@@ -112,3 +112,11 @@ export default {
   },
 };
 </script>
+<style>
+@media only screen and (max-width: 600px) {
+  /* For mobile phones: */
+  [class*="cols="] {
+    width: 100%;
+  }
+}
+</style>

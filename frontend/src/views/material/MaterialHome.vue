@@ -2,9 +2,9 @@
   <v-main>
     <v-container>
       <v-row>
-        <v-col class="d-block ml-auto mr-auto">
+         <v-col cols="12" lg="6" class="mx-auto">
           <v-row>
-            <v-col cols="8">
+            <v-col >
               <v-col
                 v-for="material in materials"
                 v-bind:key="material.material_id"
@@ -19,8 +19,6 @@
                       <v-col cols="12">
                         <v-row align="center" justify="space-around">
                           <v-col cols="12" sm="6" class="text-center">
-                            <!-- <v-card outlined width="500px">
-                            -->
                             <v-img
                               :src="material.img"
                               max-width="100px"
@@ -29,12 +27,11 @@
                             ></v-img>
                             <h3 style="margin-top: 10px">Kasusun saka tema:</h3>
                             <h4
-                              class="font-weight-thin black--text d-block ml-auto mr-auto"
+                              class="font-weight-regular black--text d-block ml-auto mr-auto"
                               style="margin-top: 10px"
                             >
                               {{ material.description }}
                             </h4>
-
                             <v-btn
                               color="#58cc02"
                               class="white--text"
@@ -54,71 +51,6 @@
                 </v-sheet>
               </v-col>
             </v-col>
-            <v-col cols="3">
-              <!-- hello user -->
-              <v-sheet rounded="lg" style="margin-top: 30px" outlined>
-                <v-list color="transparent">
-                  <v-list-item>
-                    <v-flex>
-                      <h2 style="margin-bottom: 10px; margin-top: 20px;">
-                        Ayo sinau <strong>{{ user.name }}</strong>
-                      </h2>
-                      <!-- <v-img
-                        width="5px"
-                        height="50px"
-                        src="@/assets/hand.svg"
-                        style="margin-top: 10px"
-                      >
-                      </v-img> -->
-                    </v-flex>
-                  </v-list-item>
-                </v-list>
-              </v-sheet>
-              <!-- leaderboard -->
-              <!-- <v-sheet rounded="lg" outlined style="margin-top: 20px">
-                <v-list color="transparent">
-                  <v-list-item>
-                    <v-list-item-content>
-                      <v-list-item-title>
-                        <h2 class="text-center">Leaderboard</h2>
-                      </v-list-item-title>
-                    </v-list-item-content>
-                  </v-list-item>
-
-                  <v-divider></v-divider>
-                  <v-virtual-scroll
-                    :bench="benched"
-                    :items="items"
-                    height="250"
-                    item-height="64"
-                  >
-                    <template v-slot:default="{ item }">
-                      <v-list-item :key="item">
-                        <v-list-item-action>
-                          <v-btn
-                            fab
-                            small
-                            depressed
-                            color="white"
-                            class="green--text"
-                          >
-                            {{ item }}
-                          </v-btn>
-                        </v-list-item-action>
-                        <v-list-item-content>
-                          <v-list-item-title> nama </v-list-item-title>
-                        </v-list-item-content>
-                        <v-list-item-content>
-                          <v-list-item-title> 100 poin </v-list-item-title>
-                        </v-list-item-content>
-                      </v-list-item>
-                      <v-divider></v-divider>
-                    </template>
-                  </v-virtual-scroll>
-                </v-list>
-              </v-sheet> -->
-               </v-col
-          >
           </v-row>
         </v-col>
       </v-row>
@@ -142,7 +74,7 @@ export default {
   methods: {
     async fetchMaterial() {
       try {
-        const url = `${api_url}/materials/`;
+        const url = `${api_url}/materials`;
         const response = await axios.get(url);
         const results = response.data;
         this.materials = results.map((material) => ({
@@ -182,5 +114,11 @@ export default {
 <style>
 .flex {
   display: flex;
+}
+@media only screen and (max-width: 600px) {
+  /* For mobile phones: */
+  [class*="cols="] {
+    width: 100%;
+  }
 }
 </style>
