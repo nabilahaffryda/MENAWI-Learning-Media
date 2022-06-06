@@ -4,7 +4,7 @@
       <v-row>
         <v-col>
           <v-row>
-            <v-col cols="12" md="8">
+            <v-col cols="12" md="7">
               <!-- 2 opsi aktivitas -->
               <v-sheet
                 min-height="75vh"
@@ -46,7 +46,7 @@
                 </v-container>
               </v-sheet>
             </v-col>
-            <v-col cols="12" md="4">
+            <v-col cols="12" md="5">
               <!-- leaderboard -->
               <v-sheet rounded="lg" outlined style="margin-top: 20px" >
                 <v-list color="transparent">
@@ -79,8 +79,7 @@
                           </v-btn>
                         </v-list-item-action>
                         <v-list-item-content>
-                          <v-list-item-title>
-                            <v-flex align-center>
+                            <v-flex align-center >
                               <strong>{{ item.users.username }}</strong>
                               <v-img
                                 src="@/assets/gold.svg"
@@ -101,13 +100,10 @@
                                 v-if="allanswers.indexOf(item) === 2"
                               ></v-img>
                             </v-flex>
-                          </v-list-item-title>
                         </v-list-item-content>
-                        <v-list-item-content style="margin-left: 10px">
-                          <v-list-item-title>
+                      <v-list-item-action>
                             {{ item.point }} poin
-                          </v-list-item-title>
-                        </v-list-item-content>
+                      </v-list-item-action>
                       </v-list-item>
                       <v-divider></v-divider>
                     </template>
