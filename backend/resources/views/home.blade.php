@@ -17,6 +17,6 @@
 @section('content')
     <div class="content mt-3">
         <div class="animated fadeIn">
-            Hello!
+            Halo, ini adalah halaman admin MENAWI
         </div>
     @endsection

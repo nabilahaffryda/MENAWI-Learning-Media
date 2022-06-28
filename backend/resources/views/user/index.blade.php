@@ -31,7 +31,7 @@
                             <div class="pull-left"><strong class="card-title">Data Table</strong></div>
                             <div class="pull-right">
                                 <a href="{{ route('user.create') }}" class="btn btn-primary btn sm">
-                                    Add Data</a>
+                                    Tambah Data</a>
                             </div>
                         </div>
                         <div class="card-body">
@@ -41,7 +41,7 @@
                                         <th>No</th>
                                         <th>User ID</th>
                                         <th>Username</th>
-                                        <th>Name</th>
+                                        <th>Nama</th>
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
@@ -70,28 +70,27 @@
                             </table>
                         </div>
                     </div>
-                    <div class="modal fade" id="smallmodal" tabindex="-1" role="dialog"
-                        aria-labelledby="smallmodalLabel" aria-hidden="true" data-backdrop="false">
+                    <div class="modal fade" id="smallmodal" tabindex="-1" role="dialog" aria-labelledby="smallmodalLabel"
+                        aria-hidden="true" data-backdrop="false">
                         <div class="modal-dialog modal-sm" role="document">
                             <form action="{{ route('user.destroy', $users->user_id) }}" method="POST">
                                 @csrf
                                 @method('DELETE')
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="staticModalLabel">Delete</h5>
-                                        <button type="button" class="close" data-dismiss="modal"
-                                            aria-label="Close">
+                                        <h5 class="modal-title" id="staticModalLabel">Hapus</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                         </button>
                                     </div>
                                     <div class="modal-body">
                                         <p>
-                                            Are you sure you want to delete this data?
+                                            Anda yakin ingin menghapus data ini?
                                         </p>
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                                        <button type="submit" class="btn btn-primary">Confirm</button>
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                                        <button type="submit" class="btn btn-primary">OK</button>
                                     </div>
                                 </div>
                             </form>

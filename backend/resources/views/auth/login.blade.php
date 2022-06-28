@@ -2,7 +2,7 @@
 @section('title', 'Login')
 @section('content')
     <div class="card-body p-4 text-center">
-        <h3 class="mb-4">Sign in</h3>
+        <h3 class="mb-4">Masuk</h3>
         @if (\Session::has('alert'))
             <div class="alert alert-danger">
                 <div>{{ Session::get('alert') }}</div>
@@ -22,11 +22,11 @@
                 <input type="password" class="form-control" id="password" name="password" placeholder="Password">
             </div>
             <div class="form-group">
-                <button type="submit" class="btn btn-primary btn-lg btn-block">Sign in</button>
+                <button type="submit" class="btn btn-primary btn-lg btn-block">Masuk</button>
             </div>
             <hr class="my-4">
             <div class="register-link m-t-15 text-center">
-                <p>Don't have an account ? <a href="{{ url('/register') }}" style="color: black"> Sign Up Here</a>
+                <p>Belum memiliki akun? <a href="{{ url('/register') }}" style="color: black"><u>Daftar disini</u></a>
                 </p>
             </div>
         </form>

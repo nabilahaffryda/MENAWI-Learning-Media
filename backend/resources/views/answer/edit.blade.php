@@ -1,11 +1,11 @@
 @extends('main')
-@section('title', 'Answer Edit Data')
+@section('title', 'Jawaban Edit Data')
 @section('breadcrumbs')
     <div class="breadcrumbs">
         <div class="col-sm-4">
             <div class="page-header float-left">
                 <div class="page-title">
-                    <h1>Answer Edit Data</h1>
+                    <h1>Jawaban Edit Data</h1>
                 </div>
             </div>
         </div>
@@ -14,7 +14,7 @@
                 <div class="page-title">
                     <ol class="breadcrumb text-right">
                         <li><a href="/">Dashboard</a></li>
-                        <li><a href="javascript:history.back()">Answer</a></li>
+                        <li><a href="javascript:history.back()">Jawaban</a></li>
                         <li class="active">Edit</li>
                     </ol>
                 </div>
@@ -29,7 +29,7 @@
                 <div class="col-lg-6">
                     <div class="card">
                         <div class="card-header">
-                            <strong>Answer</strong> Edit Data
+                            <strong>Jawaban</strong> Edit Data
                         </div>
                         <div class="card-body card-block">
                             <form action="{{ route('answer.update', $answer->answer_id) }}" method="POST"
@@ -40,7 +40,7 @@
                                     <label for="user_id" class=" form-control-label">User</label>
                                     <select id="user_id" name="user_id" placeholder="User" style="width: 100%"
                                         class="form-control select2">
-                                        <option disabled value>Choose User</option>
+                                        <option disabled value>Pilih User</option>
                                         <option value="{{ $answer->user_id }}">{{ $answer->users->username }}
                                             @foreach ($usr as $item)
                                         <option value="{{ $item->user_id }}">{{ $item->username }}</option>
@@ -48,15 +48,15 @@
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <label for="answer_id" class=" form-control-label">Answer ID</label>
-                                    <input type="integer" id="answer_id" name="answer_id" placeholder="Answer ID"
+                                    <label for="answer_id" class=" form-control-label">ID Jawaban</label>
+                                    <input type="integer" id="answer_id" name="answer_id" placeholder="ID Jawaban"
                                         class="form-control" value="{{ $answer->answer_id }}">
                                 </div>
                                 <div class="form-group">
-                                    <label for="question_id" class=" form-control-label">Question</label>
-                                    <select id="question_id" name="question_id" placeholder="Question" style="width: 100%"
+                                    <label for="question_id" class=" form-control-label">Pertanyaan</label>
+                                    <select id="question_id" name="question_id" placeholder="Pertanyaan" style="width: 100%"
                                         class="form-control select2">
-                                        <option disabled value>Choose Question</option>
+                                        <option disabled value>Pilih Pertanyaan</option>
                                         <option value="{{ $answer->question_id }}">
                                             {{ $answer->quest->question }}
                                         </option>
@@ -66,18 +66,18 @@
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <label for="answer" class=" form-control-label">Answer</label>
-                                    <input type="text" id="answer" name="answer" placeholder="Answer" class="form-control"
-                                        value="{{ $answer->answer }}">
+                                    <label for="answer" class=" form-control-label">Jawaban</label>
+                                    <input type="text" id="answer" name="answer" placeholder="Jawaban"
+                                        class="form-control" value="{{ $answer->answer }}">
                                 </div>
                                 <div class="form-group">
-                                    <label for="point" class=" form-control-label">Point</label>
-                                    <input type="integer" id="point" name="point" placeholder="Point" class="form-control"
-                                        value="{{ $answer->point }}">
+                                    <label for="point" class=" form-control-label">Poin</label>
+                                    <input type="integer" id="point" name="point" placeholder="Poin"
+                                        class="form-control" value="{{ $answer->point }}">
                                 </div>
                                 <div class="form-group">
                                     <button type="submit" class="btn btn-success btn-sm pull-right">
-                                        Submit
+                                        Simpan
                                     </button>
                                 </div>
                             </form>

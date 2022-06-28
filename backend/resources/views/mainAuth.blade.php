@@ -23,7 +23,7 @@
         <div class="row d-flex justify-content-center align-items-center h-100">
             <div class="col-12 col-md-8 col-lg-6 col-xl-5">
                 <div class="logo text-center"><a href="/"><img class="align-content"
-                            src="{{ asset('style/images/logo2.png') }}" alt="" width="150px"></a></div>
+                            src="{{ asset('style/images/logo.png') }}" alt="" width="100px"></a></div>
                 <br>
                 <div class="card shadow-2-strong" style="border-radius: 1rem;"> @yield('content') </div>
             </div>

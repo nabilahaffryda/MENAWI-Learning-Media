@@ -1,11 +1,11 @@
 @extends('main')
-@section('title', 'User Add Data')
+@section('title', 'User Tambah Data')
 @section('breadcrumbs')
     <div class="breadcrumbs">
         <div class="col-sm-4">
             <div class="page-header float-left">
                 <div class="page-title">
-                    <h1> User Add Data</h1>
+                    <h1> User Tambah Data</h1>
                 </div>
             </div>
         </div>
@@ -15,7 +15,7 @@
                     <ol class="breadcrumb text-right">
                         <li><a href="/">Dashboard</a></li>
                         <li><a href="javascript:history.back()">User</a></li>
-                        <li class="active">Add</li>
+                        <li class="active">Tambah</li>
                     </ol>
                 </div>
             </div>
@@ -29,7 +29,7 @@
                 <div class="col-lg-6">
                     <div class="card">
                         <div class="card-header">
-                            <strong>User</strong> Add Data
+                            <strong>User</strong> Tambah Data
                         </div>
                         <div class="card-body card-block">
                             <form action="{{ route('user.store') }}" method="POST">
@@ -40,8 +40,9 @@
                                         class="form-control">
                                 </div>
                                 <div class="form-group">
-                                    <label for="name" class="form-control-label">Name</label>
-                                    <input type="text" id="name" name="name" placeholder="Name" class="form-control">
+                                    <label for="name" class="form-control-label">Nama</label>
+                                    <input type="text" id="name" name="name" placeholder="Nama"
+                                        class="form-control">
                                 </div>
                                 <div class="form-group">
                                     <label for="password" class="form-control-label">Password</label>
@@ -50,7 +51,7 @@
                                 </div>
                                 <div class="form-group">
                                     <button type="submit" class="btn btn-success btn-sm pull-right">
-                                        Submit
+                                        Simpan
                                     </button>
                                 </div>
                             </form>

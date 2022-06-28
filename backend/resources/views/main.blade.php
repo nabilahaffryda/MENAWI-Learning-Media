@@ -6,8 +6,7 @@
     <title>@yield('title') - MENAWI Admin</title>
     <meta name="description" content="MENAWI Admin">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="apple-touch-icon" href="apple-icon.png">
-    <link rel="shortcut icon" href="#">
+    <link rel="shortcut icon" href="{{ asset('style/images/logo.png') }}">
     <link rel="stylesheet" href="{{ asset('style/assets/css/normalize.css') }}">
     <link rel="stylesheet" href="{{ asset('style/assets/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('style/assets/css/font-awesome.min.css') }}">
@@ -27,38 +26,34 @@
                     aria-controls="main-menu" aria-expanded="false" aria-label="Toggle navigation">
                     <i class="fa fa-bars"></i>
                 </button>
-                <a class="navbar-brand" href="./"><img src="{{ asset('style/images/logo2.png') }}" alt="Logo"></a>
-                <a class="navbar-brand hidden" href="./"><img src="{{ asset('style/images/logo2.png') }}"
-                        alt="Logo"></a>
+                <a class="navbar-brand" href="./"><img width="70px" height="70px"
+                        src="{{ asset('style/images/logo.png') }}" alt="Logo"></a>
+                <a class="navbar-brand hidden" href="./"><img src="{{ asset('style/images/logo.png') }}"
+                        width="70px" height="70px" alt="Logo"></a>
             </div>
             <div id="main-menu" class="main-menu collapse navbar-collapse">
                 <ul class="nav navbar-nav">
-                    <li class="menu-item-has-children active dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
-                            aria-expanded="false"> <i class="menu-icon fa fa-user"></i>User</a>
-                        <ul class="sub-menu children dropdown-menu">
-                            <li><i class="fa fa-laptop"></i><a href="{{ url('user') }}">User</a></li>
-                            <li><i class="fa fa-id-badge"></i><a href="{{ url('badge') }}">Badge</a></li>
-                        </ul>
+                    <li class="menu-item">
+                        <a href="{{ url('user') }}" aria-haspopup="true" aria-expanded="false"> <i
+                                class="menu-icon fa fa-user"></i>User</a>
                     </li>
                     <li class="menu-item-has-children active dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
-                            aria-expanded="false"> <i class="menu-icon fa fa-table"></i>Material</a>
+                            aria-expanded="false"> <i class="menu-icon fa fa-table"></i>Materi</a>
                         <ul class="sub-menu children dropdown-menu">
-                            <li><i class="fa fa-table"></i><a href="{{ url('material') }}">Material</a></li>
-                            <li><i class="fa fa-table"></i><a href="{{ url('description') }}">Material
-                                    Description</a>
+                            <li><i class="fa fa-table"></i><a href="{{ url('material') }}">Materi</a></li>
+                            <li><i class="fa fa-table"></i><a href="{{ url('description') }}">Deskripsi Materi</a>
                             </li>
                         </ul>
                     </li>
                     <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
-                            aria-expanded="false"> <i class="menu-icon fa fa-th"></i>Quiz</a>
+                            aria-expanded="false"> <i class="menu-icon fa fa-th"></i>Kuis</a>
                         <ul class="sub-menu children dropdown-menu">
                             <li><i class="menu-icon fa fa-th"></i><a href="{{ url('level') }}">Level</a></li>
-                            <li><i class="menu-icon fa fa-th"></i><a href="{{ url('theme') }}">Theme</a></li>
-                            <li><i class="menu-icon fa fa-th"></i><a href="{{ url('question') }}">Question</a></li>
-                            <li><i class="menu-icon fa fa-th"></i><a href="{{ url('answer') }}">Answer</a></li>
+                            <li><i class="menu-icon fa fa-th"></i><a href="{{ url('theme') }}">Tema</a></li>
+                            <li><i class="menu-icon fa fa-th"></i><a href="{{ url('question') }}">Pertanyaan</a></li>
+                            <li><i class="menu-icon fa fa-th"></i><a href="{{ url('answer') }}">Jawaban</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -87,11 +82,11 @@
                     <div class="user-area dropdown float-right">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
                             aria-expanded="false">
-                            <img class="user-avatar rounded-circle" src="{{ asset('style/images/admin.jpg') }}"
+                            <img class="user-avatar rounded-circle" src="{{ asset('style/images/user.png') }}"
                                 alt="User Avatar">
                         </a>
                         <div class="user-menu dropdown-menu">
-                            <a class="nav-link" href="#"><i class="fa fa -cog"></i>Settings</a>
+                            {{-- <a class="nav-link" href="#"><i class="fa fa -cog"></i>Settings</a> --}}
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ url('/logout') }}">Logout</a>
                             </li>

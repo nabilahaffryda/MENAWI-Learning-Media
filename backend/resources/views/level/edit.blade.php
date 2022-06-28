@@ -36,18 +36,18 @@
                                 @csrf
                                 @method('PUT')
                                 <div class="form-group">
-                                    <label for="level_id" class=" form-control-label">Level ID</label>
-                                    <input type="integer" id="level_id" name="level_id" placeholder="Level ID"
+                                    <label for="level_id" class=" form-control-label">ID Level</label>
+                                    <input type="integer" id="level_id" name="level_id" placeholder="ID Level"
                                         class="form-control" value="{{ $level->level_id }}">
                                 </div>
                                 <div class="form-group">
-                                    <label for="level_name" class=" form-control-label">Level Name</label>
-                                    <input type="text" id="level_name" name="level_name" placeholder="Level Name"
+                                    <label for="level_name" class=" form-control-label">Nama Level</label>
+                                    <input type="text" id="level_name" name="level_name" placeholder="Nama Level"
                                         class="form-control" value="{{ $level->level_name }}">
                                 </div>
                                 <div class="form-group">
                                     <button type="submit" class="btn btn-success btn-sm pull-right">
-                                        Submit
+                                        Simpan
                                     </button>
                                 </div>
                             </form>

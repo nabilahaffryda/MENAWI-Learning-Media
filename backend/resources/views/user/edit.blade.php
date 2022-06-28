@@ -46,9 +46,9 @@
                                         class="form-control" value="{{ $user->username }}">
                                 </div>
                                 <div class="form-group">
-                                    <label for="name" class=" form-control-label">Name</label>
-                                    <input type="text" id="name" name="name" placeholder="Name" class="form-control"
-                                        value="{{ $user->name }}">
+                                    <label for="name" class=" form-control-label">Nama</label>
+                                    <input type="text" id="name" name="name" placeholder="Nama"
+                                        class="form-control" value="{{ $user->name }}">
                                 </div>
                                 <div class="form-group">
                                     <label for="password" class=" form-control-label">Password</label>
@@ -57,7 +57,7 @@
                                 </div>
                                 <div class="form-group">
                                     <button type="submit" class="btn btn-success btn-sm pull-right">
-                                        Submit
+                                        Simpan
                                     </button>
                                 </div>
                             </form>
