@@ -10,16 +10,16 @@
             <v-container fluid>
               <v-col v-if="currentDescription">
                 <v-row>
-                  <v-col cols="12" md="4">
+                  <v-col cols="12" md="6">
                     <v-img
                       :src="`https://admin.menawi.com/storage/${currentDescription.desc_pict}`"
-                      height="auto" class="d-block ml-auto mr-auto"
-                      width="230px"
+                      height="300px" class="d-block ml-auto mr-auto"
+                      width="300px"
                       style="margin-top: 10px"
                     ></v-img>
                   </v-col>
-                  <v-col cols="12" md="8">
-                    <h3 style="margin-top: 10px" class="d-block ml-auto mr-auto text-center">
+                  <v-col cols="12" md="6">
+                    <h3 style="margin-top: 20px" class="d-block ml-auto mr-auto text-center">
                       {{ currentDescription.description }}
                     </h3>
                   </v-col>

@@ -30,8 +30,8 @@
               ></h1>
               <form v-if="currentQuestion">
                 <img
-                  :src="`https://admin.menawi.com/storage/${currentQuestion.question_pict}`"
-                  height="200px"
+                  :src="`https://admin.menawi.com/storage/app/public/${currentQuestion.question_pict}`"
+                  height="300px" 
                   class="d-block ml-auto mr-auto"
                   style="margin-bottom: 10px; margin-top: 10px"
                 />
@@ -79,7 +79,7 @@
             v-if="answerUsers.length > 0 && index > 3"
             class="primary float-right"
           >
-            <h4>Selesai</h4></v-btn
+            <h4>Rampung</h4></v-btn
           >
         </v-col>
         <!-- dialog when user completed quiz -->

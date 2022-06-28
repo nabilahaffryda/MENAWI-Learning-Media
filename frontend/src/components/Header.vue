@@ -3,7 +3,10 @@
     <v-toolbar flat outlined class="px-8">
       <v-spacer></v-spacer>
       <v-toolbar-title>
-        <v-btn text to="/" color="white">
+        <v-btn text to="/home" v-if="isLoggedIn" color="white">
+          <v-img src="@/assets/logo1.png" width="55px" height="55px" />
+        </v-btn>
+        <v-btn text to="/" v-if="!isLoggedIn" color="white">
           <v-img src="@/assets/logo1.png" width="55px" height="55px" />
         </v-btn>
       </v-toolbar-title>
@@ -92,7 +95,8 @@
       >
         <template v-slot:activator="{ on, attrs }">
           <v-btn text v-bind="attrs" v-on="on">
-            <v-icon color="blue">mdi-account</v-icon>
+            <avatar :fullname="user.name" size="30"></avatar>
+            <!-- <v-icon>mdi-account</v-icon> -->
           </v-btn>
         </template>
         <v-card>
@@ -138,95 +142,13 @@
   height: 80px !important;
   padding-top: 10px;
 }
-[class*="col-"] {
-  width: 100%;
-}
-
-@media only screen and (min-width: 600px) {
-  /* For tablets: */
-  .col-s-1 {
-    width: 8.33%;
-  }
-  .col-s-2 {
-    width: 16.66%;
-  }
-  .col-s-3 {
-    width: 25%;
-  }
-  .col-s-4 {
-    width: 33.33%;
-  }
-  .col-s-5 {
-    width: 41.66%;
-  }
-  .col-s-6 {
-    width: 50%;
-  }
-  .col-s-7 {
-    width: 58.33%;
-  }
-  .col-s-8 {
-    width: 66.66%;
-  }
-  .col-s-9 {
-    width: 75%;
-  }
-  .col-s-10 {
-    width: 83.33%;
-  }
-  .col-s-11 {
-    width: 91.66%;
-  }
-  .col-s-12 {
-    width: 100%;
-  }
-}
-
-@media only screen and (min-width: 768px) {
-  /* For desktop: */
-  .col-1 {
-    width: 8.33%;
-  }
-  .col-2 {
-    width: 16.66%;
-  }
-  .col-3 {
-    width: 25%;
-  }
-  .col-4 {
-    width: 33.33%;
-  }
-  .col-5 {
-    width: 41.66%;
-  }
-  .col-6 {
-    width: 50%;
-  }
-  .col-7 {
-    width: 58.33%;
-  }
-  .col-8 {
-    width: 66.66%;
-  }
-  .col-9 {
-    width: 75%;
-  }
-  .col-10 {
-    width: 83.33%;
-  }
-  .col-11 {
-    width: 91.66%;
-  }
-  .col-12 {
-    width: 100%;
-  }
-}
 </style>
 
 <script>
 import { mapGetters } from "vuex";
 import axios from "axios";
 import api_url from "../utils/api_url";
+import Avatar from "vue-avatar-component";
 export default {
   name: "Header",
   data() {
@@ -240,6 +162,9 @@ export default {
       isLoggedIn: "isLoggedIn",
       user: "user",
     }),
+  },
+  components: {
+    Avatar,
   },
   mounted() {
     this.checkAnswerByUserID();
