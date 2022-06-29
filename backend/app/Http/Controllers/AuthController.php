@@ -12,9 +12,9 @@ class AuthController extends Controller
     public function index()
     {
         if (!Session::get('login')) {
-            return redirect('login')->with('alert', 'You are not logged in, please login first');
+            return redirect('login')->with('alert', 'Anda belum login, silahkan login terlebih dahulu');
         } else {
-            return view('home');
+            return view('dashboard');
         }
     }
     public function register(Request $request)
@@ -33,7 +33,7 @@ class AuthController extends Controller
         $data->username = $request->username;
         $data->password = bcrypt($request->password);
         $data->save();
-        return redirect('login')->with('alert-success', 'You have successfully registered');
+        return redirect('login')->with('alert-success', 'Anda telah berhasil mendaftar');
     }
     public function login()
     {
@@ -51,15 +51,15 @@ class AuthController extends Controller
                 Session::put('login', TRUE);
                 return redirect('/');
             } else {
-                return redirect('login')->with('alert', 'Your email or password is wrong!');
+                return redirect('login')->with('alert', 'Username atau kata sandi Anda salah!');
             }
         } else {
-            return redirect('login')->with('alert', 'Your email or password is wrong!');
+            return redirect('login')->with('alert', 'Username atau kata sandi Anda salah!');
         }
     }
     public function logout()
     {
         Session::flush();
-        return redirect('login')->with('alert', 'You have logged out');
+        return redirect('login')->with('alert', 'Anda telah keluar');
     }
 }

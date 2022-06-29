@@ -34,7 +34,7 @@ Route::resource('material', MaterialController::class);
 Route::resource('description', DescriptionController::class);
 Route::resource('badge', BadgeController::class);
 
-Route::get('/', [AuthController::class, 'index']);
+// Route::get('/', [AuthController::class, 'index']);
 Route::get('/login', [AuthController::class, 'login']);
 Route::post('/loginPost', [AuthController::class, 'loginPost']);
 Route::get('/register', [AuthController::class, 'register']);
