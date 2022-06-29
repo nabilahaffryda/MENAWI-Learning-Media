@@ -5,11 +5,11 @@ use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\MaterialController;
-use App\Http\Controllers\BadgeController;
 use App\Http\Controllers\DescriptionController;
 use App\Http\Controllers\LevelController;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\ThemeController;
+use App\Http\Controllers\DashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,9 +22,7 @@ use App\Http\Controllers\ThemeController;
 |
 */
 
-Route::get('home', function () {
-    return view('home');
-});
+Route::get('/', [DashboardController::class, 'index']);
 Route::resource('user', UsersController::class);
 Route::resource('level', LevelController::class);
 Route::resource('theme', ThemeController::class);
@@ -32,7 +30,6 @@ Route::resource('question', QuestionController::class);
 Route::resource('answer', AnswerController::class);
 Route::resource('material', MaterialController::class);
 Route::resource('description', DescriptionController::class);
-Route::resource('badge', BadgeController::class);
 
 // Route::get('/', [AuthController::class, 'index']);
 Route::get('/login', [AuthController::class, 'login']);

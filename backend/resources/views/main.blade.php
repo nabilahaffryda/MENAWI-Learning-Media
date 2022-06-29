@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="{{ asset('style/assets/css/flag-icon.min.css') }}">
     <link rel="stylesheet" href="{{ asset('style/assets/css/cs-skin-elastic.css') }}">
     <link rel="stylesheet" href="{{ asset('style/assets/scss/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('style/assets/css/lib/datatable/dataTables.bootstrap.min.css') }}">
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
 </head>
 
@@ -26,13 +27,17 @@
                     aria-controls="main-menu" aria-expanded="false" aria-label="Toggle navigation">
                     <i class="fa fa-bars"></i>
                 </button>
-                <a class="navbar-brand" href="./"><img width="70px" height="70px"
+                <a class="navbar-brand" href="{{ url('/') }}"><img width="70px" height="70px"
                         src="{{ asset('style/images/logo.png') }}" alt="Logo"></a>
-                <a class="navbar-brand hidden" href="./"><img src="{{ asset('style/images/logo.png') }}"
+                <a class="navbar-brand hidden" href="{{ url('/') }}"><img src="{{ asset('style/images/logo.png') }}"
                         width="70px" height="70px" alt="Logo"></a>
             </div>
             <div id="main-menu" class="main-menu collapse navbar-collapse">
                 <ul class="nav navbar-nav">
+                    <li class="active">
+                        <a href="{{ url('/') }}"> <i class="menu-icon fa fa-dashboard"></i>Dashboard </a>
+                    </li>
+                    <h3 class="menu-title">Data Tabel</h3>
                     <li class="menu-item">
                         <a href="{{ url('user') }}" aria-haspopup="true" aria-expanded="false"> <i
                                 class="menu-icon fa fa-user"></i>User</a>
@@ -67,16 +72,6 @@
             <div class="header-menu">
                 <div class="col-sm-7">
                     <a id="menuToggle" class="menutoggle pull-left"><i class="fa fa fa-tasks"></i></a>
-                    <div class="header-left">
-                        <button class="search-trigger"><i class="fa fa-search"></i></button>
-                        <div class="form-inline">
-                            <form class="search-form">
-                                <input class="form-control mr-sm-2" type="text" placeholder="Search ..."
-                                    aria-label="Search">
-                                <button class="search-close"><i class="fa fa-close"></i></button>
-                            </form>
-                        </div>
-                    </div>
                 </div>
                 <div class="col-sm-5">
                     <div class="user-area dropdown float-right">
@@ -105,6 +100,22 @@
     <script src="{{ asset('style/assets/js/popper.min.js') }}"></script>
     <script src="{{ asset('style/assets/js/plugins.js') }}"></script>
     <script src="{{ asset('style/assets/js/main.js') }}"></script>
+    <script src="{{ asset('style/assets/js/lib/data-table/datatables.min.js') }}"></script>
+    <script src="{{ asset('style/assets/js/lib/data-table/dataTables.bootstrap.min.js') }}"></script>
+    <script src="{{ asset('style/assets/js/lib/data-table/dataTables.buttons.min.js') }}"></script>
+    <script src="{{ asset('style/assets/js/lib/data-table/buttons.bootstrap.min.js') }}"></script>
+    <script src="{{ asset('style/assets/js/lib/data-table/jszip.min.js') }}"></script>
+    <script src="{{ asset('style/assets/js/lib/data-table/pdfmake.min.js') }}"></script>
+    <script src="{{ asset('style/assets/js/lib/data-table/vfs_fonts.js') }}"></script>
+    <script src="{{ asset('style/assets/js/lib/data-table/buttons.html5.min.js') }}"></script>
+    <script src="{{ asset('style/assets/js/lib/data-table/buttons.print.min.js') }}"></script>
+    <script src="{{ asset('style/assets/js/lib/data-table/buttons.colVis.min.js') }}"></script>
+    <script src="{{ asset('style/assets/js/lib/data-table/datatables-init.js') }}"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#bootstrap-data-table').DataTable();
+        });
+    </script>
 </body>
 
 </html>

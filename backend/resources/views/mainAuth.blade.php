@@ -7,7 +7,7 @@
     <meta name="description" content="MENAWI Admin">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="apple-touch-icon" href="apple-icon.png">
-    <link rel="shortcut icon" href="#">
+    <link rel="shortcut icon" href="{{ asset('style/images/logo.png') }}">
     <link rel="stylesheet" href="{{ asset('style/assets/css/normalize.css') }}">
     <link rel="stylesheet" href="{{ asset('style/assets/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('style/assets/css/font-awesome.min.css') }}">
@@ -22,7 +22,7 @@
     <div class="container py-5 h-100">
         <div class="row d-flex justify-content-center align-items-center h-100">
             <div class="col-12 col-md-8 col-lg-6 col-xl-5">
-                <div class="logo text-center"><a href="/"><img class="align-content"
+                <div class="logo text-center"><a href="#"><img class="align-content"
                             src="{{ asset('style/images/logo.png') }}" alt="" width="100px"></a></div>
                 <br>
                 <div class="card shadow-2-strong" style="border-radius: 1rem;"> @yield('content') </div>
