@@ -51,11 +51,6 @@
                                         class="form-control" value="{{ $user->name }}">
                                 </div>
                                 <div class="form-group">
-                                    <label for="password" class=" form-control-label">Password</label>
-                                    <input type="password" id="password" name="password" placeholder="Password"
-                                        class="form-control" value="{{ $user->password }}">
-                                </div>
-                                <div class="form-group">
                                     <button type="submit" class="btn btn-success btn-sm pull-right">
                                         Simpan
                                     </button>
