@@ -95,7 +95,7 @@
       >
         <template v-slot:activator="{ on, attrs }">
           <v-btn text v-bind="attrs" v-on="on">
-            <avatar :fullname="user.name" size="30"></avatar>
+            <avatar :fullname="user.name" :size="30"></avatar>
             <!-- <v-icon>mdi-account</v-icon> -->
           </v-btn>
         </template>
