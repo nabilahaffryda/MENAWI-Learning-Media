@@ -74,10 +74,10 @@
           <!-- if user already answer all questions -->
           <v-btn
             rounded
-            style="margin-top: 20px"
+            style="margin-top: 20px" 
             @click="handleButtonFinish()"
             v-if="answerUsers.length > 0 && index > 3"
-            class="primary float-right"
+            class="primary float-right" 
           >
             <h4>Rampung</h4></v-btn
           >
