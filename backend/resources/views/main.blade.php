@@ -27,15 +27,15 @@
                     aria-controls="main-menu" aria-expanded="false" aria-label="Toggle navigation">
                     <i class="fa fa-bars"></i>
                 </button>
-                <a class="navbar-brand" href="{{ url('/') }}"><img width="70px" height="70px"
+                <a class="navbar-brand" href="{{ url('/dashboard') }}"><img width="70px" height="70px"
                         src="{{ asset('style/images/logo.png') }}" alt="Logo"></a>
-                <a class="navbar-brand hidden" href="{{ url('/') }}"><img src="{{ asset('style/images/logo.png') }}"
-                        width="70px" height="70px" alt="Logo"></a>
+                <a class="navbar-brand hidden" href="{{ url('/dashboard') }}"><img
+                        src="{{ asset('style/images/logo.png') }}" width="70px" height="70px" alt="Logo"></a>
             </div>
             <div id="main-menu" class="main-menu collapse navbar-collapse">
                 <ul class="nav navbar-nav">
                     <li class="active">
-                        <a href="{{ url('/') }}"> <i class="menu-icon fa fa-dashboard"></i>Dashboard </a>
+                        <a href="{{ url('/dashboard') }}"> <i class="menu-icon fa fa-dashboard"></i>Dashboard </a>
                     </li>
                     <h3 class="menu-title">Data Tabel</h3>
                     <li class="menu-item">
@@ -79,11 +79,15 @@
                             aria-expanded="false">
                             <img class="user-avatar rounded-circle" src="{{ asset('style/images/user.png') }}"
                                 alt="User Avatar">
+                            {{-- @if (\Illuminate\Support\Facades\Auth::check())
+                            <span>{{ Auth::user()->users }}</span>
+                            @endif --}}
                         </a>
                         <div class="user-menu dropdown-menu">
-                            {{-- <a class="nav-link" href="#"><i class="fa fa -cog"></i>Settings</a> --}}
+                            <a class="nav-link" href="{{ url('profile') }}"><i class="fa fa -cog"></i>Edit
+                                Profil</a>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ url('/logout') }}">Logout</a>
+                                <a class="nav-link" href="{{ route('logout') }}">Logout</a>
                             </li>
                         </div>
                     </div>
@@ -105,7 +109,6 @@
     <script src="{{ asset('style/assets/js/lib/data-table/dataTables.buttons.min.js') }}"></script>
     <script src="{{ asset('style/assets/js/lib/data-table/buttons.bootstrap.min.js') }}"></script>
     <script src="{{ asset('style/assets/js/lib/data-table/jszip.min.js') }}"></script>
-    <script src="{{ asset('style/assets/js/lib/data-table/pdfmake.min.js') }}"></script>
     <script src="{{ asset('style/assets/js/lib/data-table/vfs_fonts.js') }}"></script>
     <script src="{{ asset('style/assets/js/lib/data-table/buttons.html5.min.js') }}"></script>
     <script src="{{ asset('style/assets/js/lib/data-table/buttons.print.min.js') }}"></script>

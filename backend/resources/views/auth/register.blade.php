@@ -3,25 +3,28 @@
 @section('content')
     <div class="card-body p-4 text-center">
         <h3 class="mb-4">Daftar</h3>
-        @if ($errors->any())
-            <div class="alert alert-danger">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
-        <form action="{{ url('/registerPost') }}" method="POST">
-            {{ csrf_field() }}
+        <form action="{{ route('register') }}" method="POST">
+            @csrf
             <div class="form-group">
-                <input type="text" id="username" name="username" class="form-control" placeholder="Username" />
+                <input type="text" id="username" name="username" value="{{ old('username') }}"
+                    class="form-control @error('username') is-invalid @enderror" placeholder="Username" required />
+                @error('username')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
             </div>
             <div class="form-group">
-                <input type="text" id="name" name="name" class="form-control" placeholder="Nama">
+                <input type="text" id="name" name="name" required value="{{ old('name') }}"
+                    class="form-control @error('name') is-invalid @enderror" placeholder="Nama">
+                @error('name')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
             </div>
             <div class="form-group">
-                <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+                <input type="password" required class="form-control @error('password') is-invalid @enderror" id="password"
+                    name="password" placeholder="Password">
+                @error('password')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
             </div>
             <div class="form-group">
                 <button type="submit" class="btn btn-primary btn-lg btn-block">Daftar</button>
