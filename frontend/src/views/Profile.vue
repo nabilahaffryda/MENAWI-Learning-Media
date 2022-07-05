@@ -8,39 +8,70 @@
               <v-row class="d-block ml-auto mr-auto">
                 <v-col cols="12" class="d-block ml-auto mr-auto">
                   <v-row align="center" class="d-block ml-auto mr-auto">
-                    <v-col cols="12" sm="8" class="d-block ml-auto mr-auto">
+                    <v-col cols="12" sm="12" class="d-block ml-auto mr-auto">
                       <h1 style="margin-top: 30px" class="text-center">
                         Edit Profil
                       </h1>
-                      <v-divider></v-divider>
-                      <form>
-                        <v-text-field
-                          label="Jeneng"
-                          :value="user.name"
-                          style="margin-top: 20px"
-                          required
-                          filled
-                        ></v-text-field>
-                        <v-text-field
-                          style="margin-top: 10px"
-                          label="Username"
-                          :value="user.username"
-                          required
-                          filled
-                        ></v-text-field>
-                        <v-text-field
-                          style="margin-top: 10px"
-                          type="password"
-                          label="Kata Sandi Anyar"
-                        ></v-text-field>
+                      <v-divider style="margin-bottom: 30px"></v-divider>
+                      <v-form>
+                        <v-flex>
+                          <v-subheader
+                            style="
+                              margin-right: 65px;
+                              font-size: large;
+                              color: black;
+                              font-weight: bold;
+                            "
+                            >Jeneng</v-subheader
+                          >
+                          <v-text-field
+                            label="Jeneng"
+                            :value="user.name"
+                            solo
+                            required
+                          ></v-text-field>
+                        </v-flex>
+                        <v-flex>
+                          <v-subheader
+                            style="
+                              margin-right: 45px;
+                              font-size: large;
+                              color: black;
+                              font-weight: bold;
+                            "
+                            >Username</v-subheader
+                          >
+                          <v-text-field
+                            label="Username"
+                            solo
+                            :value="user.username"
+                            required
+                          ></v-text-field>
+                        </v-flex>
+                        <v-flex>
+                          <v-subheader
+                            style="
+                              margin-right: 30px;
+                              font-size: large;
+                              color: black;
+                              font-weight: bold;
+                            "
+                            >Sandi Anyar</v-subheader
+                          >
+                          <v-text-field
+                            type="password"
+                            solo
+                            label="Sandi Anyar"
+                          ></v-text-field>
+                        </v-flex>
                         <v-btn
                           color="success"
                           class="mr-2 float-right"
-                          style="margin-top: 20px"
+                          style="margin-top: 10px"
                         >
                           Simpen
                         </v-btn>
-                      </form>
+                      </v-form>
                     </v-col>
                   </v-row>
                 </v-col>
