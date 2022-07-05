@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthAPIController;
 use App\Http\Controllers\HomeAPIController;
 use App\Http\Controllers\MaterialAPIController;
-use App\Http\Controllers\QuizController;
+use App\Http\Controllers\QuizAPIController;
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
@@ -17,7 +17,7 @@ Route::controller(AuthAPIController::class)->group(function () {
     Route::post('logout', 'logout');
 });
 
-Route::controller(QuizController::class)->group(function(){
+Route::controller(QuizAPIController::class)->group(function(){
     Route::get('/themes', 'getTheme');
     Route::get('/themes/{id}', 'getThemeById');
     Route::get('/questions', 'getQuestion');
