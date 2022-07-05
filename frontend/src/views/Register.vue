@@ -6,15 +6,13 @@
           <div class="text-center" style="margin-bottom: 10px">
             <h1 style="color: #0d94a8">Nggawe Akun</h1>
           </div>
-          <form @submit.prevent="register">
+          <v-form
+            @submit.prevent="register"
+            ref="form"
+            v-model="valid"
+            lazy-validation
+          >
             <v-card-text class="text-center">
-              <div
-                class="alert alert-danger"
-                v-for="(error, index) in errors"
-                :key="index"
-              >
-                {{ error[0] }}
-              </div>
               <div class="form-group">
                 <v-text-field
                   filled
@@ -22,6 +20,8 @@
                   style="margin-bottom: 10px"
                   hide-details="auto"
                   dense
+                  required
+                  :rules="nameRules"
                   id="name"
                   class="form-control"
                   label="Jeneng"
@@ -34,9 +34,11 @@
                 <v-text-field
                   filled
                   rounded
+                  required
                   style="margin-bottom: 13px"
                   hide-details="auto"
                   dense
+                  :rules="usernameRules"
                   id="username"
                   class="form-control"
                   label="Username"
@@ -49,12 +51,14 @@
                 <v-text-field
                   filled
                   rounded
+                  required
                   dense
                   id="password"
+                  :rules="passwordRules"
                   class="form-control"
                   style="margin-bottom: 30px"
                   hide-details="auto"
-                  label="Password"
+                  label="Sandi"
                   v-model="form.password"
                   type="password"
                 >
@@ -68,6 +72,8 @@
                 filled
                 rounded
                 dense
+                :disabled="!valid"
+                @click="validate"
               >
                 <span class="white--text px-8">DAFTAR</span>
               </v-btn>
@@ -76,7 +82,7 @@
                 <router-link to="login">Masuk</router-link>
               </p>
             </v-card-text>
-          </form>
+          </v-form>
         </v-card>
       </v-col>
     </v-layout>
@@ -92,7 +98,19 @@ export default {
         username: "",
         password: "",
       },
-      errors: null,
+      usernameRules: [
+        (v) => !!v || "Username dibutuhake",
+        (v) => v.length >= 2 || "Username kudu luwih saka 2 aksara",
+      ],
+      nameRules: [
+        (v) => !!v || "Jeneng dibutuhake",
+        (v) => v.length >= 2 || "Jeneng kudu luwih saka 2 aksara",
+      ],
+      passwordRules: [
+        (v) => !!v || "Sandi dibutuhake",
+        (v) => v.length >= 8 || "Sandi kudu luwih saka 8 karakter",
+      ],
+      valid: true,
     };
   },
   methods: {
@@ -108,6 +126,9 @@ export default {
         .catch((error) => {
           this.errors = error.response.data.errors;
         });
+    },
+    validate() {
+      this.$refs.form.validate();
     },
   },
 };

@@ -6,16 +6,13 @@
           <div class="text-center" style="margin-bottom: 10px">
             <h1 style="color: #0d94a8">Sugeng Rawuh</h1>
           </div>
-
-          <form @submit.prevent="userLogin">
-            <v-card-text class="text-center"
-              ><div
-                class="alert alert-danger"
-                v-for="(error, index) in errors"
-                :key="index"
-              >
-                {{ error[0] }}
-              </div>
+          <v-form
+            @submit.prevent="userLogin"
+            ref="form"
+            v-model="valid"
+            lazy-validation
+          >
+            <v-card-text class="text-center">
               <div class="form-group">
                 <v-text-field
                   filled
@@ -23,6 +20,8 @@
                   style="margin-bottom: 13px"
                   hide-details="auto"
                   dense
+                  required
+                  :rules="usernameRules"
                   label="Username"
                   id="username"
                   class="form-control"
@@ -35,10 +34,12 @@
                 <v-text-field
                   filled
                   rounded
+                  required
                   dense
+                  :rules="passwordRules"
                   style="margin-bottom: 30px"
                   hide-details="auto"
-                  label="Password"
+                  label="Sandi"
                   v-model="form.password"
                   type="password"
                   id="password"
@@ -52,6 +53,8 @@
                 block
                 style="margin-bottom: 15px"
                 filled
+                :disabled="!valid"
+                @click="validate"
                 rounded
                 dense
               >
@@ -62,7 +65,7 @@
                 <router-link to="register">Nggawe akun</router-link>
               </p>
             </v-card-text>
-          </form>
+          </v-form>
         </v-card>
       </v-col>
     </v-layout>
@@ -77,7 +80,15 @@ export default {
         username: "",
         password: "",
       },
-      errors: null,
+      usernameRules: [
+        (v) => !!v || "Username dibutuhake",
+        (v) => v.length >= 2 || "Username kudu luwih saka 2 aksara",
+      ],
+      passwordRules: [
+        (v) => !!v || "Sandi dibutuhake",
+        (v) => v.length >= 8 || "Sandi kudu luwih saka 8 karakter",
+      ],
+      valid: true
     };
   },
   methods: {
@@ -91,6 +102,9 @@ export default {
         .catch((error) => {
           this.errors = error.response.data.errors;
         });
+    },
+    validate() {
+      this.$refs.form.validate();
     },
   },
 };
