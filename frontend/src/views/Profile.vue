@@ -13,45 +13,34 @@
                         Edit Profil
                       </h1>
                       <v-divider></v-divider>
-                      <v-form ref="form">
+                      <form>
                         <v-text-field
-                          v-model="name"
-                          label="Nama" style="margin-top: 20px"
+                          label="Jeneng"
+                          :value="user.name"
+                          style="margin-top: 20px"
                           required
+                          filled
                         ></v-text-field>
                         <v-text-field
-                          v-model="username" style="margin-top: 10px"
+                          style="margin-top: 10px"
                           label="Username"
+                          :value="user.username"
                           required
+                          filled
                         ></v-text-field>
                         <v-text-field
-                          v-model="password" style="margin-top: 10px" type="password"
-                          label="Password Baru"
+                          style="margin-top: 10px"
+                          type="password"
+                          label="Kata Sandi Anyar"
                         ></v-text-field>
                         <v-btn
                           color="success"
-                          class="mr-2 float-right" style="margin-top: 20px"
+                          class="mr-2 float-right"
+                          style="margin-top: 20px"
                         >
-                          Simpan
+                          Simpen
                         </v-btn>
-                      </v-form>
-                      <!-- <h3 class="text-center" style="margin-top: 30px">
-                        Username:
-                      </h3>
-                      <span
-                        class="d-block ml-auto mr-auto text-center"
-                        style="margin-top: 10px"
-                        >{{ user.username }}</span
-                      >
-
-                      <h3 class="text-center" style="margin-top: 20px">
-                        Jeneng:
-                      </h3>
-                      <span
-                        class="d-block ml-auto mr-auto text-center"
-                        style="margin-top: 10px"
-                        >{{ user.name }}</span
-                      > -->
+                      </form>
                     </v-col>
                   </v-row>
                 </v-col>
