@@ -6,6 +6,7 @@ use App\Http\Requests\ValidateUserLogin;
 use App\Http\Requests\ValidateUserRegistration;
 use App\Models\User;
 use App\Http\Resources\User as UserResource;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class AuthAPIController extends Controller
@@ -46,5 +47,10 @@ class AuthAPIController extends Controller
     public function user()
     {
         return new UserResource(auth()->user());
+    }
+    public function logout()
+    {
+        auth()->logout();
+        return response()->json(['message' => 'User successfully signed out']);
     }
 }

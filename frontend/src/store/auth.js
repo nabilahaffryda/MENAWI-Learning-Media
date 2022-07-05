@@ -66,13 +66,27 @@ export default {
         return error;
       }
     },
-    logout({ commit }) {
-      return new Promise((resolve) => {
-        commit("reset_user");
-        localStorage.removeItem("token");
-        localStorage.removeItem("user");
-        removeHeaderToken();
-        resolve();
+    logout({ commit,data }) {
+      return new Promise((resolve, reject) => {
+        axios
+          .post("logout", data)
+          .then((resp) => {
+            resolve(resp);
+            commit("reset_user");
+            localStorage.removeItem("token");
+            localStorage.removeItem("user");
+            removeHeaderToken();
+            resolve();
+          })
+          .catch((err) => {
+            commit("reset_user");
+            localStorage.removeItem("token");
+            localStorage.removeItem("user");
+            removeHeaderToken();
+            resolve();
+            reject(err);
+          });
+       
       });
     },
     register({ commit }, data) {

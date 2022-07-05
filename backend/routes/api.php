@@ -14,6 +14,7 @@ Route::controller(AuthAPIController::class)->group(function () {
     Route::post('register', 'register');
     Route::post('login', 'login');
     Route::get('user', 'user');
+    Route::post('logout', 'logout');
 });
 
 Route::controller(QuizController::class)->group(function(){
