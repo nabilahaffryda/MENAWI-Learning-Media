@@ -10,7 +10,6 @@ use App\Http\Controllers\LevelController;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\ThemeController;
 use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\ProfileController;
 
 // Auth::routes();
 
@@ -23,7 +22,6 @@ Route::resource('question', QuestionController::class);
 Route::resource('answer', AnswerController::class);
 Route::resource('material', MaterialController::class);
 Route::resource('description', DescriptionController::class);
-Route::get('profile', [ProfileController::class, 'index']);
 // });
 
 Route::get('/', [AuthController::class, 'login']);

@@ -79,13 +79,8 @@
                             aria-expanded="false">
                             <img class="user-avatar rounded-circle" src="{{ asset('style/images/user.png') }}"
                                 alt="User Avatar">
-                            {{-- @if (\Illuminate\Support\Facades\Auth::check())
-                            <span>{{ Auth::user()->users }}</span>
-                            @endif --}}
                         </a>
                         <div class="user-menu dropdown-menu">
-                            <a class="nav-link" href="{{ url('profile') }}"><i class="fa fa -cog"></i>Edit
-                                Profil</a>
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('logout') }}">Logout</a>
                             </li>
