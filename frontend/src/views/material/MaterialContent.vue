@@ -12,7 +12,7 @@
                 <v-row>
                   <v-col cols="12" md="6">
                     <v-img
-                      :src="`https://admin.menawi.com/storage/${currentDescription.desc_pict}`"
+                      :src="`https://admin.menawi.com/storage/app/public/${currentDescription.desc_pict}`"
                       height="300px" class="d-block ml-auto mr-auto"
                       width="300px"
                       style="margin-top: 10px"
