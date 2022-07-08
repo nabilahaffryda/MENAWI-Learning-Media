@@ -106,7 +106,7 @@
             </v-list-item>
             <v-divider />
             <v-list-item to="profile">
-              <v-list-item-title>Profilmu</v-list-item-title>
+              <v-list-item-title>Profilku</v-list-item-title>
             </v-list-item>
             <v-divider />
             <v-list-item @click="logoutDialog()">

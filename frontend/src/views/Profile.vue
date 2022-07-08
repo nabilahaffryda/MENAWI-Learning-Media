@@ -10,7 +10,7 @@
                   <v-row align="center" class="d-block ml-auto mr-auto">
                     <v-col cols="12" sm="12" class="d-block ml-auto mr-auto">
                       <h1 style="margin-top: 30px" class="text-center">
-                        Edit Profil
+                        Profilku
                       </h1>
                       <v-divider
                         style="margin-bottom: 50px; margin-top: 10px"
