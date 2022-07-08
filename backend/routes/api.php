@@ -17,7 +17,7 @@ Route::controller(AuthAPIController::class)->group(function () {
     Route::post('logout', 'logout');
 });
 
-Route::controller(QuizAPIController::class)->group(function(){
+Route::controller(QuizAPIController::class)->group(function () {
     Route::get('/themes', 'getTheme');
     Route::get('/themes/{id}', 'getThemeById');
     Route::get('/questions', 'getQuestion');
