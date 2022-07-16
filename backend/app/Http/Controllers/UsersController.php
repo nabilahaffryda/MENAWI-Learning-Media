@@ -42,7 +42,6 @@ class UsersController extends Controller
             'user_id' => 'required',
             'username' => 'required',
             'name' => 'required',
-            'password' => 'required'
         ]);
         User::where('user_id', $user_id)->update($validatedData);
         return redirect()->route('user.index');
