@@ -13,8 +13,8 @@
             <div class="page-header float-right">
                 <div class="page-title">
                     <ol class="breadcrumb text-right">
-                        <li><a href="/">Dashboard</a></li>
-                        <li><a href="">Pertanyaan</a></li>
+                        <li><a href="/dashboard">Dashboard</a></li>
+                        <li><a href="/question">Pertanyaan</a></li>
                     </ol>
                 </div>
             </div>

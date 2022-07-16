@@ -13,8 +13,8 @@
             <div class="page-header float-right">
                 <div class="page-title">
                     <ol class="breadcrumb text-right">
-                        <li><a href="/">Dashboard</a></li>
-                        <li><a href="javascript:history.back()">User</a></li>
+                        <li><a href="/dashboard">Dashboard</a></li>
+                        <li><a href="/user">User</a></li>
                         <li class="active">Edit</li>
                     </ol>
                 </div>

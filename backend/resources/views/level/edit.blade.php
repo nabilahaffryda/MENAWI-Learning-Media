@@ -13,8 +13,8 @@
             <div class="page-header float-right">
                 <div class="page-title">
                     <ol class="breadcrumb text-right">
-                        <li><a href="/">Dashboard</a></li>
-                        <li><a href="javascript:history.back()">Level</a></li>
+                        <li><a href="/dashboard">Dashboard</a></li>
+                        <li><a href="/level">Level</a></li>
                         <li class="active">Edit</li>
                     </ol>
                 </div>
