@@ -3,54 +3,34 @@
     <v-container class="top">
       <v-row>
         <v-col cols="12" md="6" class="d-block ml-auto mr-auto">
-          <v-sheet height="70vh" rounded="lg" outlined style="margin-top: 20px">
+          <v-sheet height="50vh" rounded="lg" outlined style="margin-top: 20px">
             <v-container fluid>
               <v-row class="d-block ml-auto mr-auto">
                 <v-col cols="12" class="d-block ml-auto mr-auto">
                   <v-row align="center" class="d-block ml-auto mr-auto">
                     <v-col cols="12" sm="12" class="d-block ml-auto mr-auto">
-                      <h1 style="margin-top: 30px" class="text-center">
+                      <h1 style="margin-top: 20px" class="text-center">
                         Profilku
                       </h1>
                       <v-divider
-                        style="margin-bottom: 50px; margin-top: 10px"
+                        style="margin-bottom: 10px; margin-top: 10px"
                       ></v-divider>
-                      <v-flex>
-                        <v-subheader
-                          style="
-                            margin-right: 65px;
-                            font-size: large;
-                            color: black;
-                            font-weight: bold;
-                          "
-                          >Jeneng</v-subheader
-                        >
-                        <v-text-field
-                          label="Jeneng"
-                          solo
-                          type="text "
-                          v-model="user.name"
-                          readonly
-                        ></v-text-field>
-                      </v-flex>
-                      <v-flex>
-                        <v-subheader
-                          style="
-                            margin-right: 45px;
-                            font-size: large;
-                            color: black;
-                            font-weight: bold;
-                          "
-                          >Username</v-subheader
-                        >
-                        <v-text-field
-                          label="Username"
-                          solo
-                          type="text"
-                          readonly
-                          v-model="user.username"
-                        ></v-text-field>
-                      </v-flex>
+                      <h3 class="text-center" style="margin-top: 30px">
+                        Username:
+                      </h3>
+                      <span
+                        class="d-block ml-auto mr-auto text-center"
+                        style="margin-top: 5px"
+                        >{{ user.username }}</span
+                      >
+                      <h3 class="text-center" style="margin-top: 20px">
+                        Jeneng:
+                      </h3>
+                      <span
+                        class="d-block ml-auto mr-auto text-center"
+                        style="margin-top: 5px"
+                        >{{ user.name }}</span
+                      >
                     </v-col>
                   </v-row>
                 </v-col>

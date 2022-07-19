@@ -30,7 +30,7 @@
               ></h1>
               <form v-if="currentQuestion">
                 <img
-                  :src="`https://admin.menawi.com/storage/app/public/${currentQuestion.question_pict}`"
+                  :src="`https://admin.menawi.com/storage/${currentQuestion.question_pict}`"
                   height="300px" 
                   class="d-block ml-auto mr-auto"
                   style="margin-bottom: 10px; margin-top: 10px"
